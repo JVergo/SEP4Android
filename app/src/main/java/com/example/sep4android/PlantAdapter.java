@@ -3,7 +3,6 @@ package com.example.sep4android;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +13,8 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
 
     private ArrayList<Plant> mplants;
 
-    PlantAdapter(ArrayList<Plant> mplants){
-        mplants = mplants;
+    PlantAdapter(ArrayList<Plant> plants){
+        mplants = plants;
 
     }
 
@@ -32,10 +31,10 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         viewHolder.name.setText(mplants.get(position).getName());
         viewHolder.profile.setText(mplants.get(position).getProfile());
 
-        viewHolder.temperatureData.setText((int) mplants.get(position).getTemperatureData());
+/*        viewHolder.temperatureData.setText((int) mplants.get(position).getTemperatureData());
         viewHolder.humidityData.setText((int) mplants.get(position).getHumidityData());
         viewHolder.lightData.setText( (int) mplants.get(position).getLightData());
-        viewHolder.co2Data.setText( (int) mplants.get(position).getCo2Data());
+        viewHolder.co2Data.setText( (int) mplants.get(position).getCo2Data());*/
 
         //data? should be set to int or?
     }

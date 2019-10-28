@@ -11,28 +11,26 @@ import java.util.ArrayList;
 public class PlantListActivity extends AppCompatActivity {
 
     RecyclerView mPlantList;
-    PlantAdapter mPlantadapter;
+    RecyclerView.Adapter mPlantAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-
+        setContentView(R.layout.activity_plantlist);
 
         ArrayList<Plant> plants = new ArrayList<>();
-
 
         plants.add(new Plant("rose","roses",15,30,12,22));
         plants.add(new Plant("jasmine","jasmines",16,30,22,22));
 
-        mPlantadapter = new PlantAdapter(plants);
 
-        mPlantList.findViewById(R.id.rv);
+        mPlantAdapter = new PlantAdapter(plants);
+
+
+        mPlantList = findViewById(R.id.rv);
         mPlantList.hasFixedSize();
         mPlantList.setLayoutManager(new LinearLayoutManager(this));
-        mPlantList.setAdapter(mPlantadapter);
+        mPlantList.setAdapter(mPlantAdapter);
 
     }
 
