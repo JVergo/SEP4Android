@@ -3,6 +3,7 @@ package com.example.sep4android;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,9 +13,12 @@ import java.util.ArrayList;
 public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> {
 
     private ArrayList<Plant> mplants;
+    private OnPlantListener mOnPlantListener;
+    //Context mContext;
 
-    PlantAdapter(ArrayList<Plant> plants){
+    PlantAdapter(ArrayList<Plant> plants, OnPlantListener onPlantListener){
         mplants = plants;
+this.mOnPlantListener = onPlantListener;
 
     }
 
@@ -23,11 +27,11 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.activity_plantlist_item, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, mOnPlantListener);
 
     }
 
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.name.setText(mplants.get(position).getName());
         viewHolder.profile.setText(mplants.get(position).getProfile());
 
@@ -37,17 +41,24 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         viewHolder.co2Data.setText( (int) mplants.get(position).getCo2Data());*/
 
         //data? should be set to int or?
+
+
+
     }
 
     public int getItemCount() {
         return mplants.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView name,profile,temperature,temperatureData,co2,co2Data,humidity,humidityData,light,lightData;
 
-        ViewHolder(View itemView) {
+        LinearLayout parentLayout;
+
+        OnPlantListener onPlantListener;
+
+        ViewHolder(View itemView, OnPlantListener onplantListener) {
             super(itemView);
             name = itemView.findViewById(R.id.tv_name);
             profile = itemView.findViewById(R.id.tv_profile);
@@ -59,10 +70,20 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
             humidityData = itemView.findViewById(R.id.tv_humiditydata);
             light = itemView.findViewById(R.id.tv_light);
             lightData = itemView.findViewById(R.id.tv_lightdata);
+
+            parentLayout = itemView.findViewById(R.id.parent_layout);
+            this.onPlantListener = onplantListener;
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            onPlantListener.onPlantClick(getAdapterPosition());
         }
     }
 
- /*   public interface onPlantListener{
-        void onPlantClick (int position);
-    }*/
+  public interface OnPlantListener{
+        void onPlantClick(int position);
+    }
 }
