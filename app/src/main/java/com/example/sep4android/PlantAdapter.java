@@ -61,4 +61,8 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
             lightData = itemView.findViewById(R.id.tv_lightdata);
         }
     }
+
+ /*   public interface onPlantListener{
+        void onPlantClick (int position);
+    }*/
 }

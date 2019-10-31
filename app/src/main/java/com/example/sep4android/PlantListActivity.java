@@ -45,6 +45,7 @@ public class PlantListActivity extends AppCompatActivity /*implements PlantAdapt
     }
 
     //list of items should be individually a button to jump to its profile >> missing
+
    /* @Override
     public void onPlantClick(int position) {
         plants.get(position);
