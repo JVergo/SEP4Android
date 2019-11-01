@@ -7,9 +7,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.sep4android.R;
+import com.example.sep4android.ui.plant.PlantFragment;
+import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -33,13 +36,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
     public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO Auto-generated method stub
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (item.getItemId()) {
             case R.id.item1:
-                return true;
+                transaction.replace(R.id.nav_host_fragment, new PlantFragment());
+                transaction.commit();
+                break;
 
             case R.id.item2:
-                return true;
+                transaction.replace(R.id.nav_host_fragment, new PlantProfileFragment());
+                transaction.commit();
+                break;
 
 
         }
