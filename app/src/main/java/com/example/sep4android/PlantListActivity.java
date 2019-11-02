@@ -2,8 +2,10 @@ package com.example.sep4android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,21 +16,29 @@ public class PlantListActivity extends AppCompatActivity implements PlantAdapter
     RecyclerView mPlantList;
     RecyclerView.Adapter mPlantAdapter;
     ArrayList<Plant> plants = new ArrayList<>();
+    //private TableLayout table;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_plant);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tb);
+        setSupportActionBar(myToolbar);
+
+        if(getSupportActionBar()!= null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         //test for list
-        plants.add(new Plant("Rose","roses",15,30,12,22));
-        plants.add(new Plant("Jasmine","jasmines",16,30,22,22));
-        plants.add(new Plant("Jasmine","jasmines",16,30,22,22));
-        plants.add(new Plant("Jasmine","jasmines",16,30,22,22));
-        plants.add(new Plant("Jasmine","jasmines",16,30,22,22));
-        plants.add(new Plant("Jasmine","jasmines",16,30,22,22));
-        plants.add(new Plant("Jasmine","jasmines",16,30,22,22));
+        plants.add(new Plant("Rose", "roses"));
+        plants.add(new Plant("Jasmine", "jasmines"));
+        plants.add(new Plant("Jasmine", "jasmines"));
+        plants.add(new Plant("Jasmine", "jasmines"));
+        plants.add(new Plant("Jasmine", "jasmines"));
+        plants.add(new Plant("Jasmine", "jasmines"));
+        plants.add(new Plant("Jasmine", "jasmines"));
 
 
         mPlantAdapter = new PlantAdapter(plants, this);
@@ -43,6 +53,9 @@ public class PlantListActivity extends AppCompatActivity implements PlantAdapter
 
     }
 
+
+
+
     //list of items should be individually a button to jump to its profile >> missing
     @Override
     public void onPlantClick(int position) {
@@ -50,5 +63,12 @@ public class PlantListActivity extends AppCompatActivity implements PlantAdapter
         plants.get(position);
         Intent intent = new Intent(this, PlantInfoActivity.class);
         startActivity(intent);
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+    if(item.getItemId() == R.id.back){
+        finish();
+    }return super.onOptionsItemSelected(item);
     }
 }

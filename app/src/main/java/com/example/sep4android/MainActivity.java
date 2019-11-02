@@ -28,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tb);
         setSupportActionBar(myToolbar);
 
+        if(getSupportActionBar()!= null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+
         textview = (TextView) findViewById(R.id.text);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -42,16 +48,19 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (item.getItemId()) {
-            case R.id.item1:
+            case R.id.changePassword:
                 transaction.replace(R.id.nav_host_fragment, new PlantFragment());
                 transaction.commit();
                 break;
 
-            case R.id.item2:
+            case R.id.deleteAccount:
                 transaction.replace(R.id.nav_host_fragment, new PlantProfileFragment());
                 transaction.commit();
                 break;
 
+            case R.id.back:
+                finish();
+                break;
 
         }
         return super.onOptionsItemSelected(item);
