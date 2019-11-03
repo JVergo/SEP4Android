@@ -16,9 +16,9 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
     private OnPlantListener mOnPlantListener;
     //Context mContext;
 
-    PlantAdapter(ArrayList<Plant> plants, OnPlantListener onPlantListener){
+    public PlantAdapter(ArrayList<Plant> plants, OnPlantListener onPlantListener){
         mplants = plants;
-this.mOnPlantListener = onPlantListener;
+        this.mOnPlantListener = onPlantListener;
 
     }
 
