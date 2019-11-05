@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.sep4android.ui.PlantInfo.PlantInfoFragment;
 import com.example.sep4android.ui.plant.PlantFragment;
 import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -28,10 +29,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.tb);
         setSupportActionBar(myToolbar);
 
-        if(getSupportActionBar()!= null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
 
 
         textview = (TextView) findViewById(R.id.text);
@@ -48,18 +45,19 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (item.getItemId()) {
-            case R.id.changePassword:
+            case R.id.navigation_plant:
                 transaction.replace(R.id.nav_host_fragment, new PlantFragment());
                 transaction.commit();
                 break;
 
-            case R.id.deleteAccount:
+            case R.id.navigation_plantProfile:
                 transaction.replace(R.id.nav_host_fragment, new PlantProfileFragment());
                 transaction.commit();
                 break;
 
-            case R.id.back:
-                finish();
+            case R.id.plantInfo:
+                transaction.replace(R.id.nav_host_fragment, new PlantInfoFragment());
+                transaction.commit();
                 break;
 
         }

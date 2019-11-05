@@ -5,161 +5,191 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:id="@+id/parent_layout">
+    android:id="@+id/parent_layout"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="20dp"
+    >
 
 
-    <TextView
-        android:id="@+id/tv_name"
-        style="@style/AppTheme"
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#528B56"
-        android:text="PlantName"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        />
+        android:layout_height="match_parent"
+        android:id="@+id/table_plantlist">
 
-    <TextView
-        android:id="@+id/tv_profile"
-        style="@style/AppTheme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="#528B56"
-        android:text="Profile"
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="normal"
-        />
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#4F8060"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="PlantName"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_temp"
-            style="@style/AppTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Temperature"
-            android:background="@drawable/my_border"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_profile"
+                style="@style/AppTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                android:background="#4F8060"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat"
+                android:text="Profile"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/tv_co2"
-            style="@style/AppTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/my_border"
-            android:text="CO2"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_temp"
+                style="@style/AppTheme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/my_border"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Temperature"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/tv_co2"
+                style="@style/AppTheme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/my_border"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="CO2"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        </TableRow>
 
-        <TextView
-            android:id="@+id/tv_tempdata"
-            style="@style/AppTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TemperatureData"
-            android:background="@drawable/my_border"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textStyle="normal" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_co2data"
-            style="@style/AppTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/my_border"
-            android:text="CO2Data"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textStyle="normal" />
+            <TextView
+                android:id="@+id/tv_tempdata"
+                style="@style/AppTheme"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
 
-    </LinearLayout>
+                android:background="@drawable/my_border"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="TemperatureData"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="normal" />
 
+            <TextView
+                android:id="@+id/tv_co2data"
+                style="@style/AppTheme"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/my_border"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="CO2Data"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+        </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/tv_humidity"
-            style="@style/AppTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/my_border"
-            android:text="Humidity"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_humidity"
+                style="@style/AppTheme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/my_border"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Humidity"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_light"
-            style="@style/AppTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/my_border"
-            android:text="Light"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_light"
+                style="@style/AppTheme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/my_border"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Light"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </TableRow>
 
-    </LinearLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
+            <TextView
+                android:id="@+id/tv_humiditydata"
+                style="@style/AppTheme"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/my_border"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="HumidityData"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="normal" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_lightdata"
+                style="@style/AppTheme"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/my_border"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="LightData"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="normal" />
 
-        <TextView
-            android:id="@+id/tv_humiditydata"
-            style="@style/AppTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/my_border"
-            android:text="HumidityData"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textStyle="normal" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/tv_lightdata"
-            style="@style/AppTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/my_border"
-            android:text="LightData"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textStyle="normal" />
+    </TableLayout>
 
-    </LinearLayout>
 
 </LinearLayout>
