@@ -6,7 +6,7 @@ public class Plant {
     private String profile;
     private int co2, temp, humidity, light;
 
-    public Plant(String plantName, PlantProfile profile)
+    public Plant(String plantName, String profile)
     {
         this.plantName = plantName;
         //this.profile = profile;

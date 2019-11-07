@@ -1,11 +1,18 @@
 package com.example.sep4android;
 
+import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.sep4android.ui.plant.PlantFragment;
 
 import java.util.ArrayList;
 
@@ -13,8 +20,9 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 
     private ArrayList<Profile> mprofiles;
 
-    ProfileAdapter(ArrayList<Profile> profiles) {
+    public ProfileAdapter(ArrayList<Profile> profiles) {
         mprofiles = profiles;
+
 
     }
 
@@ -35,7 +43,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         return mprofiles.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView name;
 
@@ -43,5 +51,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
             super(itemView);
             name = itemView.findViewById(R.id.tv_name);
         }
+
+        @Override
+        public void onClick(View v) {
+        }
+
     }
+
 }
