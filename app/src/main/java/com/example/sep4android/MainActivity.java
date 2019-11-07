@@ -6,14 +6,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.sep4android.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+//import com.example.sep4android.ui.PlantInfo.PlantInfoFragment;
+import com.example.sep4android.ui.plant.PlantFragment;
+import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textview;
@@ -21,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tb);
+        setSupportActionBar(myToolbar);
+
+
+
         textview = (TextView) findViewById(R.id.text);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -33,14 +43,22 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
     public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO Auto-generated method stub
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (item.getItemId()) {
-            case R.id.item1:
-                return true;
+            case R.id.navigation_plant:
+                transaction.replace(R.id.nav_host_fragment, new PlantFragment());
+                transaction.commit();
+                break;
 
-            case R.id.item2:
-                return true;
+            case R.id.navigation_plantProfile:
+                transaction.replace(R.id.nav_host_fragment, new PlantProfileFragment());
+                transaction.commit();
+                break;
 
+           /* case R.id.plantInfo:
+                transaction.replace(R.id.nav_host_fragment, new PlantInfoFragment());
+                transaction.commit();
+                break;*/
 
         }
         return super.onOptionsItemSelected(item);

@@ -53,7 +53,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         }
 
         @Override
-        public void onClick(View v) { 
+        public void onClick(View v) {
         }
 
     }
