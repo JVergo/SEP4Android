@@ -34,6 +34,7 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
         View root = inflater.inflate(R.layout.fragment_plant, container, false);
+
         //test for list
         plants.add(new Plant("Rose","roses",15,30,12,22));
         plants.add(new Plant("Jasmine","jasmines",16,30,22,22));
@@ -50,15 +51,9 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
         mPlantList.hasFixedSize();
         mPlantList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mPlantList.setAdapter(mPlantAdapter);
-        //final TextView textView = root.findViewById(R.id.text_plant);
-        plantViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-
-            }
-        });
         return root;
     }
+    
     @Override
     public void onPlantClick(int position) {
 
