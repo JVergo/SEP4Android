@@ -23,16 +23,18 @@
                 android:id="@+id/tv_plantprofilename"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:marginTop="10dp"
                 android:text="Plant Profile Name:"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:marginTop="10dp"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editText_profilename"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/montserrat"
                 android:inputType="textPersonName"
                 android:text="Profile name" />
 
@@ -41,6 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="CO2:"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -56,6 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="MIN" />
@@ -66,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="MAX" />
@@ -76,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Humidity:"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -92,6 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="MIN" />
@@ -102,6 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="MAX" />
@@ -112,6 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Temperature:"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -127,6 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="MIN" />
@@ -137,6 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="MAX" />
@@ -148,6 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Light:"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -163,6 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="MIN" />
@@ -173,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center"
                     android:inputType="textPersonName"
                     android:text="MAX" />
@@ -194,14 +208,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Clear" />
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Clear"
+            android:textColor="#FDFBFB" />
 
         <Button
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Save" />
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Save"
+            android:textColor="#F8F4F4" />
     </LinearLayout>
 
 
