@@ -22,14 +22,15 @@
         app:titleTextColor="@color/colorWhite">
 
         <TextView
+            android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="P.M.I"
             android:layout_gravity="center"
-            android:id="@+id/toolbar_title"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="P.M.I"
             android:textColor="@color/colorWhite"
-            android:textSize="30dp"
-            android:fontFamily="@font/montserrat_bold"></TextView>
+            tools:layout_editor_absoluteX="176dp"
+            tools:layout_editor_absoluteY="18dp" />
 
     </androidx.appcompat.widget.Toolbar>
 

@@ -1,5 +1,6 @@
 package com.example.sep4android.ui.plant;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sep4android.Plant;
 import com.example.sep4android.PlantAdapter;
-import com.example.sep4android.PlantInfoActivity;
+//import com.example.sep4android.PlantInfoActivity;
 import com.example.sep4android.R;
 
 import java.util.ArrayList;
@@ -61,9 +62,10 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
 
     @Override
     public void onPlantClick(int position) {
-
+/*
         plants.get(position);
         Intent intent = new Intent(getActivity(), PlantInfoActivity.class);
         startActivity(intent);
+        */
     }
 }
