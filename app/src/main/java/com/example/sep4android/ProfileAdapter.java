@@ -12,9 +12,11 @@ import java.util.ArrayList;
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder> {
 
     private ArrayList<Profile> mprofiles;
+    private OnProfileListener mOnProfileListener;
 
-    ProfileAdapter(ArrayList<Profile> profiles) {
+    public ProfileAdapter(ArrayList<Profile> profiles, OnProfileListener mOnProfileListener) {
         mprofiles = profiles;
+        this.mOnProfileListener = mOnProfileListener;
 
     }
 
@@ -35,7 +37,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         return mprofiles.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView name;
 
@@ -43,5 +45,14 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
             super(itemView);
             name = itemView.findViewById(R.id.tv_name);
         }
+
+        @Override
+        public void onClick(View v) {
+            mOnProfileListener.onProfileClick(getAdapterPosition());
+        }
+
+    }
+    public interface OnProfileListener{
+        void onProfileClick(int position);
     }
 }

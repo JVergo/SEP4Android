@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         textview = (TextView) findViewById(R.id.text);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

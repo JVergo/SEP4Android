@@ -2,10 +2,10 @@ package com.example.sep4android;
 
 public class Plant {
     private String plantName;
-    private PlantProfile profile;
+    private /*PlantProfile*/String profile;
     private int co2, temp, humidity, light;
 
-    public Plant(String plantName, PlantProfile profile)
+    public Plant(String plantName, /*PlantProfile*/String profile)
     {
         this.plantName = plantName;
         this.profile = profile;
@@ -14,7 +14,7 @@ public class Plant {
     public String getPlantName() {
         return plantName;
     }
-    public PlantProfile getProfile() {
+    public /*PlantProfile*/String getProfile() {
         return profile;
     }
 

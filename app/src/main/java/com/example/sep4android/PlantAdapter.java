@@ -16,7 +16,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
     private OnPlantListener mOnPlantListener;
     //Context mContext;
 
-    PlantAdapter(ArrayList<Plant> plants, OnPlantListener onPlantListener){
+    public PlantAdapter(ArrayList<Plant> plants, OnPlantListener onPlantListener){
         mplants = plants;
 this.mOnPlantListener = onPlantListener;
 
@@ -33,7 +33,7 @@ this.mOnPlantListener = onPlantListener;
 
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.name.setText(mplants.get(position).getPlantName());
-        viewHolder.profile.setText(mplants.get(position).getProfile());
+        //viewHolder.profile.setText(mplants.get(position).getProfile());
 
 /*        viewHolder.temperatureData.setText((int) mplants.get(position).getTemperatureData());
         viewHolder.humidityData.setText((int) mplants.get(position).getHumidityData());

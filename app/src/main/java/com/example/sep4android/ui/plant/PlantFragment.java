@@ -3,21 +3,23 @@ package com.example.sep4android.ui.plant;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sep4android.Plant;
 import com.example.sep4android.PlantAdapter;
-import com.example.sep4android.PlantInfoActivity;
 import com.example.sep4android.R;
+import com.example.sep4android.ui.PlantInfo.PlantInfoFragment;
 
 import java.util.ArrayList;
 
@@ -61,9 +63,23 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
     public void onPlantClick(int position) {
 
 
-        plants.get(position);
-        Intent intent = new Intent(getActivity(), PlantInfoActivity.class);
+       plants.get(position);
+        Intent intent = new Intent(getActivity(), PlantInfoFragment.class);
         startActivity(intent);
 
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        switch (item.getItemId()) {
+
+
+            case R.id.plantInfo:
+                transaction.replace(R.id.navigation_plant, new PlantInfoFragment());
+                transaction.commit();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
