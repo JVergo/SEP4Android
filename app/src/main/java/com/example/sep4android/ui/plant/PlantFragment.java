@@ -1,15 +1,14 @@
 package com.example.sep4android.ui.plant;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -64,22 +63,12 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
 
 
        plants.get(position);
-        Intent intent = new Intent(getActivity(), PlantInfoFragment.class);
-        startActivity(intent);
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, new PlantInfoFragment());
+        fragmentTransaction.commit();
 
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        switch (item.getItemId()) {
 
-
-            case R.id.plantInfo:
-                transaction.replace(R.id.navigation_plant, new PlantInfoFragment());
-                transaction.commit();
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
