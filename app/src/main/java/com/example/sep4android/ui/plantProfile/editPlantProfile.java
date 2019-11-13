@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.R;
+import com.example.sep4android.ViewModel.EditPlantProfileViewModel;
 
 public class editPlantProfile extends Fragment {
 

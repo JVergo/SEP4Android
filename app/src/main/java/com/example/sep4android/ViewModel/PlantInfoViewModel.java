@@ -1,16 +1,16 @@
-package com.example.sep4android.ui.plant;
+package com.example.sep4android.ViewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class PlantViewModel extends ViewModel {
+public class PlantInfoViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public PlantViewModel() {
+    public PlantInfoViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is plant fragment");
+        mText.setValue("This is plant info fragment");
     }
 
     public LiveData<String> getText() {

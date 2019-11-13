@@ -1,4 +1,4 @@
-package com.example.sep4android.ui.plantProfile;
+package com.example.sep4android.ViewModel;
 
 import androidx.lifecycle.ViewModel;
 

@@ -1,4 +1,4 @@
-package com.example.sep4android;
+package com.example.sep4android.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.sep4android.Model.Profile;
+import com.example.sep4android.R;
 
 import java.util.ArrayList;
 

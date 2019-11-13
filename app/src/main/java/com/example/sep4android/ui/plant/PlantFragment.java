@@ -15,9 +15,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sep4android.Plant;
-import com.example.sep4android.PlantAdapter;
+import com.example.sep4android.Model.Plant;
+import com.example.sep4android.Adapter.PlantAdapter;
 import com.example.sep4android.R;
+import com.example.sep4android.ViewModel.PlantViewModel;
 import com.example.sep4android.ui.PlantInfo.PlantInfoFragment;
 
 import java.util.ArrayList;

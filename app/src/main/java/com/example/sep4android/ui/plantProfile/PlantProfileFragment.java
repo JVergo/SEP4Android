@@ -15,9 +15,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sep4android.Profile;
-import com.example.sep4android.ProfileAdapter;
+import com.example.sep4android.Model.Profile;
+import com.example.sep4android.Adapter.ProfileAdapter;
 import com.example.sep4android.R;
+import com.example.sep4android.ViewModel.PlantProfileViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

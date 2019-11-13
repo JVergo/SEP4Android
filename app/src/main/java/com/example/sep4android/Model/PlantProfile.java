@@ -1,4 +1,4 @@
-package com.example.sep4android;
+package com.example.sep4android.Model;
 
 public class PlantProfile {
     public MinMax co2;
