@@ -9,27 +9,54 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sep4android.Profile;
+import com.example.sep4android.ProfileAdapter;
 import com.example.sep4android.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class PlantProfileFragment extends Fragment {
+import java.util.ArrayList;
+
+public class PlantProfileFragment extends Fragment  {
 
     private PlantProfileViewModel plantProfileViewModel;
+    RecyclerView mProfileList;
+    RecyclerView.Adapter mProfileAdapter;
+    ArrayList<Profile> profiles = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         plantProfileViewModel =
                 ViewModelProviders.of(this).get(PlantProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_plant_profile, container, false);
-        //final TextView textView = root.findViewById(R.id.text_plantProfile);
+        profiles.add(new Profile("Rose"));
+        profiles.add(new Profile("Jasmine"));
+        profiles.add(new Profile("Violete"));
+        profiles.add(new Profile("Rose"));
+        profiles.add(new Profile("Rose"));
+        profiles.add(new Profile("Rose"));
+        profiles.add(new Profile("Rose"));
+        profiles.add(new Profile("Rose"));
+
+mProfileAdapter = new ProfileAdapter(profiles);
+
+        mProfileList = root.findViewById(R.id.rv);
+        mProfileList.hasFixedSize();
+        mProfileList.setLayoutManager(new LinearLayoutManager(getActivity()));
+       mProfileList.setAdapter(mProfileAdapter);
         plantProfileViewModel.getText().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                //textView.setText(s);
+            public void onChanged(String s) {
+
             }
         });
         return root;
     }
+
+
 }
