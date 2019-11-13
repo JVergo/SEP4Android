@@ -49,6 +49,17 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
             }
         });
         return root;
+
+
+        /*FloatingActionButton btn = (FloatingActionButton) root.findViewById(R.id.addbtn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, new createPlantProfile());
+            }
+        });*/
     }
 
     @Override
