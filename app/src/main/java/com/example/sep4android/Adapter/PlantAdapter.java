@@ -35,7 +35,7 @@ this.mOnPlantListener = onPlantListener;
     }
 
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        viewHolder.name.setText(mplants.get(position).getPlantName());
+        viewHolder.name.setText(mplants.get(position).getName());
         //viewHolder.profile.setText(mplants.get(position).getProfile());
 
 /*        viewHolder.temperatureData.setText((int) mplants.get(position).getTemperatureData());

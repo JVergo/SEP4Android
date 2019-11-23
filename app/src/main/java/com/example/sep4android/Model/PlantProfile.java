@@ -1,54 +1,94 @@
 package com.example.sep4android.Model;
 
 public class PlantProfile {
-    public MinMax co2;
-    public MinMax temp;
-    public MinMax humidity;
-    public MinMax light;
 
-    public PlantProfile(MinMax co2, MinMax temp, MinMax humidity, MinMax light)
-    {
-        this.co2 = co2;
-        this.temp = temp;
-        this.humidity = humidity;
-        this.light = light;
-    }
+        private int id;
+        private String name;
+        private User user;
+        private SensorBoundaries co2, temperature, humidity, light;
 
-    public MinMax getCo2() {
-        return co2;
-    }
-    public void setCo2(MinMax co2) {
-        this.co2 = co2;
-    }
+        public PlantProfile() {
+        }
 
-    public MinMax getTemp() {
-        return temp;
-    }
-    public void setTemp(MinMax temp) {
-        this.temp = temp;
-    }
+        public PlantProfile(int id, String name, User user, SensorBoundaries co2, SensorBoundaries temperature,
+                            SensorBoundaries humidity, SensorBoundaries light) {
+            super();
+            this.id = id;
+            this.name = name;
+            this.user = user;
+            this.co2 = co2;
+            this.temperature = temperature;
+            this.humidity = humidity;
+            this.light = light;
+        }
 
-    public MinMax getHumidity() {
-        return humidity;
-    }
-    public void setHumidity(MinMax humidity) {
-        this.humidity = humidity;
-    }
-
-    public MinMax getLight() {
-        return light;
-    }
-    public void setLight(MinMax light) {
-        this.light = light;
-    }
-    private String plantProfileName;
-
-    public PlantProfile(String plantProfileName) {
-        this.plantProfileName = plantProfileName;
-    }
+        public PlantProfile(String name, User user, SensorBoundaries co2, SensorBoundaries temperature,
+                            SensorBoundaries humidity, SensorBoundaries light) {
+            super();
+            this.name = name;
+            this.user = user;
+            this.co2 = co2;
+            this.temperature = temperature;
+            this.humidity = humidity;
+            this.light = light;
+        }
 
 
-    public String getPlantProfileName() {
-        return plantProfileName;
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public void setUser(User user) {
+            this.user = user;
+        }
+
+        public User getUser() {
+            return user;
+        }
+
+        public SensorBoundaries getCo2() {
+            return co2;
+        }
+
+        public void setCo2(SensorBoundaries co2) {
+            this.co2 = co2;
+        }
+
+        public SensorBoundaries getTemperature() {
+            return temperature;
+        }
+
+        public void setTemperature(SensorBoundaries temperature) {
+            this.temperature = temperature;
+        }
+
+        public SensorBoundaries getHumidity() {
+            return humidity;
+        }
+
+        public void setHumidity(SensorBoundaries humidity) {
+            this.humidity = humidity;
+        }
+
+        public SensorBoundaries getLight() {
+            return light;
+        }
+
+        public void setLight(SensorBoundaries light) {
+            this.light = light;
+        }
+
     }
-}
+

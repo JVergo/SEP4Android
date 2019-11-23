@@ -2,6 +2,7 @@ package com.example.sep4android.ui.plantProfile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.sep4android.MainActivity;
 import com.example.sep4android.R;
 import com.example.sep4android.ViewModel.CreatePlantProfileViewModel;
 
@@ -41,9 +43,19 @@ public class createPlantProfile extends Fragment {
 
 
 
+        onResume();
 
         return root;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MainActivity activity = (MainActivity)getActivity();
+        activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+    }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -98,4 +110,16 @@ public class createPlantProfile extends Fragment {
 
     }
 
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                ((MainActivity)getActivity()).onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

@@ -4,28 +4,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginBottom="30dp"
     >
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp">
+        android:layout_height="510dp">
 
         <LinearLayout
+            android:id="@+id/profileLayout"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_plantprofilename"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Plant Profile Name:"
+                android:textColor="@color/color2"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -35,20 +38,22 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:fontFamily="@font/montserrat"
-                android:inputType="textPersonName"
-                android:text="Profile name" />
+                android:hint="Profile name"
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/tv_co2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="CO2:"
+                android:textColor="@color/color2"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/layoutco2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -57,13 +62,13 @@
                     android:id="@+id/editText_minco2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:text="MIN"
-                    android:layout_marginRight="20dp"/>
+                    android:hint="MIN"
+                    android:inputType="textPersonName" />
 
                 <EditText
                     android:id="@+id/editText_maxco2"
@@ -73,22 +78,24 @@
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:text="MAX" />
+                    android:hint="MAX"
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_humidity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Humidity:"
+                android:textColor="@color/color2"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
 
             <LinearLayout
+                android:id="@+id/layouthumidity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -97,13 +104,13 @@
                     android:id="@+id/editText_minchumidity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:text="MIN"
-                    android:layout_marginRight="20dp"/>
+                    android:hint="MIN"
+                    android:inputType="textPersonName" />
 
                 <EditText
                     android:id="@+id/editText_maxhumidity"
@@ -113,21 +120,23 @@
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:text="MAX" />
+                    android:hint="MAX"
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_temperature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Temperature:"
+                android:textColor="@color/color2"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/layouttemp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -136,13 +145,13 @@
                     android:id="@+id/editText_mintemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:text="MIN"
-                    android:layout_marginRight="20dp"/>
+                    android:hint="MIN"
+                    android:inputType="textPersonName" />
 
                 <EditText
                     android:id="@+id/editText_maxtemp"
@@ -152,8 +161,8 @@
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:text="MAX" />
+                    android:hint="MAX"
+                    android:inputType="textPersonName" />
 
             </LinearLayout>
 
@@ -161,13 +170,15 @@
                 android:id="@+id/tv_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Light:"
+                android:textColor="@color/color2"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/layoutlight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -176,13 +187,13 @@
                     android:id="@+id/editText_minlight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:text="MIN"
-                    android:layout_marginRight="20dp"/>
+                    android:hint="MIN"
+                    android:inputType="textPersonName" />
 
                 <EditText
                     android:id="@+id/editText_maxlight"
@@ -192,41 +203,39 @@
                     android:ems="10"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:text="MAX" />
+                    android:hint="MAX"
+                    android:inputType="textPersonName" />
 
             </LinearLayout>
         </LinearLayout>
 
-    </ScrollView>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimary"
+            android:background="@color/color2"
             android:fontFamily="@font/montserrat_bold"
             android:text="Clear"
-            android:textColor="#FDFBFB"
-            android:layout_marginRight="20dp"/>
+            android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorPrimary"
+            android:background="@color/color2"
             android:fontFamily="@font/montserrat_bold"
             android:text="Save"
-            android:textColor="#F8F4F4" />
+            android:textColor="@color/colorWhite" />
     </LinearLayout>
 
 

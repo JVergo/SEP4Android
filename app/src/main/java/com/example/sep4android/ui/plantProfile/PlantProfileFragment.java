@@ -2,6 +2,7 @@ package com.example.sep4android.ui.plantProfile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,8 +16,9 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sep4android.Model.Profile;
 import com.example.sep4android.Adapter.ProfileAdapter;
+import com.example.sep4android.MainActivity;
+import com.example.sep4android.Model.Profile;
 import com.example.sep4android.R;
 import com.example.sep4android.ViewModel.PlantProfileViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -73,7 +75,19 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
 
         FloatButtonOnClick();
 
+        onResume();
+
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MainActivity activity = (MainActivity)getActivity();
+        if (activity != null) {
+            activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
     }
 
     public void FloatButtonOnClick(){
@@ -90,8 +104,27 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
         });
     }
 
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                ((MainActivity)getActivity()).onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @Override
     public void onProfileClick(int position) {
 
+        profiles.get(position);
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, new ProfileDetails());
+        fragmentTransaction.commit();
     }
 }
