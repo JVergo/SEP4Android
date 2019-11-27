@@ -2,23 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="80dp"
-    android:orientation="vertical">
+    android:layout_marginTop="20dp"
+    android:orientation="vertical"
+    android:id="@+id/plant_fragment">
 
     <TextView
-        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/montserrat_bold"
         android:text="My Plants"
-        android:textAlignment="center"
-        android:textSize="30sp" />
-
+        android:textSize="22sp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:id="@+id/test"
+        />
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rv"
         />
 
 </LinearLayout>

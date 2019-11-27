@@ -3,12 +3,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
+
     <item
         android:id="@+id/changePassword"
-        android:title="Change password" />
+        android:title="Change password"/>
     <item
-        android:id="@+id/deleteAccount"
-        android:title="Delete account" />
 
+        android:id="@+id/deleteAccount"
+        android:title="Delete account"/>
 
 </menu>
