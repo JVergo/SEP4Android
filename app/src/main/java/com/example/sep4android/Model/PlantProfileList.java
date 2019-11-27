@@ -18,6 +18,9 @@ public class PlantProfileList {
     public List<PlantProfile> getPlantProfiles() {
         return plantProfiles;
     }
+    public PlantProfile getProfile(int index){
+        return plantProfiles.get(index);
+    }
     public int size(){
         return plantProfiles.size();
     }

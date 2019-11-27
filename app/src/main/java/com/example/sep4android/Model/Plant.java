@@ -5,41 +5,41 @@ public class Plant {
         private int id;
         private String name;
         private PlantProfile profile;
-        private PlantData co2, humidity, temperature, light;
+        private SensorBoundaries co2, humidity, temperature, light;
 
-        public PlantData getCo2() {
+        public SensorBoundaries getCo2() {
             return co2;
         }
 
-        public void setCo2(PlantData co2) {
+        public void setCo2(SensorBoundaries co2) {
             this.co2 = co2;
         }
 
-        public PlantData getHumidity() {
+        public SensorBoundaries getHumidity() {
             return humidity;
         }
 
-        public void setHumidity(PlantData humidity) {
+        public void setHumidity(SensorBoundaries humidity) {
             this.humidity = humidity;
         }
 
 
-        public PlantData getTemperature() {
+        public SensorBoundaries getTemperature() {
             return temperature;
         }
 
 
-        public void setTemperature(PlantData temperature) {
+        public void setTemperature(SensorBoundaries temperature) {
             this.temperature = temperature;
         }
 
 
-        public PlantData getLight() {
+        public SensorBoundaries getLight() {
             return light;
         }
 
 
-        public void setLight(PlantData light) {
+        public void setLight(SensorBoundaries light) {
             this.light = light;
         }
 
@@ -47,7 +47,7 @@ public class Plant {
 
         }
 
-        public Plant(int id, String name, PlantProfile profile, PlantData co2, PlantData temperature, PlantData humidity, PlantData light) {
+        public Plant(int id, String name, PlantProfile profile, SensorBoundaries co2, SensorBoundaries temperature, SensorBoundaries humidity, SensorBoundaries light) {
             this.id = id;
             this.name = name;
             this.profile = profile;

@@ -15,6 +15,10 @@ public class UserReponsitory {
     private MutableLiveData<User> user;
     private static UserReponsitory instance;
 
+    private  UserReponsitory(){
+        user = new MutableLiveData<>();
+    }
+
     public static synchronized UserReponsitory getInstance() {
         if (instance == null) {
             instance = new UserReponsitory();

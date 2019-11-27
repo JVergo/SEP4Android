@@ -1,44 +1,42 @@
 package com.example.sep4android.Model;
 
-import androidx.lifecycle.MutableLiveData;
-
 public class User{
 
 	private String email;
-	private String password;
-	private MutableLiveData<PlantProfileList> profiles;
-	private MutableLiveData<PlantList> plants;
+	//private String password;
+	private PlantProfileList profiles;
+	private PlantList plants;
 
 	public User(String email, String password) {
-		profiles = new MutableLiveData<>();
-		plants = new MutableLiveData<>();
+		profiles = new PlantProfileList();
+		plants = new PlantList();
 		this.email = email;
-		this.password = password;
+		//this.password = password;
 
 	}
 
 	public User() {
 	}
 
-	public User(String email, MutableLiveData<PlantProfileList> profileList, MutableLiveData<PlantList> plantList) {
+	public User(String email,PlantProfileList profileList, PlantList plantList) {
 		this.email = email;
 		this.profiles = profileList;
 		this.plants = plantList;
 	}
 
-	public MutableLiveData<PlantProfileList> getProfiles() {
+	public PlantProfileList getProfiles() {
 		return profiles;
 	}
 
-	public void setProfiles(MutableLiveData<PlantProfileList> profiles) {
+	public void setProfiles(PlantProfileList profiles) {
 		this.profiles = profiles;
 	}
 
-	public MutableLiveData<PlantList> getPlants() {
+	public PlantList getPlants() {
 		return plants;
 	}
 
-	public void setPlants(MutableLiveData<PlantList> plants) {
+	public void setPlants(PlantList plants) {
 		this.plants = plants;
 	}
 
@@ -50,12 +48,12 @@ public class User{
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
+	//public String getPassword() {
+		//return password;
+	//}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	//public void setPassword(String password) {
+		//this.password = password;
+	//}
 
 }

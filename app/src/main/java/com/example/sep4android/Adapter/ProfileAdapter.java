@@ -7,17 +7,17 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sep4android.Model.Profile;
+import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
 
 import java.util.ArrayList;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder> {
 
-    private ArrayList<Profile> mprofiles;
+    private ArrayList<PlantProfile> mprofiles;
     private OnProfileListener mOnProfileListener;
 
-    public ProfileAdapter(ArrayList<Profile> profiles, OnProfileListener mOnProfileListener) {
+    public ProfileAdapter(ArrayList<PlantProfile> profiles, OnProfileListener mOnProfileListener) {
         mprofiles = profiles;
         this.mOnProfileListener = mOnProfileListener;
 
