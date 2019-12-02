@@ -93,7 +93,15 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
     }
 
 
+    @Override
+    public void onProfileClick(int position) {
 
+        profiles.get(position);
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, ProfileDetails.newInstance(position));
+        fragmentTransaction.commit();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -106,13 +114,5 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
         }
     }
 
-    @Override
-    public void onProfileClick(int position) {
 
-        profiles.get(position);
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, new ProfileDetails());
-        fragmentTransaction.commit();
-    }
 }

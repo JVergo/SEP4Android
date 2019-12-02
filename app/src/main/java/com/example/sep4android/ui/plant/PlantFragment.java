@@ -21,7 +21,8 @@ import com.example.sep4android.Model.PlantList;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.PlantViewModel;
-import com.example.sep4android.ui.PlantInfo.PlantInfoFragment;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,8 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
     private String email = "naya7777@gmail.com";
     private TextView textView;
     private View root;
+
+    FloatingActionButton btn;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
@@ -71,6 +74,7 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
 
             }
         });
+        FloatButtonOnClick();
         return root;
     }
 
@@ -93,9 +97,23 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
        plants.get(position);
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, new PlantInfoFragment());
+        fragmentTransaction.replace(R.id.frameLayout, new PlantDetails());
         fragmentTransaction.commit();
 
+    }
+
+    public void FloatButtonOnClick(){
+        btn = root.findViewById(R.id.floatingActionButton);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, new CreatePlant());
+                fragmentTransaction.addToBackStack("");
+                fragmentTransaction.commit();
+            }
+        });
     }
 
 

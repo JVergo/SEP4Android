@@ -34,12 +34,12 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
 
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.name.setText(mplants.get(position).getName());
-        //viewHolder.profile.setText(mplants.get(position).getProfile());
+        viewHolder.profile.setText(mplants.get(position).getProfile().getName());
 
-/*        viewHolder.temperatureData.setText((int) mplants.get(position).getTemperatureData());
-        viewHolder.humidityData.setText((int) mplants.get(position).getHumidityData());
-        viewHolder.lightData.setText( (int) mplants.get(position).getLightData());
-        viewHolder.co2Data.setText( (int) mplants.get(position).getCo2Data());*/
+   /*     viewHolder.temperatureData.setText(mplants.get(position).getTemperature());
+        viewHolder.humidityData.setText((int) mplants.get(position).getHumidity());
+        viewHolder.lightData.setText( (int) mplants.get(position).getLight());
+        viewHolder.co2Data.setText( (int) mplants.get(position).getCo2());*/
 
         //data? should be set to int or?
 

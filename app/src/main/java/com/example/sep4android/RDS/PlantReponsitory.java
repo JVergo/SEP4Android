@@ -46,7 +46,7 @@ public class PlantReponsitory {
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-
+                Log.i("Daniela", t.getMessage());
             }
         });
     }

@@ -6,107 +6,95 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/plantInfo"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_plantName"
             android:layout_width="155dp"
             android:layout_height="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="56dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="PlantName"
+            android:textColor="@color/color2"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tv_plantType"
-            app:layout_constraintEnd_toStartOf="@+id/imgBtnEdit"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_plantType"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.716" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_plantType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="13dp"
             android:text="type"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/waterbutton"
-            app:layout_constraintEnd_toStartOf="@+id/waterbutton"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_sensorId"
-            app:layout_constraintTop_toTopOf="@+id/waterbutton"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plantName" />
 
         <TextView
             android:id="@+id/tv_sensorId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="68dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="10dp"
             android:text="sensorid"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
-            app:layout_constraintEnd_toStartOf="@+id/waterbutton"
-            app:layout_constraintHorizontal_bias="0.302"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_plantType"
-            app:layout_constraintVertical_bias="0.278" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_plantType" />
 
         <ImageButton
             android:id="@+id/imgBtnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/waterbutton"
+            android:layout_width="40dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="24dp"
+            android:background="@color/color2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgBtnEdit"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35"
-            app:srcCompat="@android:drawable/ic_menu_delete" />
-
-        <ImageButton
-            android:id="@+id/imgBtnEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/waterbutton"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/waterbutton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.333"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
+            app:srcCompat="@android:drawable/ic_menu_delete"
+            />
 
         <Button
-            android:id="@+id/waterbutton"
+            android:id="@+id/button_WaterPlant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="44dp"
-            android:text="water_plant"
-            app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_weight="1"
+            android:background="@color/color2"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Water"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgBtnDelete" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
-            android:layout_width="410dp"
-            android:layout_height="423dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toBottomOf="@+id/button_WaterPlant">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
 
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:layout_marginBottom="40dp">
+                    android:layout_marginBottom="25dp"
+                    android:background="#F2D3D0D0">
 
 
                     <TableRow
@@ -117,33 +105,48 @@
                             android:id="@+id/textView9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2" />
+                            android:layout_weight="2"
+                            android:background="@color/colorWhite" />
 
                         <TextView
                             android:id="@+id/tv_max"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center"
                             android:text="max"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_current"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center"
-                            android:text="currrent"
+                            android:text="current"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_min"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center"
                             android:text="min"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -155,28 +158,48 @@
                             android:id="@+id/tv2_temperature"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
                             android:layout_weight="2"
-                            android:gravity="center"
-                            android:text="temperature"
+                            android:background="@color/colorWhite"
+                            android:gravity="start"
+                            android:text="Temperature"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_tempMaxdata"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="start" />
 
                         <TextView
                             android:id="@+id/tv_tempCurrentData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="start" />
 
                         <TextView
                             android:id="@+id/tv_tempMinData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="start" />
                     </TableRow>
 
                     <TableRow
@@ -187,28 +210,45 @@
                             android:id="@+id/tv2_co2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
                             android:layout_weight="2"
-                            android:gravity="center"
-                            android:text="co2"
+                            android:background="@color/colorWhite"
+                            android:gravity="start"
+                            android:text="Co2"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_co2MaxData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
 
                         <TextView
                             android:id="@+id/tv_co2CurrentData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
 
                         <TextView
                             android:id="@+id/tv_co2MinData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
                     </TableRow>
 
                     <TableRow
@@ -219,28 +259,45 @@
                             android:id="@+id/tv2_humidity"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
                             android:layout_weight="2"
-                            android:gravity="center"
-                            android:text="humidity"
+                            android:background="@color/colorWhite"
+                            android:gravity="start"
+                            android:text="Humidity"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_humidityMaxData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
 
                         <TextView
                             android:id="@+id/tv_humidityCurrentData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
 
                         <TextView
                             android:id="@+id/tv_humidityMinData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
                     </TableRow>
 
                     <TableRow
@@ -251,61 +308,75 @@
                             android:id="@+id/tv2_light"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_marginBottom="0.5dp"
                             android:layout_weight="2"
-                            android:gravity="center"
-                            android:text="light"
+                            android:background="@color/colorWhite"
+                            android:gravity="start"
+                            android:text="Light"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_lightMaxData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_marginBottom="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
 
                         <TextView
                             android:id="@+id/tv_lightCurrentData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_marginBottom="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
 
                         <TextView
                             android:id="@+id/tv_lightMinData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1" />
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_marginBottom="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
                     </TableRow>
                 </TableLayout>
 
-                <TableLayout
+
+                <TextView
+                    android:id="@+id/statistics_from_the_last_7_days"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp">
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/textView71"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="statistics_from_the_last_7_days"
-                            android:textSize="18sp"
-                            android:textStyle="bold"/>
-                    </TableRow>
-
-                </TableLayout>
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Last 7 day statistics"
+                    android:textColor="@color/color2"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginTop="5dp">
+                    android:background="#F2D3D0D0">
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -315,42 +386,55 @@
                             android:id="@+id/textView29"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2" />
+                            android:layout_weight="2"
+                            android:background="@color/colorWhite" />
 
                         <TextView
                             android:id="@+id/tv3_temp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center"
-                            android:text="temp"
+                            android:text="Temp"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv3_co2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center"
-                            android:text="co2"
+                            android:text="Co2"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv3_humidity"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center"
-                            android:text="humidity"
+                            android:text="Humidity"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv3_light"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center"
-                            android:text="light"
+                            android:text="Light"
+                            android:textColor="@color/color2"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -362,36 +446,47 @@
                             android:id="@+id/tv_day1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="2"
-                            android:text="day1"
-                            android:textStyle="bold"/>
+                            android:background="@color/colorWhite"
+                            android:text="Day 1"
+                            android:textColor="@color/color2"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_day1tempData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day1co2Data"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day1humidityData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day1lightData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
                     </TableRow>
 
@@ -403,36 +498,47 @@
                             android:id="@+id/tv_day2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="2"
-                            android:text="day2"
-                            android:textStyle="bold"/>
+                            android:background="@color/colorWhite"
+                            android:text="Day 2"
+                            android:textColor="@color/color2"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_day2tempData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day2co2Data"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day2humidityData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day2lightData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
                     </TableRow>
 
@@ -444,36 +550,47 @@
                             android:id="@+id/tv_day3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="2"
-                            android:text="day3"
-                            android:textStyle="bold"/>
+                            android:background="@color/colorWhite"
+                            android:text="Day 3"
+                            android:textColor="@color/color2"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_day3tempData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day3co2Data"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day3humidityData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day3lightData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
                     </TableRow>
 
@@ -485,36 +602,47 @@
                             android:id="@+id/tv_day4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="2"
-                            android:text="day4"
-                            android:textStyle="bold"/>
+                            android:background="@color/colorWhite"
+                            android:text="Day 4"
+                            android:textColor="@color/color2"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_day4tempData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day4co2Data"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day4humidityData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day4lightData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
                     </TableRow>
 
@@ -526,36 +654,47 @@
                             android:id="@+id/tv_day5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="2"
-                            android:text="day5"
-                            android:textStyle="bold"/>
+                            android:background="@color/colorWhite"
+                            android:text="Day 5"
+                            android:textColor="@color/color2"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_day5tempData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day5co2Data"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day5humidityData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day5lightData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
                     </TableRow>
 
@@ -567,36 +706,47 @@
                             android:id="@+id/tv_day6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="2"
-                            android:text="day6"
-                            android:textStyle="bold"/>
+                            android:background="@color/colorWhite"
+                            android:text="Day 6"
+                            android:textColor="@color/color2"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_day6tempData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day6co2Data"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day6humidityData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day6lightData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
                     </TableRow>
 
@@ -608,42 +758,71 @@
                             android:id="@+id/tv_day7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="2"
-                            android:text="day7"
-                            android:textStyle="bold"/>
+                            android:background="@color/colorWhite"
+                            android:text="Day 7"
+                            android:textColor="@color/color2"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_day7tempData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day7co2Data"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day7humidityData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
 
                         <TextView
                             android:id="@+id/tv_day7lightData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="0.5dp"
                             android:layout_weight="1"
+                            android:background="@color/colorWhite"
                             android:gravity="center" />
                     </TableRow>
                 </TableLayout>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+
+            app:backgroundTint="@color/colorBackground"
+            app:borderWidth="0dp"
+            app:elevation="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="50dp"
+            app:srcCompat="@drawable/edit_icon"
+            tools:ignore="MissingConstraints"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

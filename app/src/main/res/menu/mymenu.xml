@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:popupTheme="@style/set">
 
 
     <item
         android:id="@+id/changePassword"
-        android:title="Change password"/>
+        android:title="Change password"
+        />
     <item
 
         android:id="@+id/deleteAccount"

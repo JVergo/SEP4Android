@@ -39,8 +39,6 @@ public class PlantProfileReponsitory {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.code() == 200) {
                     plantProfiles.setValue( response.body().getUser().getProfiles());
-
-
                     Log.i("Daniela", plantProfiles.getValue().toString());
                 } else {
                     Log.i("Daniela", "error");
@@ -54,7 +52,7 @@ public class PlantProfileReponsitory {
         });
     }
 
-    public LiveData<PlantProfileList> getProfiles(){
+    public LiveData<PlantProfileList> getProfiles() {
         return plantProfiles;
     }
 
