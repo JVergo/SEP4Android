@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:id="@+id/parent_layout">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <TextView
@@ -12,21 +12,36 @@
         style="@style/AppTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#528B56"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat_bold"
         android:text="Profile Name"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textColor="@color/color2"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/imgBtnDelete"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete"
-        android:background="@color/colorWarning"/>
+        android:layout_gravity="end"
+        android:layout_marginEnd="24dp"
+
+        android:background="@color/colorBackground"
+        android:drawableLeft="@android:drawable/ic_menu_delete"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="delete"
+        android:textColor="#B34F4B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:background="#F8CEC9C9"
         android:orientation="horizontal">
 
         <TextView
@@ -34,10 +49,13 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat"
             android:text=""
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -45,10 +63,14 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Min"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textColor="@color/color2"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -56,10 +78,14 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
-            android:text="max"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Max"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textColor="@color/color2"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -67,6 +93,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#EECFCCCC"
         android:orientation="horizontal">
 
         <TextView
@@ -74,10 +103,14 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Temperature"
-            android:textAlignment="center"
-            android:textSize="14sp"
+            android:textAlignment="textStart"
+            android:textColor="@color/color2"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -85,10 +118,13 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat"
             android:text="Min"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -96,10 +132,13 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat"
             android:text="max"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -107,6 +146,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#EECFCCCC"
         android:orientation="horizontal">
 
         <TextView
@@ -114,10 +156,14 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Co2"
-            android:textAlignment="center"
-            android:textSize="14sp"
+            android:textAlignment="textStart"
+            android:textColor="@color/color2"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -125,10 +171,13 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat"
             android:text="Min"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -136,10 +185,13 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat"
             android:text="max"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -147,6 +199,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#EECFCCCC"
         android:orientation="horizontal">
 
         <TextView
@@ -154,10 +209,14 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Light"
-            android:textAlignment="center"
-            android:textSize="14sp"
+            android:textAlignment="textStart"
+            android:textColor="@color/color2"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -165,10 +224,13 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat"
             android:text="Min"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -176,10 +238,13 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat"
             android:text="max"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -187,6 +252,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#EECFCCCC"
         android:orientation="horizontal">
 
         <TextView
@@ -194,10 +262,14 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat_bold"
             android:text="humiditydata"
-            android:textAlignment="center"
-            android:textSize="14sp"
+            android:textAlignment="textStart"
+            android:textColor="@color/color2"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -205,10 +277,13 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat"
             android:text="Min"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -216,21 +291,33 @@
             style="@style/AppTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
             android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/montserrat"
             android:text="max"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:background="@color/colorBackground"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="300dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+
         android:clickable="true"
-        android:src="@drawable/edit_icon" />
+        app:backgroundTint="@color/colorBackground"
+        app:borderWidth="0dp"
+        app:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="50dp"
+        app:srcCompat="@drawable/edit_icon" />
 
 </LinearLayout>
