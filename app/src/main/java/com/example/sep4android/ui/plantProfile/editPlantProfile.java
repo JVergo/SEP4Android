@@ -22,8 +22,7 @@ public class editPlantProfile extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_create_plantprofile, container, false);
     }
 
@@ -31,21 +30,11 @@ public class editPlantProfile extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(EditPlantProfileViewModel.class);
-        // TODO: Use the ViewModel
     }
 
     public void clearText(){
-        /*ViewGroup group = (ViewGroup)findViewById(R.id.your_group);
-        for (int i = 0, count = group.getChildCount(); i < count; ++i) {
-            View view = group.getChildAt(i);
-            if (view instanceof EditText) {
-                ((EditText)view).setText("");
-            }
-        }*/
     }
 
     public void save(){
-
     }
-
 }

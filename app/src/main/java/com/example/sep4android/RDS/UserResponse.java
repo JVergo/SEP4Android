@@ -17,11 +17,6 @@ public class UserResponse {
     }
 
     public User getUser(){
-        /*MutableLiveData<PlantProfileList> mutableprofiles = new MutableLiveData<PlantProfileList>();
-        mutableprofiles.setValue(profiles);
-        MutableLiveData<PlantList> mutableplants = new MutableLiveData<PlantList>();
-        mutableplants.setValue(plants);*/
-
         return new User(email,profiles,plants);
     }
 }

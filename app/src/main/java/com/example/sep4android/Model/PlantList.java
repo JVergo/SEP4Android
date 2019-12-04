@@ -10,12 +10,11 @@ public class PlantList
     public PlantList() {
         plants = new ArrayList<>();
     }
-
     public PlantList(List<Plant> plants){
         this.plants = plants;
     }
 
-    public List<Plant> getClients() {
+    public List<Plant> getPlants() {
         return plants;
     }
     public Plant getPlant(int index){
@@ -23,7 +22,6 @@ public class PlantList
     }
     public int size(){
         return plants.size();
-
     }
     public void addPlant(Plant plant){
         plants.add(plant);

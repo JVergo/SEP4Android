@@ -17,64 +17,50 @@ import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView textview;
+    View palnt, profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.tb);
+        Toolbar myToolbar = findViewById(R.id.tb);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setTitle(null);
 
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-
-        textview = (TextView) findViewById(R.id.text);
+        TextView textview = findViewById(R.id.text);
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_plant, R.id.navigation_plantProfile)
                 .build();
 
-        onFragmentChange();
-
-    }
-
-
-
-    public void onFragmentChange(){
-
-
+        palnt = findViewById(R.id.navigation_plant);
+        palnt = findViewById(R.id.navigation_plantProfile);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.frameLayout, new PlantFragment());
         transaction.commit();
-        findViewById(R.id.navigation_plant).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());
-                fragmentTransaction.commit();
-            }
-        });
-        findViewById(R.id.navigation_plantProfile).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());
-                fragmentTransaction.commit();
-            }
-        });
 
-
+        onFragmentChange();
     }
 
 
+
+    public void onFragmentChange() {
+        findViewById(R.id.navigation_plant).setOnClickListener(v -> {
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());
+            fragmentTransaction.commit();
+        });
+        findViewById(R.id.navigation_plantProfile).setOnClickListener(v -> {
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());
+            fragmentTransaction.commit();
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,10 +69,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public void onBackPressed() {
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager.getBackStackEntryCount() > 1) {
             fragmentManager.popBackStackImmediate();

@@ -8,31 +8,18 @@ import com.example.sep4android.Model.PlantList;
 import com.example.sep4android.RDS.PlantReponsitory;
 
 public class PlantViewModel extends ViewModel {
-
     private MutableLiveData<PlantList> mPlantList;
-/*
-    public PlantViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is plant fragment");
-    }
-
-    public LiveData<String> getText() {
-        return mText;
-    }*/
-
-    private PlantReponsitory reponsitory;
 
     public PlantViewModel(){
-        reponsitory = PlantReponsitory.getInstance();
-        mPlantList = new MutableLiveData<PlantList>();
+        mPlantList = new MutableLiveData<>();
     }
 
     public void getPlantsFromApi(String email){
-        reponsitory.getPlantFromApi(email);
+        PlantReponsitory.getInstance().getPlantFromApi(email);
     }
 
-    public LiveData<PlantList> getPlants(String email){
-        return reponsitory.getPlants();
+    public LiveData<PlantList> getPlants(){
+        return PlantReponsitory.getInstance().getPlants();
     }
 
 }

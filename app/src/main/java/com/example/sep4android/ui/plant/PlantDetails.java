@@ -17,20 +17,16 @@ import com.example.sep4android.ViewModel.PlantDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PlantDetails extends Fragment {
-
-    private PlantDetailsViewModel mViewModel;
-    View root;
-    FloatingActionButton btn;
+    FloatingActionButton editPlantBTN;
 
     public static PlantDetails newInstance() {
         return new PlantDetails();
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        root =  inflater.inflate(R.layout.fragment_plant_info, container, false);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root =  inflater.inflate(R.layout.fragment_plant_info, container, false);
+        editPlantBTN = root.findViewById(R.id.floatingActionButton);
         FloatButtonOnClick();
         return root;
     }
@@ -38,21 +34,15 @@ public class PlantDetails extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
-        // TODO: Use the ViewModel
+        PlantDetailsViewModel mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
     }
 
     public void FloatButtonOnClick(){
-        btn = root.findViewById(R.id.floatingActionButton);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.frameLayout, new CreatePlant());
-                fragmentTransaction.addToBackStack("");
-                fragmentTransaction.commit();
-            }
+        editPlantBTN.setOnClickListener(v -> {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, new CreatePlant());
+            fragmentTransaction.commit();
         });
     }
 

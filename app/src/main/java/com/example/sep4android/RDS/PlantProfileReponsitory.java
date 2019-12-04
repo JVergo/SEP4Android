@@ -1,7 +1,5 @@
 package com.example.sep4android.RDS;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -17,8 +15,6 @@ public class PlantProfileReponsitory {
     private static PlantProfileReponsitory reponsitory;
 
     private PlantProfileReponsitory(){
-        //reponsitory = PlantReponsitory.getInstance();
-        plantProfiles = new MutableLiveData<>();
     }
 
     public static synchronized PlantProfileReponsitory getInstance() {
@@ -29,19 +25,17 @@ public class PlantProfileReponsitory {
     }
 
 
-    public void getProfileFromApi(String email)  {
+    public void getProfileFromApi(String email) {
         plantProfiles = new MutableLiveData<>();
+
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<UserResponse> call = userApi.userInfo(email);
-        //Log.i("Daniela", call.toString());
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.code() == 200) {
                     plantProfiles.setValue( response.body().getUser().getProfiles());
-                    Log.i("Daniela", plantProfiles.getValue().toString());
                 } else {
-                    Log.i("Daniela", "error");
                 }
             }
 
@@ -56,4 +50,7 @@ public class PlantProfileReponsitory {
         return plantProfiles;
     }
 
+    public void UpdateProfiles(String email) {
+        getProfileFromApi(email);
+    }
 }

@@ -16,12 +16,6 @@ import com.example.sep4android.R;
 import com.example.sep4android.ViewModel.CreatePlantViewModel;
 
 public class CreatePlant extends Fragment {
-
-    private CreatePlantViewModel mViewModel;
-
-    private View root;
-    private Button clrbtn;
-
     EditText plantName;
 
     public static CreatePlant newInstance() {
@@ -29,34 +23,24 @@ public class CreatePlant extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        root =  inflater.inflate(R.layout.fragment_create_plant, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_create_plant, container, false);
 
-        clrbtn = root.findViewById(R.id.button_clear);
-        clrbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearText();
-            }
-        });
+        Button clearBTN = root.findViewById(R.id.button_clear);
+        clearBTN.setOnClickListener(v -> clearText());
 
         plantName = root.findViewById(R.id.editText_plantename);
-
         return root;
     }
 
 
     public void clearText() {
-
         plantName.setText("");
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(CreatePlantViewModel.class);
-        // TODO: Use the ViewModel
+        CreatePlantViewModel mViewModel = ViewModelProviders.of(this).get(CreatePlantViewModel.class);
     }
-
 }

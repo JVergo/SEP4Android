@@ -10,7 +10,6 @@ public class PlantProfileList {
     public PlantProfileList() {
         plantProfiles = new ArrayList<>();
     }
-
     public PlantProfileList(List<PlantProfile> profileList) {
         plantProfiles = profileList;
     }

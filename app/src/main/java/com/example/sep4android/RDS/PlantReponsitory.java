@@ -1,7 +1,5 @@
 package com.example.sep4android.RDS;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -15,9 +13,7 @@ public class PlantReponsitory {
     private MutableLiveData<PlantList> plants;
     private static PlantReponsitory reponsitory;
 
-    private PlantReponsitory(){
-        //reponsitory = PlantReponsitory.getInstance();
-        plants = new MutableLiveData<>();
+    private PlantReponsitory() {
     }
 
     public static synchronized PlantReponsitory getInstance() {
@@ -38,21 +34,21 @@ public class PlantReponsitory {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.code() == 200) {
                     plants.setValue( response.body().getUser().getPlants());
-                    Log.i("Daniela", plants.getValue().toString());
                 } else {
-                    Log.i("Daniela", "error");
                 }
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-                Log.i("Daniela", t.getMessage());
             }
         });
     }
 
- public LiveData<PlantList> getPlants(){
+ public LiveData<PlantList> getPlants() {
         return plants;
  }
 
+ public void UpdatePalnts(String email) {
+        getPlantFromApi(email);
+ }
 }

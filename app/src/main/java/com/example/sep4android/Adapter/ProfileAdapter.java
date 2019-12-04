@@ -14,34 +14,31 @@ import java.util.ArrayList;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder> {
 
-    private ArrayList<PlantProfile> mprofiles;
+    private ArrayList<PlantProfile> mProfiles;
     private OnProfileListener mOnProfileListener;
 
     public ProfileAdapter(ArrayList<PlantProfile> profiles, OnProfileListener mOnProfileListener) {
-        mprofiles = profiles;
+        mProfiles = profiles;
         this.mOnProfileListener = mOnProfileListener;
-
     }
 
     public ProfileAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.activity_profilelist_item, parent, false);
         return new ProfileAdapter.ViewHolder(view);
-
     }
 
     @Override
     public void onBindViewHolder(ProfileAdapter.ViewHolder viewHolder, int position) {
-        viewHolder.name.setText(mprofiles.get(position).getName());
+        viewHolder.name.setText(mProfiles.get(position).getName());
     }
 
 
     public int getItemCount() {
-        return mprofiles.size();
+        return mProfiles.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name;
 
         ViewHolder(View itemView) {

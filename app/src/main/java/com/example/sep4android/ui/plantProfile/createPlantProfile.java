@@ -19,32 +19,26 @@ import com.example.sep4android.R;
 import com.example.sep4android.ViewModel.CreatePlantProfileViewModel;
 
 public class createPlantProfile extends Fragment {
-
-    private CreatePlantProfileViewModel mViewModel;
-    private View root;
-    private Button clrbtn;
+    private LinearLayout groupProfile, groupCo2, groupHumidity, groupTemp, groupLight;
 
     public static createPlantProfile newInstance() {
         return new createPlantProfile();
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_create_plantprofile, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_create_plantprofile, container, false);
 
-        clrbtn = root.findViewById(R.id.button_clear);
-        clrbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearText();
-            }
-        });
+        Button clearBTN = root.findViewById(R.id.button_clear);
+        clearBTN.setOnClickListener(v -> clearText());
 
-
+        groupProfile = root.findViewById(R.id.profileLayout);
+        groupCo2 = root.findViewById(R.id.layoutco2);
+        groupHumidity = root.findViewById(R.id.layouthumidity);
+        groupTemp = root.findViewById(R.id.layouttemp);
+        groupLight = root.findViewById(R.id.layoutlight);
 
         onResume();
-
         return root;
     }
 
@@ -53,53 +47,47 @@ public class createPlantProfile extends Fragment {
         super.onResume();
         MainActivity activity = (MainActivity)getActivity();
         activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
-
     }
 
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(CreatePlantProfileViewModel.class);
-        // TODO: Use the ViewModel
+        CreatePlantProfileViewModel mViewModel = ViewModelProviders.of(this).get(CreatePlantProfileViewModel.class);
     }
 
     public void clearText(){
-
-        LinearLayout group_profile = (LinearLayout) root.findViewById(R.id.profileLayout);
-        for (int i = 0, count = group_profile.getChildCount(); i < count; ++i) {
-            View view = group_profile.getChildAt(i);
+        // reset profile fealds
+        for (int i = 0, count = groupProfile.getChildCount(); i < count; ++i) {
+            View view = groupProfile.getChildAt(i);
             if (view instanceof EditText) {
                 ((EditText)view).setText("");
             }
         }
-        LinearLayout group_co2 = (LinearLayout) root.findViewById(R.id.layoutco2);
-        for (int i = 0, count = group_co2.getChildCount(); i < count; ++i) {
-            View view = group_co2.getChildAt(i);
+        // reset co2 fealds
+        for (int i = 0, count = groupCo2.getChildCount(); i < count; ++i) {
+            View view = groupCo2.getChildAt(i);
             if (view instanceof EditText) {
                 ((EditText)view).setText("");
             }
         }
-
-        LinearLayout group_humidity = (LinearLayout) root.findViewById(R.id.layouthumidity);
-        for (int i = 0, count = group_humidity.getChildCount(); i < count; ++i) {
-            View view = group_humidity.getChildAt(i);
+        // reset humidity fealds
+        for (int i = 0, count = groupHumidity.getChildCount(); i < count; ++i) {
+            View view = groupHumidity.getChildAt(i);
             if (view instanceof EditText) {
                 ((EditText)view).setText("");
             }
         }
-
-        LinearLayout group_temp = (LinearLayout) root.findViewById(R.id.layouttemp);
-        for (int i = 0, count = group_temp.getChildCount(); i < count; ++i) {
-            View view = group_temp.getChildAt(i);
+        // reset temperature fealds
+        for (int i = 0, count = groupTemp.getChildCount(); i < count; ++i) {
+            View view = groupTemp.getChildAt(i);
             if (view instanceof EditText) {
                 ((EditText)view).setText("");
             }
         }
-
-        LinearLayout group_light = (LinearLayout) root.findViewById(R.id.layoutlight);
-        for (int i = 0, count = group_light.getChildCount(); i < count; ++i) {
-            View view = group_light.getChildAt(i);
+        // reset light fealds
+        for (int i = 0, count = groupLight.getChildCount(); i < count; ++i) {
+            View view = groupLight.getChildAt(i);
             if (view instanceof EditText) {
                 ((EditText)view).setText("");
             }
@@ -110,13 +98,11 @@ public class createPlantProfile extends Fragment {
 
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                ((MainActivity)getActivity()).onBackPressed();
+                getActivity().onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

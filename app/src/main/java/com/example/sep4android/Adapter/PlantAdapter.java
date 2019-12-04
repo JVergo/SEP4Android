@@ -15,47 +15,39 @@ import java.util.ArrayList;
 
 public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> {
 
-    private ArrayList<Plant> mplants;
+    private ArrayList<Plant> mPlants;
     private OnPlantListener mOnPlantListener;
-    //Context mContext;
 
-    public PlantAdapter(ArrayList<Plant> plants, OnPlantListener onPlantListener){
-        mplants = plants;
+    public PlantAdapter(ArrayList<Plant> plants, OnPlantListener onPlantListener) {
+        mPlants = plants;
         this.mOnPlantListener = onPlantListener;
-
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.activity_plantlist_item, parent, false);
         return new ViewHolder(view, mOnPlantListener);
-
     }
 
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        viewHolder.name.setText(mplants.get(position).getName());
-        viewHolder.profile.setText(mplants.get(position).getProfile().getName());
+        viewHolder.name.setText(mPlants.get(position).getName());
+        viewHolder.profile.setText(mPlants.get(position).getProfile().getName());
 
-   /*     viewHolder.temperatureData.setText(mplants.get(position).getTemperature());
-        viewHolder.humidityData.setText((int) mplants.get(position).getHumidity());
-        viewHolder.lightData.setText( (int) mplants.get(position).getLight());
-        viewHolder.co2Data.setText( (int) mplants.get(position).getCo2());*/
+        //ToDO: Add so the plant view is updated with the data form the database see examples below
 
-        //data? should be set to int or?
-
-
-
+/*      viewHolder.temperatureData.setText(mPlants.get(position).getTemperature());
+        viewHolder.humidityData.setText((int) mPlants.get(position).getHumidity());
+        viewHolder.lightData.setText( (int) mPlants.get(position).getLight());
+        viewHolder.co2Data.setText( (int) mPlants.get(position).getCo2());
+*/
     }
 
     public int getItemCount() {
-        return mplants.size();
+        return mPlants.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        TextView name,profile,temperature,temperatureData,co2,co2Data,humidity,humidityData,light,lightData;
-
-        LinearLayout parentLayout;
+        TextView name, profile, temperatureData, co2Data, humidityData, lightData;
 
         OnPlantListener onPlantListener;
 
@@ -63,16 +55,11 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
             super(itemView);
             name = itemView.findViewById(R.id.tv_name);
             profile = itemView.findViewById(R.id.tv_profile);
-            temperature = itemView.findViewById(R.id.tv_temp);
             temperatureData = itemView.findViewById(R.id.tv_tempdata);
-            co2= itemView.findViewById(R.id.tv_co2);
             co2Data=itemView.findViewById(R.id.tv_co2data);
-            humidity=itemView.findViewById(R.id.tv_humidity);
             humidityData = itemView.findViewById(R.id.tv_humiditydata);
-            light = itemView.findViewById(R.id.tv_light);
             lightData = itemView.findViewById(R.id.tv_lightdata);
 
-            parentLayout = itemView.findViewById(R.id.parent_layout);
             this.onPlantListener = onplantListener;
 
             itemView.setOnClickListener(this);
