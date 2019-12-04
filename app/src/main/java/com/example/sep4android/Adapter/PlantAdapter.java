@@ -3,7 +3,6 @@ package com.example.sep4android.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,7 +52,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
 
         ViewHolder(View itemView, OnPlantListener onplantListener) {
             super(itemView);
-            name = itemView.findViewById(R.id.tv_name);
+            name = itemView.findViewById(R.id.profileName);
             profile = itemView.findViewById(R.id.tv_profile);
             temperatureData = itemView.findViewById(R.id.tv_tempdata);
             co2Data=itemView.findViewById(R.id.tv_co2data);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,41 +9,40 @@
 
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/profileName"
         style="@style/AppTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Profile Name"
         android:textAlignment="center"
         android:textColor="@color/color2"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/imgBtnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="24dp"
 
+        android:layout_marginEnd="24dp"
         android:background="@color/colorBackground"
         android:drawableLeft="@android:drawable/ic_menu_delete"
         android:fontFamily="@font/montserrat_bold"
         android:text="delete"
         android:textColor="#B34F4B"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/profileName" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="10dp"
         android:background="#F8CEC9C9"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnDelete">
 
         <TextView
             android:id="@+id/sensor"
@@ -50,7 +50,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="0.5dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@color/colorWhite"
             android:fontFamily="@font/montserrat"
             android:text=""
@@ -70,7 +70,7 @@
             android:text="Min"
             android:textAlignment="center"
             android:textColor="@color/color2"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -85,18 +85,18 @@
             android:text="Max"
             android:textAlignment="center"
             android:textColor="@color/color2"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:background="#EECFCCCC"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <TextView
             android:id="@+id/profileTemp"
@@ -104,13 +104,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="0.5dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@color/colorWhite"
             android:fontFamily="@font/montserrat_bold"
             android:text="Temperature"
             android:textAlignment="textStart"
             android:textColor="@color/color2"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -124,7 +124,7 @@
             android:fontFamily="@font/montserrat"
             android:text="Min"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -138,18 +138,18 @@
             android:fontFamily="@font/montserrat"
             android:text="max"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:background="#EECFCCCC"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TextView
             android:id="@+id/profileCo2"
@@ -157,13 +157,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="0.5dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@color/colorWhite"
             android:fontFamily="@font/montserrat_bold"
             android:text="Co2"
             android:textAlignment="textStart"
             android:textColor="@color/color2"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -177,7 +177,7 @@
             android:fontFamily="@font/montserrat"
             android:text="Min"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -191,18 +191,18 @@
             android:fontFamily="@font/montserrat"
             android:text="max"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:background="#EECFCCCC"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <TextView
             android:id="@+id/profileLight"
@@ -210,13 +210,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="0.5dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@color/colorWhite"
             android:fontFamily="@font/montserrat_bold"
             android:text="Light"
             android:textAlignment="textStart"
             android:textColor="@color/color2"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -230,7 +230,7 @@
             android:fontFamily="@font/montserrat"
             android:text="Min"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -244,18 +244,19 @@
             android:fontFamily="@font/montserrat"
             android:text="max"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:background="#EECFCCCC"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        tools:layout_editor_absoluteX="10dp">
 
         <TextView
             android:id="@+id/profileHumidity"
@@ -263,13 +264,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="0.5dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@color/colorWhite"
             android:fontFamily="@font/montserrat_bold"
-            android:text="humiditydata"
+            android:text="Humidity"
             android:textAlignment="textStart"
             android:textColor="@color/color2"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -283,7 +284,7 @@
             android:fontFamily="@font/montserrat"
             android:text="Min"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -297,19 +298,17 @@
             android:fontFamily="@font/montserrat"
             android:text="max"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/editProfileBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginTop="300dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
 
         android:clickable="true"
         app:backgroundTint="@color/colorBackground"
@@ -317,7 +316,9 @@
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        app:layout_constraintVertical_bias="1.0"
         app:maxImageSize="50dp"
         app:srcCompat="@drawable/edit_icon" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

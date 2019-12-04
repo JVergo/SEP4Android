@@ -43,7 +43,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 
         ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.tv_name);
+            name = itemView.findViewById(R.id.profileName);
             name.setOnClickListener(this);
         }
 
