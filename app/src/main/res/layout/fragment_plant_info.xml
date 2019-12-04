@@ -46,29 +46,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_plantType" />
 
-        <ImageButton
+        <Button
             android:id="@+id/imgBtnDelete"
-            android:layout_width="40dp"
-            android:layout_height="42dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="24dp"
-            android:background="@color/color2"
+            android:background="@color/colorBackground"
+            android:drawableLeft="@android:drawable/ic_menu_delete"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="delete"
+            android:textColor="#B34F4B"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_delete"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <Button
             android:id="@+id/button_WaterPlant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
-            android:layout_weight="1"
-            android:background="@color/color2"
+            android:background="@color/colorBackground"
+            android:drawableLeft="@drawable/water-drops-icon-11"
             android:fontFamily="@font/montserrat_bold"
             android:text="Water"
-            android:textColor="@color/colorWhite"
+            android:textColor="#93CCB2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgBtnDelete" />
 
