@@ -9,11 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.Model.PlantProfile;
-import com.example.sep4android.Model.PlantProfileList;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
@@ -21,7 +19,7 @@ import com.example.sep4android.ViewModel.ProfileDetailsViewModel;
 
 public class ProfileDetails extends Fragment {
     private ProfileDetailsViewModel mViewModel;
-    private PlantProfile curPlant;
+    private PlantProfile curProfile;
 
     public static ProfileDetails newInstance(int profilePos) {
         ProfileDetails fragment = new ProfileDetails();
@@ -51,12 +49,12 @@ public class ProfileDetails extends Fragment {
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         mViewModel.getProfiles().observe(getActivity(), profileList -> {
-            curPlant = profileList.getProfile(getArguments().getInt("profileID"));
+            curProfile = profileList.getProfile(getArguments().getInt("profileID"));
 
-            SetMinMax(tempMin, tempMax, curPlant.getTemperature());
-            SetMinMax(coMin, coMax, curPlant.getCo2());
-            SetMinMax(humidityMin,humidityMax,curPlant.getHumidity());
-            SetMinMax(lightMin,lightMax,curPlant.getLight());
+            SetMinMax(tempMin, tempMax, curProfile.getTemperature());
+            SetMinMax(coMin, coMax, curProfile.getCo2());
+            SetMinMax(humidityMin,humidityMax, curProfile.getHumidity());
+            SetMinMax(lightMin,lightMax, curProfile.getLight());
         });
 
         return root;

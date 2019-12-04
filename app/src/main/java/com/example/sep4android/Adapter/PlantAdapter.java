@@ -33,7 +33,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         viewHolder.name.setText(mPlants.get(position).getName());
         viewHolder.profile.setText(mPlants.get(position).getProfile().getName());
 
-        //ToDO: Add so the plant view is updated with the data form the database see examples below
+        //ToDO: Add so the plant view is updated with current the data form the database see examples below
 
 /*      viewHolder.temperatureData.setText(mPlants.get(position).getTemperature());
         viewHolder.humidityData.setText((int) mPlants.get(position).getHumidity());

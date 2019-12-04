@@ -66,7 +66,7 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
     public void onPlantClick(int position) {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, new PlantDetails());
+        fragmentTransaction.replace(R.id.frameLayout, PlantDetails.newInstance(position));
         fragmentTransaction.commit();
     }
 

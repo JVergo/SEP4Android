@@ -15,15 +15,15 @@ import android.view.ViewGroup;
 import com.example.sep4android.R;
 import com.example.sep4android.ViewModel.EditPlantViewModel;
 
-public class editPlant extends Fragment {
+public class EditPlant extends Fragment {
 
-    public static editPlant newInstance() {
-        return new editPlant();
+    public static EditPlant newInstance() {
+        return new EditPlant();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.edit_plant_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_create_plant, container, false);
     }
 
     @Override

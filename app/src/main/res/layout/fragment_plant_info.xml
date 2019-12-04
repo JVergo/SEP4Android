@@ -173,7 +173,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_tempMaxdata"
+                            android:id="@+id/tv_tempMax"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -195,7 +195,7 @@
                             android:gravity="start" />
 
                         <TextView
-                            android:id="@+id/tv_tempMinData"
+                            android:id="@+id/tv_tempMin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -225,7 +225,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_co2MaxData"
+                            android:id="@+id/tv_co2Max"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -245,7 +245,7 @@
                             android:background="@color/colorWhite" />
 
                         <TextView
-                            android:id="@+id/tv_co2MinData"
+                            android:id="@+id/tv_co2Min"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -274,7 +274,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_humidityMaxData"
+                            android:id="@+id/tv_humidityMax"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -294,7 +294,7 @@
                             android:background="@color/colorWhite" />
 
                         <TextView
-                            android:id="@+id/tv_humidityMinData"
+                            android:id="@+id/tv_humidityMin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -324,7 +324,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_lightMaxData"
+                            android:id="@+id/tv_lightMax"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -346,7 +346,7 @@
                             android:background="@color/colorWhite" />
 
                         <TextView
-                            android:id="@+id/tv_lightMinData"
+                            android:id="@+id/tv_lightMin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"

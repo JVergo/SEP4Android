@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,23 +13,67 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.sep4android.Model.Plant;
+import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
+import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PlantDetails extends Fragment {
-    FloatingActionButton editPlantBTN;
+    private FloatingActionButton editPlantBTN;
+    private PlantDetailsViewModel mViewModel;
+    private Plant curPlant;
 
-    public static PlantDetails newInstance() {
-        return new PlantDetails();
+    public static PlantDetails newInstance(int pos) {
+        PlantDetails fragment = new PlantDetails();
+        Bundle args = new Bundle();
+        args.putInt("plantID", pos);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_plant_info, container, false);
         editPlantBTN = root.findViewById(R.id.floatingActionButton);
+
+        TextView plantName = root.findViewById(R.id.tv_plantName);
+        TextView tempMin = root.findViewById(R.id.tv_tempMin);
+        TextView tempMax = root.findViewById(R.id.tv_tempMax);
+        TextView humidityMin = root.findViewById(R.id.tv_humidityMin);
+        TextView humidityMax = root.findViewById(R.id.tv_humidityMax);
+        TextView coMin = root.findViewById(R.id.tv_co2Min);
+        TextView coMax = root.findViewById(R.id.tv_co2Max);
+        TextView lightMin = root.findViewById(R.id.tv_lightMin);
+        TextView lightMax = root.findViewById(R.id.tv_lightMax);
+        TextView profileName = root.findViewById(R.id.tv_plantType);
+
+        PlantDetailsViewModel mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
+
+        if(PlantReponsitory.getInstance().getPlants() == null) {
+            String email = "naya7777@gmail.com";
+            PlantReponsitory.getInstance().getPlantFromApi(email);
+        }
+        mViewModel.getProfiles().observe(getActivity(), profileList -> {
+            curPlant = profileList.getPlant((getArguments().getInt("plantID")));
+
+            plantName.setText(curPlant.getName());
+            profileName.setText(curPlant.getProfile().getName());
+
+            SetMinMax(tempMin, tempMax, curPlant.getProfile().getTemperature());
+            SetMinMax(coMin, coMax, curPlant.getProfile().getCo2());
+            SetMinMax(humidityMin,humidityMax, curPlant.getProfile().getHumidity());
+            SetMinMax(lightMin,lightMax, curPlant.getProfile().getLight());
+        });
+
         FloatButtonOnClick();
         return root;
+    }
+
+    public void SetMinMax(TextView min, TextView max, SensorBoundaries v) {
+        min.setText(v.getMin().toString());
+        max.setText(v.getMax().toString());
     }
 
     @Override
@@ -41,7 +86,7 @@ public class PlantDetails extends Fragment {
         editPlantBTN.setOnClickListener(v -> {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayout, new CreatePlant());
+            fragmentTransaction.replace(R.id.frameLayout, new EditPlant());
             fragmentTransaction.commit();
         });
     }
