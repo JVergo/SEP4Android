@@ -47,7 +47,7 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
         mPlantList.setAdapter(mPlantAdapter);
         plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
 
-        String email = "naya7777@gmail.com";
+        String email = "1";
         if (PlantReponsitory.getInstance().getPlants() == null) {
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
