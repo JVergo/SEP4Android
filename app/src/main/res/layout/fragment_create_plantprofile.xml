@@ -223,6 +223,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:background="@color/color2"
+                        android:clickable="true"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="Clear"
                         android:textColor="@color/colorWhite" />

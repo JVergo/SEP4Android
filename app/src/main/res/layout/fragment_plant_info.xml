@@ -113,7 +113,7 @@
                             android:background="@color/colorWhite" />
 
                         <TextView
-                            android:id="@+id/tv_max"
+                            android:id="@+id/tv_min"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -121,7 +121,7 @@
                             android:layout_weight="1"
                             android:background="@color/colorWhite"
                             android:gravity="center"
-                            android:text="max"
+                            android:text="min"
                             android:textColor="@color/color2"
                             android:textStyle="bold" />
 
@@ -140,7 +140,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_min"
+                            android:id="@+id/tv_max"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -149,7 +149,7 @@
                             android:layout_weight="1"
                             android:background="@color/colorWhite"
                             android:gravity="center"
-                            android:text="min"
+                            android:text="max"
                             android:textColor="@color/color2"
                             android:textStyle="bold" />
                     </TableRow>
@@ -173,29 +173,29 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_tempMax"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="0.5dp"
-                            android:layout_marginTop="0.5dp"
-                            android:layout_marginRight="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="start" />
-
-                        <TextView
-                            android:id="@+id/tv_tempCurrentData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="0.5dp"
-                            android:layout_marginTop="0.5dp"
-                            android:layout_marginRight="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="start" />
-
-                        <TextView
                             android:id="@+id/tv_tempMin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="start" />
+
+                        <TextView
+                            android:id="@+id/tv_tempCurrent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite"
+                            android:gravity="start" />
+
+                        <TextView
+                            android:id="@+id/tv_tempMax"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -225,27 +225,27 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_co2Max"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="0.5dp"
-                            android:layout_marginTop="0.5dp"
-                            android:layout_marginRight="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite" />
-
-                        <TextView
-                            android:id="@+id/tv_co2CurrentData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="0.5dp"
-                            android:layout_marginTop="0.5dp"
-                            android:layout_marginRight="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite" />
-
-                        <TextView
                             android:id="@+id/tv_co2Min"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/tv_co2Current"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/tv_co2Max"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -274,27 +274,27 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_humidityMax"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="0.5dp"
-                            android:layout_marginTop="0.5dp"
-                            android:layout_marginRight="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite" />
-
-                        <TextView
-                            android:id="@+id/tv_humidityCurrentData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="0.5dp"
-                            android:layout_marginTop="0.5dp"
-                            android:layout_marginRight="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite" />
-
-                        <TextView
                             android:id="@+id/tv_humidityMin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/tv_humidityCurrent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/tv_humidityMax"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"
@@ -324,29 +324,29 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_lightMax"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="0.5dp"
-                            android:layout_marginTop="0.5dp"
-                            android:layout_marginRight="0.5dp"
-                            android:layout_marginBottom="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite" />
-
-                        <TextView
-                            android:id="@+id/tv_lightCurrentData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="0.5dp"
-                            android:layout_marginTop="0.5dp"
-                            android:layout_marginRight="0.5dp"
-                            android:layout_marginBottom="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite" />
-
-                        <TextView
                             android:id="@+id/tv_lightMin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_marginBottom="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/tv_lightCurrent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0.5dp"
+                            android:layout_marginTop="0.5dp"
+                            android:layout_marginRight="0.5dp"
+                            android:layout_marginBottom="0.5dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/tv_lightMax"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0.5dp"

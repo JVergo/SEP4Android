@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +22,7 @@ import com.example.sep4android.ViewModel.EditPlantProfileViewModel;
 import com.example.sep4android.ViewModel.ProfileDetailsViewModel;
 
 public class EditPlantProfile extends Fragment {
+    private LinearLayout groupProfile, groupCo2, groupHumidity, groupTemp, groupLight;
     private EditPlantProfileViewModel mViewModel;
     private PlantProfile curProfile;
 
@@ -45,6 +48,16 @@ public class EditPlantProfile extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_create_plantprofile, container, false);
 
+
+        groupProfile = root.findViewById(R.id.profileLayout);
+        groupCo2 = root.findViewById(R.id.layoutco2);
+        groupHumidity = root.findViewById(R.id.layouthumidity);
+        groupTemp = root.findViewById(R.id.layouttemp);
+        groupLight = root.findViewById(R.id.layoutlight);
+
+        Button clearBTN = root.findViewById(R.id.button_clear);
+        clearBTN.setOnClickListener(v -> clearText());
+
         tempMin = root.findViewById(R.id.editTempMin);
         tempMax = root.findViewById(R.id.editTempMax);
         humidityMin = root.findViewById(R.id.editHumidityMin);
@@ -58,7 +71,7 @@ public class EditPlantProfile extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(EditPlantProfileViewModel.class);
 
         if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "naya7777@gmail.com";
+            String email = "1";
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         mViewModel.getProfiles().observe(getActivity(), profileList -> {
@@ -89,6 +102,41 @@ public class EditPlantProfile extends Fragment {
     }
 
     public void clearText(){
+        // reset profile fealds
+        for (int i = 0, count = groupProfile.getChildCount(); i < count; ++i) {
+            View view = groupProfile.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText)view).setText("");
+            }
+        }
+        // reset co2 fealds
+        for (int i = 0, count = groupCo2.getChildCount(); i < count; ++i) {
+            View view = groupCo2.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText)view).setText("");
+            }
+        }
+        // reset humidity fealds
+        for (int i = 0, count = groupHumidity.getChildCount(); i < count; ++i) {
+            View view = groupHumidity.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText)view).setText("");
+            }
+        }
+        // reset temperature fealds
+        for (int i = 0, count = groupTemp.getChildCount(); i < count; ++i) {
+            View view = groupTemp.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText)view).setText("");
+            }
+        }
+        // reset light fealds
+        for (int i = 0, count = groupLight.getChildCount(); i < count; ++i) {
+            View view = groupLight.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText)view).setText("");
+            }
+        }
     }
 
     public void save(){

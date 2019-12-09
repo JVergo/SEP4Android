@@ -14,8 +14,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.Model.Plant;
+import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
+import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,32 +41,52 @@ public class PlantDetails extends Fragment {
         editPlantBTN = root.findViewById(R.id.floatingActionButton);
 
         TextView plantName = root.findViewById(R.id.tv_plantName);
+
         TextView tempMin = root.findViewById(R.id.tv_tempMin);
         TextView tempMax = root.findViewById(R.id.tv_tempMax);
+        TextView tempCur = root.findViewById(R.id.tv_tempCurrent);
+
         TextView humidityMin = root.findViewById(R.id.tv_humidityMin);
         TextView humidityMax = root.findViewById(R.id.tv_humidityMax);
+        TextView humidityCur = root.findViewById(R.id.tv_humidityCurrent);
+
         TextView coMin = root.findViewById(R.id.tv_co2Min);
         TextView coMax = root.findViewById(R.id.tv_co2Max);
+        TextView coCur = root.findViewById(R.id.tv_co2Current);
+
         TextView lightMin = root.findViewById(R.id.tv_lightMin);
         TextView lightMax = root.findViewById(R.id.tv_lightMax);
+        TextView lightCur = root.findViewById(R.id.tv_lightCurrent);
+
         TextView profileName = root.findViewById(R.id.tv_plantType);
 
         PlantDetailsViewModel mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
 
         if(PlantReponsitory.getInstance().getPlants() == null) {
-            String email = "naya7777@gmail.com";
+            String email = "1";
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
-        mViewModel.getProfiles().observe(getActivity(), profileList -> {
-            curPlant = profileList.getPlant((getArguments().getInt("plantID")));
-
+        mViewModel.getPlants().observe(getActivity(), plantList -> {
+            curPlant = plantList.getPlant((getArguments().getInt("plantID")));
             plantName.setText(curPlant.getName());
-            profileName.setText(curPlant.getProfile().getName());
+            tempCur.setText("" + curPlant.getLastTemperatureMeasurement().getMeasurementValue());
+            humidityCur.setText("" + curPlant.getLastHumidityMeasurement().getMeasurementValue());
+            coCur.setText("" + curPlant.getLastCO2Measurement().getMeasurementValue());
+            lightCur.setText("" + curPlant.getLastLightMeasurement().getMeasurementValue());
+        });
 
-            SetMinMax(tempMin, tempMax, curPlant.getProfile().getTemperature());
-            SetMinMax(coMin, coMax, curPlant.getProfile().getCo2());
-            SetMinMax(humidityMin,humidityMax, curPlant.getProfile().getHumidity());
-            SetMinMax(lightMin,lightMax, curPlant.getProfile().getLight());
+        if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
+            String email = "1";
+            PlantProfileReponsitory.getInstance().getProfileFromApi(email);
+        }
+        mViewModel.getProfiles().observe(getActivity(), profileList -> {
+            PlantProfile curProfile = profileList.getProfileByID(curPlant.getPlantProfileId());
+            profileName.setText(curProfile.getName());
+
+            SetMinMax(tempMin, tempMax, curProfile.getTemperature());
+            SetMinMax(coMin, coMax, curProfile.getCo2());
+            SetMinMax(humidityMin,humidityMax, curProfile.getHumidity());
+            SetMinMax(lightMin,lightMax, curProfile.getLight());
         });
 
         FloatButtonOnClick();

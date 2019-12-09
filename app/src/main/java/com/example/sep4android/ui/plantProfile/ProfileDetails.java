@@ -49,7 +49,7 @@ public class ProfileDetails extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(ProfileDetailsViewModel.class);
 
         if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "naya7777@gmail.com";
+            String email = "1";
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         mViewModel.getProfiles().observe(getActivity(), profileList -> {

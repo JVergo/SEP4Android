@@ -29,14 +29,14 @@ public class createPlantProfile extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_create_plantprofile, container, false);
 
-        Button clearBTN = root.findViewById(R.id.button_clear);
-        clearBTN.setOnClickListener(v -> clearText());
-
         groupProfile = root.findViewById(R.id.profileLayout);
         groupCo2 = root.findViewById(R.id.layoutco2);
         groupHumidity = root.findViewById(R.id.layouthumidity);
         groupTemp = root.findViewById(R.id.layouttemp);
         groupLight = root.findViewById(R.id.layoutlight);
+
+        Button clearBTN = root.findViewById(R.id.button_clear);
+        clearBTN.setOnClickListener(v -> clearText());
 
         onResume();
         return root;

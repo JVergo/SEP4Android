@@ -5,7 +5,7 @@ public class PlantProfile {
     private int id;
     private String name;
     private User user;
-    private SensorBoundaries co2, temperature, humidity, light;
+    private SensorBoundaries co2Boundaries, temperatureBoundaries, humidityBoundaries, lightBoundaries;
 
     public PlantProfile() {
     }
@@ -14,19 +14,19 @@ public class PlantProfile {
         this.id = id;
         this.name = name;
         this.user = user;
-        this.co2 = co2;
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.light = light;
+        this.co2Boundaries = co2;
+        this.temperatureBoundaries = temperature;
+        this.humidityBoundaries = humidity;
+        this.lightBoundaries = light;
     }
     public PlantProfile(String name, User user, SensorBoundaries co2, SensorBoundaries temperature, SensorBoundaries humidity, SensorBoundaries light) {
         super();
         this.name = name;
         this.user = user;
-        this.co2 = co2;
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.light = light;
+        this.co2Boundaries = co2;
+        this.temperatureBoundaries = temperature;
+        this.humidityBoundaries = humidity;
+        this.lightBoundaries = light;
     }
 
 
@@ -52,30 +52,30 @@ public class PlantProfile {
     }
 
     public SensorBoundaries getCo2() {
-        return co2;
+        return co2Boundaries;
     }
     public void setCo2(SensorBoundaries co2) {
-        this.co2 = co2;
+        this.co2Boundaries = co2;
     }
 
     public SensorBoundaries getTemperature() {
-        return temperature;
+        return temperatureBoundaries;
     }
     public void setTemperature(SensorBoundaries temperature) {
-        this.temperature = temperature;
+        this.temperatureBoundaries = temperature;
     }
 
     public SensorBoundaries getHumidity() {
-        return humidity;
+        return humidityBoundaries;
     }
     public void setHumidity(SensorBoundaries humidity) {
-        this.humidity = humidity;
+        this.humidityBoundaries = humidity;
     }
 
     public SensorBoundaries getLight() {
-        return light;
+        return lightBoundaries;
     }
     public void setLight(SensorBoundaries light) {
-        this.light = light;
+        this.lightBoundaries = light;
     }
 }

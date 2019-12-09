@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sep4android.Adapter.PlantAdapter;
 import com.example.sep4android.Model.Plant;
+import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.PlantViewModel;
@@ -29,11 +30,11 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
     private RecyclerView mPlantList;
     private RecyclerView.Adapter mPlantAdapter;
     private ArrayList<Plant> plants = new ArrayList<>();
+    private ArrayList<PlantProfile> profiles = new ArrayList<>();
 
     FloatingActionButton createPlantBTN;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        PlantViewModel plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
         View root = inflater.inflate(R.layout.fragment_plant, container, false);
 
         TextView textView = root.findViewById(R.id.test);
@@ -45,19 +46,20 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
         mPlantList.hasFixedSize();
         mPlantList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mPlantList.setAdapter(mPlantAdapter);
-        plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
 
-        String email = "naya7777@gmail.com";
+        PlantViewModel plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
+
         if (PlantReponsitory.getInstance().getPlants() == null) {
+            String email = "1";
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
         plantViewModel.getPlants().observe(getActivity(), plantList -> {
             for (int i = 0; i < plantList.size(); i++) {
                 plants.add(plantList.getPlant(i));
-
             }
             mPlantAdapter.notifyDataSetChanged();
         });
+
         FloatButtonOnClick();
         return root;
     }

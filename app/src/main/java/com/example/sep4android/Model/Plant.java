@@ -1,86 +1,75 @@
 package com.example.sep4android.Model;
 
 public class Plant {
-        private int id;
-        private String name;
-        private PlantProfile profile;
-        private SensorBoundaries co2, humidity, temperature, light;
+    private int plantId;
+    private String plantName;
+    private PlantProfile plantProfile;
+    private PlantData lastCO2Measurement, lastHumidityMeasurement, lastTemperatureMeasurement, lastLightMeasurement;
+    private int plantProfileId;
 
-        public SensorBoundaries getCo2() {
-            return co2;
-        }
-        public void setCo2(SensorBoundaries co2) {
-            this.co2 = co2;
-        }
+    public Plant(int id, String name, int profile, PlantData co2, PlantData temperature, PlantData humidity, PlantData light) {
+        this.plantId = id;
+        this.plantName = name;
+        this.lastCO2Measurement = co2;
+        this.lastTemperatureMeasurement = temperature;
+        this.lastHumidityMeasurement = humidity;
+        this.lastLightMeasurement = light;
+        this.plantProfileId = profile;
+    }
 
-        public SensorBoundaries getHumidity() {
-            return humidity;
-        }
-        public void setHumidity(SensorBoundaries humidity) {
-            this.humidity = humidity;
-        }
+    public int getId() {
+        return plantId;
+    }
 
-        public SensorBoundaries getTemperature() {
-            return temperature;
-        }
-        public void setTemperature(SensorBoundaries temperature) {
-            this.temperature = temperature;
-        }
+    public void setId(int id) {
+        this.plantId = id;
+    }
 
-        public SensorBoundaries getLight() {
-            return light;
-        }
-        public void setLight(SensorBoundaries light) {
-            this.light = light;
-        }
+    public String getName() {
+        return plantName;
+    }
 
+    public void setName(String name) {
+        this.plantName = name;
+    }
 
-       /* is not need?
-        public Plant() {
+    public PlantProfile getProfile() {
+        return plantProfile;
+    }
 
-        }
+    public void setProfile(PlantProfile profile) {
+        this.plantProfile = profile;
+    }
 
-        public Plant(String name, PlantProfile profile) {
-            this.name = name;
-            this.profile = profile;
-        }
+    public PlantData getLastCO2Measurement() {
+        return lastCO2Measurement;
+    }
+    public void setLastCO2Measurement(PlantData lastCO2Measurement) {
+        this.lastCO2Measurement = lastCO2Measurement;
+    }
 
-        public Plant(int id, String name, PlantProfile profile) {
-            this.id = id;
-            this.name = name;
-            this.profile = profile;
-        }
+    public PlantData getLastHumidityMeasurement() {
+        return lastHumidityMeasurement;
+    }
+    public void setLastHumidityMeasurement(PlantData lastHumidityMeasurement) {
+        this.lastHumidityMeasurement = lastHumidityMeasurement;
+    }
 
-        */
+    public PlantData getLastTemperatureMeasurement() {
+        return lastTemperatureMeasurement;
+    }
+    public void setLastTemperatureMeasurement(PlantData lastTemperatureMeasurement) {
+        this.lastTemperatureMeasurement = lastTemperatureMeasurement;
+    }
 
-        public Plant(int id, String name, PlantProfile profile, SensorBoundaries co2, SensorBoundaries temperature, SensorBoundaries humidity, SensorBoundaries light) {
-            this.id = id;
-            this.name = name;
-            this.profile = profile;
-            this.co2 = co2;
-            this.temperature = temperature;
-            this.humidity = humidity;
-            this.light = light;
-        }
+    public PlantData getLastLightMeasurement() {
+        return lastLightMeasurement;
+    }
+    public void setLastLightMeasurement(PlantData lastLightMeasurement) {
+        this.lastLightMeasurement = lastLightMeasurement;
+    }
 
-        public int getId() {
-            return id;
-        }
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public PlantProfile getProfile() {
-            return profile;
-        }
-        public void setProfile(PlantProfile profile) {
-            this.profile = profile;
-        }
+    public int getPlantProfileId() {
+        return plantProfileId;
+    }
 }

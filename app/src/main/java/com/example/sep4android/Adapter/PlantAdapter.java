@@ -20,6 +20,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
     public PlantAdapter(ArrayList<Plant> plants, OnPlantListener onPlantListener) {
         mPlants = plants;
         this.mOnPlantListener = onPlantListener;
+
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -30,15 +31,12 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
 
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.name.setText(mPlants.get(position).getName());
-        viewHolder.profile.setText(mPlants.get(position).getProfile().getName());
+        //viewHolder.profile.setText(mPlants.get(position).getProfile().getName());
 
-        //ToDO: Add so the plant view is updated with current the data form the database see examples below
-
-/*      viewHolder.temperatureData.setText(mPlants.get(position).getTemperature());
-        viewHolder.humidityData.setText((int) mPlants.get(position).getHumidity());
-        viewHolder.lightData.setText( (int) mPlants.get(position).getLight());
-        viewHolder.co2Data.setText( (int) mPlants.get(position).getCo2());
-*/
+        viewHolder.temperatureData.setText("" + mPlants.get(position).getLastTemperatureMeasurement().getMeasurementValue());
+        viewHolder.humidityData.setText("" + mPlants.get(position).getLastHumidityMeasurement().getMeasurementValue());
+        viewHolder.lightData.setText("" + mPlants.get(position).getLastLightMeasurement().getMeasurementValue());
+        viewHolder.co2Data.setText("" + mPlants.get(position).getLastCO2Measurement().getMeasurementValue());
     }
 
     public int getItemCount() {

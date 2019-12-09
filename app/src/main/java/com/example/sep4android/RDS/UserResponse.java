@@ -17,6 +17,6 @@ public class UserResponse {
     }
 
     public User getUser(){
-        return new User(email,profiles,plants);
+        return new User(email, profiles, plants);
     }
 }
