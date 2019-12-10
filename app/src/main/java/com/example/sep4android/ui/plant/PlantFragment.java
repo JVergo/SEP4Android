@@ -35,6 +35,7 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
     FloatingActionButton createPlantBTN;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        PlantViewModel plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
         View root = inflater.inflate(R.layout.fragment_plant, container, false);
 
         TextView textView = root.findViewById(R.id.test);
@@ -46,6 +47,7 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
         mPlantList.hasFixedSize();
         mPlantList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mPlantList.setAdapter(mPlantAdapter);
+        plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
 
         PlantViewModel plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
 
@@ -56,6 +58,7 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
         plantViewModel.getPlants().observe(getActivity(), plantList -> {
             for (int i = 0; i < plantList.size(); i++) {
                 plants.add(plantList.getPlant(i));
+
             }
             mPlantAdapter.notifyDataSetChanged();
         });

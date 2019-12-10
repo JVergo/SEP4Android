@@ -1,5 +1,8 @@
 package com.example.sep4android;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -14,4 +17,8 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+
+
+
 }
