@@ -73,20 +73,13 @@ public class PlantDetails extends Fragment {
             humidityCur.setText("" + curPlant.getLastHumidityMeasurement().getMeasurementValue());
             coCur.setText("" + curPlant.getLastCO2Measurement().getMeasurementValue());
             lightCur.setText("" + curPlant.getLastLightMeasurement().getMeasurementValue());
-        });
 
-        if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "1";
-            PlantProfileReponsitory.getInstance().getProfileFromApi(email);
-        }
-        mViewModel.getProfiles().observe(getActivity(), profileList -> {
-            PlantProfile curProfile = profileList.getProfileByID(curPlant.getPlantProfileId());
-            profileName.setText(curProfile.getName());
+            profileName.setText(curPlant.getProfile().getName());
 
-            SetMinMax(tempMin, tempMax, curProfile.getTemperature());
-            SetMinMax(coMin, coMax, curProfile.getCo2());
-            SetMinMax(humidityMin,humidityMax, curProfile.getHumidity());
-            SetMinMax(lightMin,lightMax, curProfile.getLight());
+            SetMinMax(tempMin, tempMax, curPlant.getProfile().getTemperature());
+            SetMinMax(coMin, coMax, curPlant.getProfile().getCo2());
+            SetMinMax(humidityMin,humidityMax, curPlant.getProfile().getHumidity());
+            SetMinMax(lightMin,lightMax, curPlant.getProfile().getLight());
         });
 
         FloatButtonOnClick();

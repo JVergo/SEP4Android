@@ -31,7 +31,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
 
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.name.setText(mPlants.get(position).getName());
-        //viewHolder.profile.setText(mPlants.get(position).getProfile().getName());
+        viewHolder.profile.setText(mPlants.get(position).getProfile().getName());
 
         viewHolder.temperatureData.setText("" + mPlants.get(position).getLastTemperatureMeasurement().getMeasurementValue());
         viewHolder.humidityData.setText("" + mPlants.get(position).getLastHumidityMeasurement().getMeasurementValue());

@@ -19,6 +19,9 @@ public class User{
 		this.email = email;
 		this.profiles = profileList;
 		this.plants = plantList;
+		for (Plant p: plants.getPlants()) {
+			p.setProfile(profiles.getProfileByID(p.getPlantProfileId()));
+		}
 	}
 
 	public PlantProfileList getProfiles() {
