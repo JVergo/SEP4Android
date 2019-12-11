@@ -31,6 +31,7 @@ import java.util.List;
 
 public class CreatePlant extends Fragment {
     EditText plantName;
+    EditText sensor;
     CreatePlantViewModel createPlantProfileViewModel;
     ArrayList<PlantProfile> profiles =  new ArrayList<>();
 
@@ -49,6 +50,7 @@ public class CreatePlant extends Fragment {
         clearBTN.setOnClickListener(v -> clearText());
 
         plantName = root.findViewById(R.id.editText_plantename);
+        sensor = root.findViewById(R.id.editText_sensorId);
 
         createPlantProfileViewModel = ViewModelProviders.of(this).get(CreatePlantViewModel.class);
 
@@ -74,6 +76,7 @@ public class CreatePlant extends Fragment {
 
     public void clearText() {
         plantName.setText("");
+        sensor.setText("");
     }
 
     public void spinner(){

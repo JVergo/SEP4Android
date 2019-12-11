@@ -11,19 +11,78 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
+import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
+import com.example.sep4android.RDS.PlantProfileReponsitory;
+import com.example.sep4android.ViewModel.CreatePlantViewModel;
 import com.example.sep4android.ViewModel.EditPlantViewModel;
 
-public class EditPlant extends Fragment {
+import java.util.ArrayList;
 
+public class EditPlant extends Fragment {
+    EditText plantName;
+    EditText sensor;
+    EditPlantViewModel editPlantViewModel;
+    ArrayList<PlantProfile> profiles =  new ArrayList<>();
+    View root;
     public static EditPlant newInstance() {
         return new EditPlant();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_create_plant, container, false);
+        root =  inflater.inflate(R.layout.fragment_create_plant, container, false);
+
+        Button clearBTN = root.findViewById(R.id.button_clear);
+        clearBTN.setOnClickListener(v -> clearText());
+        plantName = root.findViewById(R.id.editText_plantename);
+        sensor = root.findViewById(R.id.editText_sensorId);
+
+        editPlantViewModel = ViewModelProviders.of(this).get(EditPlantViewModel.class);
+
+        if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
+            String email = "1";
+            PlantProfileReponsitory.getInstance().getProfileFromApi(email);
+        }
+        editPlantViewModel.getPlantProfiles().observe(getActivity(), plantProfList -> {
+            for (int i = 0; i < plantProfList.size(); i++) {
+                profiles.add(plantProfList.getProfile(i));
+            }
+
+            spinner();
+
+        });
+        return root;
+    }
+
+
+    public void clearText() {
+        plantName.setText("");
+        sensor.setText("");
+    }
+
+    public void spinner(){
+
+
+        String[] spinnerArray = new String[profiles.size()];
+
+        for (int i = 0;i<profiles.size(); i++){
+            spinnerArray[i] = profiles.get(i).getName();
+        }
+
+        Spinner profile = root.findViewById(R.id.spinnerprofile);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        profile.setAdapter(adapter);
+
+
     }
 
     @Override
