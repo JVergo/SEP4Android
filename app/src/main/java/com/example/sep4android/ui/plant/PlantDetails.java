@@ -1,9 +1,12 @@
 package com.example.sep4android.ui.plant;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,12 +23,17 @@ import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
+import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PlantDetails extends Fragment {
     private FloatingActionButton editPlantBTN;
     private PlantDetailsViewModel mViewModel;
     private Plant curPlant;
+    private Button delete;
+
+    AlertDialog dialog;
+    AlertDialog.Builder builder;
 
     public static PlantDetails newInstance(int pos) {
         PlantDetails fragment = new PlantDetails();
@@ -83,6 +91,38 @@ public class PlantDetails extends Fragment {
         });
 
         FloatButtonOnClick();
+
+
+        delete = root.findViewById(R.id.imgBtnDelete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Are you sure you want to delete this Plant ?");
+                builder.setCancelable(false);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //delete api
+                        FragmentManager fm = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                        fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());
+                        fragmentTransaction.commit();
+
+                    }
+
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                dialog = builder.create();
+                dialog.show();
+
+            }
+        });
         return root;
     }
 
