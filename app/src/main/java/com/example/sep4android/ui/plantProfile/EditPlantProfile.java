@@ -19,7 +19,6 @@ import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.ViewModel.EditPlantProfileViewModel;
-import com.example.sep4android.ViewModel.ProfileDetailsViewModel;
 
 public class EditPlantProfile extends Fragment {
     private LinearLayout groupProfile, groupCo2, groupHumidity, groupTemp, groupLight;
@@ -35,6 +34,8 @@ public class EditPlantProfile extends Fragment {
     TextView lightMin;
     TextView lightMax;
     TextView profileName;
+
+    SensorBoundaries temp,co2,hum,light;
 
     public static EditPlantProfile newInstance(int pos) {
         EditPlantProfile fragment = new EditPlantProfile();
@@ -150,5 +151,7 @@ public class EditPlantProfile extends Fragment {
         curProfile.getLight().setMin(Double.parseDouble(lightMin.getText().toString()));
         curProfile.getTemperature().setMax(Double.parseDouble(tempMax.getText().toString()));
         curProfile.getTemperature().setMin(Double.parseDouble(tempMin.getText().toString()));
+
+
     }
 }
