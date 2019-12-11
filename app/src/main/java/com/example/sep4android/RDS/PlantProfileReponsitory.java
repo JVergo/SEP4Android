@@ -3,6 +3,7 @@ package com.example.sep4android.RDS;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.PlantProfileList;
 
 import retrofit2.Call;
@@ -12,6 +13,7 @@ import retrofit2.Response;
 public class PlantProfileReponsitory {
 
     private MutableLiveData<PlantProfileList> plantProfiles;
+    private MutableLiveData<PlantProfile> profile;
     private static PlantProfileReponsitory reponsitory;
 
     private PlantProfileReponsitory(){
@@ -46,11 +48,39 @@ public class PlantProfileReponsitory {
         });
     }
 
+ /*   public void sendProfile(String email){
+
+        profile =new MutableLiveData<>();
+        UserApi userApi = ServiceGenerator.getUserApi();
+        Call<UserResponse> call = userApi.userInfo(email);
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if(response.isSuccessful()){
+                    profile.setValue( response.body().getUser().getProfiles().addPlantProfile());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+
+            }
+        });
+    }*/
+
+
+
+
     public LiveData<PlantProfileList> getProfiles() {
         return plantProfiles;
     }
 
     public void UpdateProfiles(String email) {
         getProfileFromApi(email);
+    }
+
+    public LiveData<PlantProfile> sendProfile()
+    {
+        return profile;
     }
 }
