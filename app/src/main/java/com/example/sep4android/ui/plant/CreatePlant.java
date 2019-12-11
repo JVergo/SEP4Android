@@ -17,16 +17,23 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.sep4android.Adapter.ProfileAdapter;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
+import com.example.sep4android.RDS.PlantProfileReponsitory;
+import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.CreatePlantViewModel;
 import com.example.sep4android.ViewModel.PlantProfileViewModel;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CreatePlant extends Fragment {
     EditText plantName;
-    PlantProfileViewModel plantProfileViewModel;
+    CreatePlantViewModel createPlantProfileViewModel;
     ArrayList<PlantProfile> profiles =  new ArrayList<>();
+
 
 
     View root;
@@ -43,11 +50,24 @@ public class CreatePlant extends Fragment {
 
         plantName = root.findViewById(R.id.editText_plantename);
 
-        plantProfileViewModel.getPlantProfiles().observe(getActivity(), plantProfileList -> {
-            for(int i = 0;i<plantProfileList.size();i++){
-                profiles.add(plantProfileList.getProfile(i));
+        createPlantProfileViewModel = ViewModelProviders.of(this).get(CreatePlantViewModel.class);
+
+        if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
+            String email = "1";
+            PlantProfileReponsitory.getInstance().getProfileFromApi(email);
+        }
+        createPlantProfileViewModel.getPlantProfiles().observe(getActivity(), plantProfList -> {
+            for (int i = 0; i < plantProfList.size(); i++) {
+                profiles.add(plantProfList.getProfile(i));
             }
+
+            spinner();
+
         });
+
+
+
+
         return root;
     }
 
@@ -59,25 +79,23 @@ public class CreatePlant extends Fragment {
     public void spinner(){
 
 
+        String[] spinnerArray = new String[profiles.size()];
 
-        List<String> spinnerArray =  new ArrayList<String>();
         for (int i = 0;i<profiles.size(); i++){
-            spinnerArray.add(profiles.get(i).getName());
+            spinnerArray[i] = profiles.get(i).getName();
         }
-        Spinner profile = root.findViewById(R.id.spinnerprofile);
 
+        Spinner profile = root.findViewById(R.id.spinnerprofile);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner sItems = root.findViewById(R.id.spinnerItem);
-        sItems.setAdapter(adapter);    }
+        profile.setAdapter(adapter);
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        CreatePlantViewModel mViewModel = ViewModelProviders.of(this).get(CreatePlantViewModel.class);
+
     }
+
+
 
 
 
