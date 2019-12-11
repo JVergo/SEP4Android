@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,6 +23,7 @@ import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String BACK_STACK_ROOT_TAG = "root_fragment";
     View palnt, profile;
     AlertDialog dialog;
     AlertDialog.Builder builder;
@@ -45,14 +47,31 @@ public class MainActivity extends AppCompatActivity {
 
         palnt = findViewById(R.id.navigation_plant);
         palnt = findViewById(R.id.navigation_plantProfile);
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.frameLayout, new PlantFragment());
-        transaction.commit();
+        transaction.addToBackStack(null).commit();
+
+        onTabSelected();
+
 
         onFragmentChange();
     }
 
 
+    public void onTabSelected(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.popBackStack(BACK_STACK_ROOT_TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+
+    }
+    public void addFragementOnTop(Fragment fragment){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayout, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
 
     public void onFragmentChange() {
         findViewById(R.id.navigation_plant).setOnClickListener(v -> {
@@ -62,10 +81,11 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         });
         findViewById(R.id.navigation_plantProfile).setOnClickListener(v -> {
+            //addFragementOnTop( new PlantFragment());
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.addToBackStack(BACK_STACK_ROOT_TAG).commit();
         });
     }
 

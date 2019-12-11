@@ -1,5 +1,7 @@
 package com.example.sep4android.RDS;
 
+import com.example.sep4android.Model.User;
+
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.User;
@@ -22,6 +24,11 @@ public interface UserApi {
 
     @POST("users")
     Call<PlantProfile>createProfile(@Body PlantProfile profile);
+
+
+
+    @POST("users")
+    Call<UserResponse> sendUser(@Body User user);
 
 
 }

@@ -16,4 +16,6 @@ public class ServiceGenerator {
     public static UserApi getUserApi() {
         return userApi;
     }
+
+   
 }
