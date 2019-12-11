@@ -14,15 +14,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.Model.Plant;
-import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
-import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class PlantDetails extends Fragment {
+    private static final String BACK_STACK_ROOT_TAG = "root_fragment";
+
     private FloatingActionButton editPlantBTN;
     private PlantDetailsViewModel mViewModel;
     private Plant curPlant;
@@ -83,8 +83,10 @@ public class PlantDetails extends Fragment {
         });
 
         FloatButtonOnClick();
+        onTabSelected();
         return root;
     }
+
 
     public void SetMinMax(TextView min, TextView max, SensorBoundaries v) {
         min.setText(v.getMin().toString());
@@ -97,12 +99,19 @@ public class PlantDetails extends Fragment {
         PlantDetailsViewModel mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
     }
 
+    public void onTabSelected(){
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentManager.popBackStack(BACK_STACK_ROOT_TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+
+    }
+
     public void FloatButtonOnClick(){
         editPlantBTN.setOnClickListener(v -> {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout, new EditPlant());
-            fragmentTransaction.commit();
+            fragmentTransaction.addToBackStack(BACK_STACK_ROOT_TAG).commit();
         });
     }
 
