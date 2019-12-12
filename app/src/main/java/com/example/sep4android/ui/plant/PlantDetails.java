@@ -76,10 +76,10 @@ public class PlantDetails extends Fragment {
 
             profileName.setText(curPlant.getProfile().getName());
 
-            SetMinMax(tempMin, tempMax, curPlant.getProfile().getTemperature());
-            SetMinMax(coMin, coMax, curPlant.getProfile().getCo2());
-            SetMinMax(humidityMin,humidityMax, curPlant.getProfile().getHumidity());
-            SetMinMax(lightMin,lightMax, curPlant.getProfile().getLight());
+            SetMinMax(tempMin, tempMax, curPlant.getProfile().getTemperatureBoundaries());
+            SetMinMax(coMin, coMax, curPlant.getProfile().getCo2Boundaries());
+            SetMinMax(humidityMin,humidityMax, curPlant.getProfile().getHumidityBoundaries());
+            SetMinMax(lightMin,lightMax, curPlant.getProfile().getLightBoundaries());
         });
 
         FloatButtonOnClick();

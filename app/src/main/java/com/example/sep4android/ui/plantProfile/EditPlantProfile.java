@@ -26,15 +26,7 @@ public class EditPlantProfile extends Fragment {
     private EditPlantProfileViewModel mViewModel;
     private PlantProfile curProfile;
 
-    TextView tempMin;
-    TextView tempMax;
-    TextView humidityMin;
-    TextView humidityMax;
-    TextView coMin;
-    TextView coMax;
-    TextView lightMin;
-    TextView lightMax;
-    TextView profileName;
+    TextView tempMin, tempMax, humidityMin, humidityMax, coMin, coMax, lightMin, lightMax, profileName;
 
     public static EditPlantProfile newInstance(int pos) {
         EditPlantProfile fragment = new EditPlantProfile();
@@ -78,10 +70,10 @@ public class EditPlantProfile extends Fragment {
             curProfile = profileList.getProfile(getArguments().getInt("pID"));
             profileName.setText(curProfile.getName());
 
-            SetMinMax(tempMin, tempMax, curProfile.getTemperature());
-            SetMinMax(coMin, coMax, curProfile.getCo2());
-            SetMinMax(humidityMin,humidityMax, curProfile.getHumidity());
-            SetMinMax(lightMin,lightMax, curProfile.getLight());
+            SetMinMax(tempMin, tempMax, curProfile.getTemperatureBoundaries());
+            SetMinMax(coMin, coMax, curProfile.getCo2Boundaries());
+            SetMinMax(humidityMin,humidityMax, curProfile.getHumidityBoundaries());
+            SetMinMax(lightMin,lightMax, curProfile.getLightBoundaries());
         });
 
         Button saveBTN = root.findViewById(R.id.btn_save);
@@ -142,13 +134,15 @@ public class EditPlantProfile extends Fragment {
     public void save(){
         curProfile.setName(profileName.getText().toString());
 
-        curProfile.getCo2().setMax(Double.parseDouble(coMax.getText().toString()));
-        curProfile.getCo2().setMin(Double.parseDouble(coMin.getText().toString()));
-        curProfile.getHumidity().setMax(Double.parseDouble(humidityMax.getText().toString()));
-        curProfile.getHumidity().setMin(Double.parseDouble(humidityMin.getText().toString()));
-        curProfile.getLight().setMax(Double.parseDouble(lightMax.getText().toString()));
-        curProfile.getLight().setMin(Double.parseDouble(lightMin.getText().toString()));
-        curProfile.getTemperature().setMax(Double.parseDouble(tempMax.getText().toString()));
-        curProfile.getTemperature().setMin(Double.parseDouble(tempMin.getText().toString()));
+        curProfile.getCo2Boundaries().setMax(Double.parseDouble(coMax.getText().toString()));
+        curProfile.getCo2Boundaries().setMin(Double.parseDouble(coMin.getText().toString()));
+        curProfile.getHumidityBoundaries().setMax(Double.parseDouble(humidityMax.getText().toString()));
+        curProfile.getHumidityBoundaries().setMin(Double.parseDouble(humidityMin.getText().toString()));
+        curProfile.getLightBoundaries().setMax(Double.parseDouble(lightMax.getText().toString()));
+        curProfile.getLightBoundaries().setMin(Double.parseDouble(lightMin.getText().toString()));
+        curProfile.getTemperatureBoundaries().setMax(Double.parseDouble(tempMax.getText().toString()));
+        curProfile.getTemperatureBoundaries().setMin(Double.parseDouble(tempMin.getText().toString()));
+
+        PlantProfileReponsitory.getInstance().saveProfileToApi(curProfile);
     }
 }

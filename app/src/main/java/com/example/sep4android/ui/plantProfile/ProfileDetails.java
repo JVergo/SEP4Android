@@ -56,10 +56,10 @@ public class ProfileDetails extends Fragment {
             curProfile = profileList.getProfile(getArguments().getInt("profileID"));
             profileName.setText(curProfile.getName());
 
-            SetMinMax(tempMin, tempMax, curProfile.getTemperature());
-            SetMinMax(coMin, coMax, curProfile.getCo2());
-            SetMinMax(humidityMin,humidityMax, curProfile.getHumidity());
-            SetMinMax(lightMin,lightMax, curProfile.getLight());
+            SetMinMax(tempMin, tempMax, curProfile.getTemperatureBoundaries());
+            SetMinMax(coMin, coMax, curProfile.getCo2Boundaries());
+            SetMinMax(humidityMin,humidityMax, curProfile.getHumidityBoundaries());
+            SetMinMax(lightMin,lightMax, curProfile.getLightBoundaries());
         });
 
         FloatingActionButton editProfileBTN = root.findViewById(R.id.editProfileBTN);

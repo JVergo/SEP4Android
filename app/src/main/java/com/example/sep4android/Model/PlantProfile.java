@@ -4,31 +4,30 @@ public class PlantProfile {
 
     private int id;
     private String name;
-    private User user;
+    private String userEmail;
     private SensorBoundaries co2Boundaries, temperatureBoundaries, humidityBoundaries, lightBoundaries;
 
     public PlantProfile() {
     }
-    public PlantProfile(int id, String name, User user, SensorBoundaries co2, SensorBoundaries temperature, SensorBoundaries humidity, SensorBoundaries light) {
+    public PlantProfile(int id, String name, String userEmail, SensorBoundaries co2, SensorBoundaries temperature, SensorBoundaries humidity, SensorBoundaries light) {
         super();
         this.id = id;
         this.name = name;
-        this.user = user;
+        this.userEmail = userEmail;
         this.co2Boundaries = co2;
         this.temperatureBoundaries = temperature;
         this.humidityBoundaries = humidity;
         this.lightBoundaries = light;
     }
-    public PlantProfile(String name, User user, SensorBoundaries co2, SensorBoundaries temperature, SensorBoundaries humidity, SensorBoundaries light) {
+    public PlantProfile(String name, String userEmail, SensorBoundaries co2, SensorBoundaries temperature, SensorBoundaries humidity, SensorBoundaries light) {
         super();
         this.name = name;
-        this.user = user;
+        this.userEmail = userEmail;
         this.co2Boundaries = co2;
         this.temperatureBoundaries = temperature;
         this.humidityBoundaries = humidity;
         this.lightBoundaries = light;
     }
-
 
     public int getId() {
         return id;
@@ -44,38 +43,49 @@ public class PlantProfile {
         this.name = name;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
-    public User getUser() {
-        return user;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public SensorBoundaries getCo2() {
+    public SensorBoundaries getCo2Boundaries() {
         return co2Boundaries;
     }
-    public void setCo2(SensorBoundaries co2) {
+    public void setCo2Boundaries(SensorBoundaries co2) {
         this.co2Boundaries = co2;
     }
 
-    public SensorBoundaries getTemperature() {
+    public SensorBoundaries getTemperatureBoundaries() {
         return temperatureBoundaries;
     }
-    public void setTemperature(SensorBoundaries temperature) {
+    public void setTemperatureBoundaries(SensorBoundaries temperature) {
         this.temperatureBoundaries = temperature;
     }
 
-    public SensorBoundaries getHumidity() {
+    public SensorBoundaries getHumidityBoundaries() {
         return humidityBoundaries;
     }
-    public void setHumidity(SensorBoundaries humidity) {
+    public void setHumidityBoundaries(SensorBoundaries humidity) {
         this.humidityBoundaries = humidity;
     }
 
-    public SensorBoundaries getLight() {
+    public SensorBoundaries getLightBoundaries() {
         return lightBoundaries;
     }
-    public void setLight(SensorBoundaries light) {
+    public void setLightBoundaries(SensorBoundaries light) {
         this.lightBoundaries = light;
+    }
+
+    @Override
+    public String toString() {
+        return  id + "," +
+                name + "," +
+                userEmail + "," +
+                co2Boundaries.toString() + "," +
+                temperatureBoundaries.toString() + "," +
+                humidityBoundaries.toString() + "," +
+                lightBoundaries.toString() + ",";
     }
 }

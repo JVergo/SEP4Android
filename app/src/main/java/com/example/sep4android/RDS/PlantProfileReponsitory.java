@@ -1,9 +1,13 @@
 package com.example.sep4android.RDS;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.PlantProfileList;
+import com.example.sep4android.Model.SensorBoundaries;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +48,52 @@ public class PlantProfileReponsitory {
 
             }
         });
+    }
+
+    public void saveProfileToApi(PlantProfile pp) {
+        UserApi userApi = ServiceGenerator.getUserApi();
+        Call<PlantProfile> call = userApi.updatePlantProfile(pp);
+        call.enqueue(new Callback<PlantProfile>() {
+            @Override
+            public void onResponse(Call<PlantProfile> call, Response<PlantProfile> response) {
+                if(!response.isSuccessful())
+                {
+                    Log.i("Vergo", "onResponse: " + response.toString());
+                    Log.i("Vergo", "Call: " + call.toString());
+                    return;
+                }
+
+                Log.i("Vergo", "onResponse: " + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<PlantProfile> call, Throwable t) {
+                Log.i("Vergo", "Throwable: " + t.getMessage());
+            }
+        });
+    }
+
+    public void createProfile(PlantProfile pp) {
+        UserApi userApi = ServiceGenerator.getUserApi();
+        Call<PlantProfile> call = userApi.createPlantProfile(pp);
+        call.enqueue(new Callback<PlantProfile>() {
+            @Override
+            public void onResponse(Call<PlantProfile> call, Response<PlantProfile> response) {
+                if (response.code() == 200) {
+                    //plantProfiles.setValue( response.body().getUser().getProfiles());
+                    Log.i("Vergo", "onResponse: " + response.message());
+                } else {
+                    Log.i("Vergo", "onResponse: " + response.toString());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<PlantProfile> call, Throwable t) {
+                Log.i("Vergo", "Throwable: " + t.getMessage());
+            }
+        });
+
     }
 
     public LiveData<PlantProfileList> getProfiles() {

@@ -30,4 +30,9 @@ public class SensorBoundaries {
 			return false;
 		}
 	}
+
+	@Override
+	public String toString() {
+		return max + "," + min;
+	}
 }

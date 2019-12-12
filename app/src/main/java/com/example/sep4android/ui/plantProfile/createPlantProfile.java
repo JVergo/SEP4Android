@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,11 +16,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.MainActivity;
+import com.example.sep4android.Model.Plant;
+import com.example.sep4android.Model.PlantProfile;
+import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
+import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.ViewModel.CreatePlantProfileViewModel;
 
 public class createPlantProfile extends Fragment {
     private LinearLayout groupProfile, groupCo2, groupHumidity, groupTemp, groupLight;
+    TextView tempMin, tempMax, humidityMin, humidityMax, coMin, coMax, lightMin, lightMax, profileName;
 
     public static createPlantProfile newInstance() {
         return new createPlantProfile();
@@ -34,9 +40,21 @@ public class createPlantProfile extends Fragment {
         groupHumidity = root.findViewById(R.id.layouthumidity);
         groupTemp = root.findViewById(R.id.layouttemp);
         groupLight = root.findViewById(R.id.layoutlight);
+        tempMin = root.findViewById(R.id.editTempMin);
+        tempMax = root.findViewById(R.id.editTempMax);
+        humidityMin = root.findViewById(R.id.editHumidityMin);
+        humidityMax = root.findViewById(R.id.editHumidityMax);
+        coMin = root.findViewById(R.id.editCo2Min);
+        coMax = root.findViewById(R.id.editCo2Max);
+        lightMin = root.findViewById(R.id.editLightMin);
+        lightMax = root.findViewById(R.id.editLightMax);
+        profileName = root.findViewById(R.id.editProfileName);
 
         Button clearBTN = root.findViewById(R.id.button_clear);
         clearBTN.setOnClickListener(v -> clearText());
+
+        Button saveBTN = root.findViewById(R.id.btn_save);
+        saveBTN.setOnClickListener(v -> save());
 
         onResume();
         return root;
@@ -95,7 +113,22 @@ public class createPlantProfile extends Fragment {
     }
 
     public void save(){
+        PlantProfile newPorfile = new PlantProfile();
 
+        newPorfile.setName(profileName.getText().toString());
+        SensorBoundaries co2 = new SensorBoundaries(Double.parseDouble(coMin.getText().toString()), Double.parseDouble(coMax.getText().toString()));
+        newPorfile.setCo2Boundaries(co2);
+
+        SensorBoundaries humidity = new SensorBoundaries(Double.parseDouble(humidityMin.getText().toString()), Double.parseDouble(humidityMax.getText().toString()));
+        newPorfile.setHumidityBoundaries(humidity);
+
+        SensorBoundaries light = new SensorBoundaries(Double.parseDouble(lightMin.getText().toString()), Double.parseDouble(lightMax.getText().toString()));
+        newPorfile.setLightBoundaries(light);
+
+        SensorBoundaries temp = new SensorBoundaries(Double.parseDouble(tempMin.getText().toString()), Double.parseDouble(tempMax.getText().toString()));
+        newPorfile.setCo2Boundaries(temp);
+
+        PlantProfileReponsitory.getInstance().createProfile(newPorfile);
     }
 
     @Override
