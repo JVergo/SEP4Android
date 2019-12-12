@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -69,6 +70,9 @@ public class ProfileDetails extends Fragment {
             fragmentTransaction.replace(R.id.frameLayout, EditPlantProfile.newInstance(getArguments().getInt("profileID")));
             fragmentTransaction.commit();
         });
+
+        Button deleteBTN = root.findViewById(R.id.imgBtnDelete);
+        deleteBTN.setOnClickListener(v -> { PlantProfileReponsitory.getInstance().deleteProfile(curProfile.getId()); });
 
         return root;
     }

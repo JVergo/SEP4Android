@@ -1,10 +1,12 @@
 package com.example.sep4android.RDS;
 
+import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -20,9 +22,15 @@ public interface UserApi {
     @POST("plantprofiles")
     Call<PlantProfile> createPlantProfile(@Body PlantProfile plantProfile);
 
-    @PUT("testString")
-    Call<PlantProfile> testString(@Body String test);
+    @DELETE("/plantprofiles/{plantProfileID}")
+    Call<PlantProfile> deletePlantProfile(@Path("plantProfileID") String plantProfileID);
 
-    @PUT("testPlantProfile")
-    Call<PlantProfile> testProfile(@Body PlantProfile PlantProfile);
+    @PUT("plants")
+    Call<Plant> updatePlant(@Body Plant plant);
+
+    @POST("plants")
+    Call<Plant> createPlant(@Body Plant plant);
+
+    @DELETE("/plants/{plantID}")
+    Call<Plant> deletePlant(@Path("plantID") String plantID);
 }

@@ -6,17 +6,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.sep4android.Model.Plant;
 import com.example.sep4android.R;
+import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.CreatePlantViewModel;
 
 public class CreatePlant extends Fragment {
     EditText plantName;
+    Spinner profile;
 
     public static CreatePlant newInstance() {
         return new CreatePlant();
@@ -29,8 +33,20 @@ public class CreatePlant extends Fragment {
         Button clearBTN = root.findViewById(R.id.button_clear);
         clearBTN.setOnClickListener(v -> clearText());
 
-        plantName = root.findViewById(R.id.editText_plantename);
+        plantName = root.findViewById(R.id.editPalntName);
+        profile = root.findViewById(R.id.spinnerprofile);
+
+        Button saveBTN = root.findViewById(R.id.btn_save);
+        saveBTN.setOnClickListener( v ->  save());
         return root;
+    }
+
+    private void save() {
+        Plant temp = new Plant();
+        temp.setName(plantName.getText().toString());
+        //temp.setProfile(profile.getSelectedItem());
+
+        PlantReponsitory.getInstance().savePlantToApi(temp);
     }
 
 

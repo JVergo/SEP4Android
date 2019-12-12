@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -81,6 +82,9 @@ public class PlantDetails extends Fragment {
             SetMinMax(humidityMin,humidityMax, curPlant.getProfile().getHumidityBoundaries());
             SetMinMax(lightMin,lightMax, curPlant.getProfile().getLightBoundaries());
         });
+
+        Button deleteBTN = root.findViewById(R.id.imgBtnDelete);
+        deleteBTN.setOnClickListener(v -> { PlantReponsitory.getInstance().deletePlant(curPlant.getId()); });
 
         FloatButtonOnClick();
         return root;

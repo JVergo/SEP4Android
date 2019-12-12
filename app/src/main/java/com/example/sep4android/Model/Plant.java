@@ -7,6 +7,8 @@ public class Plant {
     private PlantData lastCO2Measurement, lastHumidityMeasurement, lastTemperatureMeasurement, lastLightMeasurement;
     private int plantProfileId;
 
+    public Plant(){}
+
     public Plant(int id, String name, int profile, PlantData co2, PlantData temperature, PlantData humidity, PlantData light) {
         this.plantId = id;
         this.plantName = name;

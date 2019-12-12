@@ -93,7 +93,28 @@ public class PlantProfileReponsitory {
                 Log.i("Vergo", "Throwable: " + t.getMessage());
             }
         });
+    }
 
+    public void deleteProfile(int id) {
+        UserApi userApi = ServiceGenerator.getUserApi();
+        Call<PlantProfile> call = userApi.deletePlantProfile("" + id);
+        call.enqueue(new Callback<PlantProfile>() {
+            @Override
+            public void onResponse(Call<PlantProfile> call, Response<PlantProfile> response) {
+                if (response.code() == 200) {
+                    //plantProfiles.setValue( response.body().getUser().getProfiles());
+                    Log.i("Vergo", "onResponse: " + response.message());
+                } else {
+                    Log.i("Vergo", "onResponse: " + response.toString());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<PlantProfile> call, Throwable t) {
+                Log.i("Vergo", "Throwable: " + t.getMessage());
+            }
+        });
     }
 
     public LiveData<PlantProfileList> getProfiles() {
@@ -103,4 +124,5 @@ public class PlantProfileReponsitory {
     public void UpdateProfiles(String email) {
         getProfileFromApi(email);
     }
+
 }
