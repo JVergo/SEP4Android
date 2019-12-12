@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@mipmap/ic_logo" />
 
     <TextView
         android:id="@+id/email"

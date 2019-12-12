@@ -14,18 +14,20 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.Model.Plant;
-import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
-import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class PlantDetails extends Fragment {
     private FloatingActionButton editPlantBTN;
     private PlantDetailsViewModel mViewModel;
     private Plant curPlant;
+    private View root;
 
     public static PlantDetails newInstance(int pos) {
         PlantDetails fragment = new PlantDetails();
@@ -37,7 +39,7 @@ public class PlantDetails extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root =  inflater.inflate(R.layout.fragment_plant_info, container, false);
+         root =  inflater.inflate(R.layout.fragment_plant_info, container, false);
         editPlantBTN = root.findViewById(R.id.floatingActionButton);
 
         TextView plantName = root.findViewById(R.id.tv_plantName);
@@ -82,6 +84,7 @@ public class PlantDetails extends Fragment {
             SetMinMax(lightMin,lightMax, curPlant.getProfile().getLight());
         });
 
+        graph();
         FloatButtonOnClick();
         return root;
     }
@@ -104,6 +107,18 @@ public class PlantDetails extends Fragment {
             fragmentTransaction.replace(R.id.frameLayout, new EditPlant());
             fragmentTransaction.commit();
         });
+    }
+
+    public void graph(){
+        GraphView graph = root.findViewById(R.id.graphview);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        graph.addSeries(series);
     }
 
 }
