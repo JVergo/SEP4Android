@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sep4android.Adapter.ProfileAdapter;
-import com.example.sep4android.MainActivity;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
@@ -46,7 +45,9 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
         PlantProfileViewModel plantProfileViewModel = ViewModelProviders.of(this).get(PlantProfileViewModel.class);
 
         if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "1";
+            String email = "naya7777@gmail.com";
+            //String email = "1";
+
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         plantProfileViewModel.getPlantProfiles().observe(getActivity(), plantProfileList -> {

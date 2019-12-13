@@ -32,7 +32,7 @@
         android:drawableLeft="@android:drawable/ic_menu_delete"
         android:fontFamily="@font/montserrat_bold"
         android:text="delete"
-        android:textColor="#B34F4B"
+        android:textColor="@color/colorWarning"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileName" />
 

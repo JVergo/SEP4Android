@@ -3,7 +3,7 @@ package com.example.sep4android.Model;
 public class User{
 
 	private String email;
-	//private String password;
+	private String password;
 	private PlantProfileList profiles;
 	private PlantList plants;
 
@@ -13,7 +13,7 @@ public class User{
 		profiles = new PlantProfileList();
 		plants = new PlantList();
 		this.email = email;
-		//this.password = password;
+		this.password = password;
 	}
 	public User(String email,PlantProfileList profileList, PlantList plantList) {
 		this.email = email;
@@ -45,11 +45,11 @@ public class User{
 		this.email = email;
 	}
 
-	//public String getPassword() {
-		//return password;
-	//}
-	//public void setPassword(String password) {
-		//this.password = password;
-	//}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		 this.password = password;
+	}
 
 }

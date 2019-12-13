@@ -1,5 +1,6 @@
 package com.example.sep4android.Adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sep4android.Model.Plant;
+import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 
 import java.util.ArrayList;
@@ -16,6 +18,9 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
 
     private ArrayList<Plant> mPlants;
     private OnPlantListener mOnPlantListener;
+
+    double tempMax,tempMin,coMin,coMax,lightMin,lightMax,humidityMin,humidityMax;
+
 
     public PlantAdapter(ArrayList<Plant> plants, OnPlantListener onPlantListener) {
         mPlants = plants;
@@ -26,7 +31,9 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.activity_plantlist_item, parent, false);
+
         return new ViewHolder(view, mOnPlantListener);
+
     }
 
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
@@ -37,6 +44,44 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         viewHolder.humidityData.setText("" + mPlants.get(position).getLastHumidityMeasurement().getMeasurementValue());
         viewHolder.lightData.setText("" + mPlants.get(position).getLastLightMeasurement().getMeasurementValue());
         viewHolder.co2Data.setText("" + mPlants.get(position).getLastCO2Measurement().getMeasurementValue());
+
+        SetMinMax(tempMin, tempMax, mPlants.get(position).getProfile().getTemperature());
+        SetMinMax(coMin, coMax, mPlants.get(position).getProfile().getCo2());
+        SetMinMax(humidityMin, humidityMax, mPlants.get(position).getProfile().getHumidity());
+        SetMinMax(lightMin, lightMax, mPlants.get(position).getProfile().getLight());
+
+        if (
+                Double.parseDouble(viewHolder.temperatureData.getText().toString())< tempMin
+                        || Double.parseDouble(viewHolder.temperatureData.getText().toString()) > tempMax
+            //Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMin.getText().toString())
+        ) {
+
+            viewHolder.temperatureData.setTextColor(Color.parseColor("#B34F4B"));
+        }
+        if (
+                Double.parseDouble(viewHolder.co2Data.getText().toString())< coMin
+                        || Double.parseDouble(viewHolder.co2Data.getText().toString()) > coMax
+            //Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMin.getText().toString())
+        ) {
+
+            viewHolder.co2Data.setTextColor(Color.parseColor("#B34F4B"));
+        }
+        if (
+                Double.parseDouble(viewHolder.lightData.getText().toString())< lightMin
+                        || Double.parseDouble(viewHolder.lightData.getText().toString()) > lightMax
+            //Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMin.getText().toString())
+        ) {
+
+            viewHolder.lightData.setTextColor(Color.parseColor("#B34F4B"));
+        }
+        if (
+                Double.parseDouble(viewHolder.humidityData.getText().toString())< humidityMin
+                        || Double.parseDouble(viewHolder.humidityData.getText().toString()) > humidityMax
+            //Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMin.getText().toString())
+        ) {
+            viewHolder.humidityData.setTextColor(Color.parseColor("#B34F4B"));
+        }
+
     }
 
     public int getItemCount() {
@@ -71,4 +116,12 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
   public interface OnPlantListener{
         void onPlantClick(int position);
     }
+
+
+
+    public void SetMinMax(double min, double max, SensorBoundaries v) {
+        min = Double.parseDouble(v.getMin().toString());
+        max = Double.parseDouble(v.getMax().toString());
+    }
+
 }

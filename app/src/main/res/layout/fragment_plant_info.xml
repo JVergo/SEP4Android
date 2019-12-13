@@ -57,7 +57,7 @@
             android:drawableLeft="@android:drawable/ic_menu_delete"
             android:fontFamily="@font/montserrat_bold"
             android:text="delete"
-            android:textColor="#B34F4B"
+            android:textColor="@color/colorWarning"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -813,12 +813,15 @@
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                        android:layout_height="wrap_content">
 
                         <com.jjoe64.graphview.GraphView
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:id="@+id/graphview" />
+                            android:id="@+id/graphview"
+                            android:layout_width="350dp"
+                            android:layout_height="300dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/colorWhite" />
                     </TableRow>
 
                 </TableLayout>
@@ -845,4 +848,5 @@
             tools:ignore="MissingConstraints"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>
