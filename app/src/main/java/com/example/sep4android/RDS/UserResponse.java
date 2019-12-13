@@ -16,6 +16,11 @@ public class UserResponse {
         this.plants = plants;
     }
 
+    public UserResponse(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public User getUser(){
         return new User(email, profiles, plants);
     }

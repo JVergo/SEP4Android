@@ -125,5 +125,4 @@ public class PlantProfileReponsitory {
     public void UpdateProfiles(String email) {
         getProfileFromApi(email);
     }
-
 }

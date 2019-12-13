@@ -1,5 +1,8 @@
 package com.example.sep4android.ui.plantProfile;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +27,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ProfileDetails extends Fragment {
     private ProfileDetailsViewModel mViewModel;
     private PlantProfile curProfile;
+    private Button delete;
+
+    AlertDialog dialog;
+    AlertDialog.Builder builder;
+
 
     public static ProfileDetails newInstance(int profilePos) {
         ProfileDetails fragment = new ProfileDetails();
@@ -49,7 +57,7 @@ public class ProfileDetails extends Fragment {
 
         mViewModel = ViewModelProviders.of(this).get(ProfileDetailsViewModel.class);
 
-        if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
+        if (PlantProfileReponsitory.getInstance().getProfiles() == null) {
             String email = "1";
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
@@ -71,10 +79,36 @@ public class ProfileDetails extends Fragment {
             fragmentTransaction.commit();
         });
 
-        Button deleteBTN = root.findViewById(R.id.imgBtnDelete);
-        deleteBTN.setOnClickListener(v -> PlantProfileReponsitory.getInstance().deleteProfile(curProfile.getId()));
+        delete = root.findViewById(R.id.imgBtnDelete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        return root;
+                builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Are you sure you want to delete this Plant Profile ?");
+                builder.setCancelable(false);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //delete api
+                        FragmentManager fm = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                        fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());
+                        fragmentTransaction.commit();
+
+                    }
+
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                dialog = builder.create();
+                dialog.show();
+
+            }
+        });
     }
 
     public void SetMinMax(TextView min, TextView max, SensorBoundaries v) {
