@@ -51,7 +51,7 @@ public class CreatePlant extends Fragment {
         Button clearBTN = root.findViewById(R.id.button_clear);
         clearBTN.setOnClickListener(v -> clearText());
 
-        plantName = root.findViewById(R.id.editText_plantename);
+        plantName = root.findViewById(R.id.editPalntName);
         sensor = root.findViewById(R.id.editText_sensorId);
 
         createPlantProfileViewModel = ViewModelProviders.of(this).get(CreatePlantViewModel.class);

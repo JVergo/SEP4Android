@@ -24,7 +24,7 @@ public class UserRepository {
     }
 
     public void sendAccountRequest(User user){
-        UserApi userApi = ServiceGenerator.getUserApi();
+        /*UserApi userApi = ServiceGenerator.getUserApi();
         Call<UserResponse> call = userApi.createAccount(user);
 
         call.enqueue(new Callback<UserResponse>() {
@@ -37,7 +37,7 @@ public class UserRepository {
             public void onFailure(Call<UserResponse> call, Throwable t) {
 
             }
-        });
+        });*/
     }
 
 }
