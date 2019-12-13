@@ -20,7 +20,6 @@ import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.PlantViewModel;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -39,6 +38,8 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
         View root = inflater.inflate(R.layout.fragment_plant, container, false);
 
         TextView textView = root.findViewById(R.id.test);
+
+
         mPlantAdapter = new PlantAdapter(plants, this);
 
         createPlantBTN = root.findViewById(R.id.floatingActionButton);
@@ -52,18 +53,20 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
 
 
         if (PlantReponsitory.getInstance().getPlants() == null) {
+            //String email = "naya7777@gmail.com";
             String email = "1";
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
         plantViewModel.getPlants().observe(getActivity(), plantList -> {
             for (int i = 0; i < plantList.size(); i++) {
                 plants.add(plantList.getPlant(i));
-
             }
             mPlantAdapter.notifyDataSetChanged();
         });
 
         FloatButtonOnClick();
+
+
         return root;
     }
 
