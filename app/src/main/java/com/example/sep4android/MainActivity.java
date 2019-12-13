@@ -82,17 +82,38 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.changePassword){
             //change password fragment
-
-
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout, new ChangePassword());
             fragmentTransaction.commit();
 
         }
+        if(id == R.id.logout){builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to log out ?");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    //TODO:logout
+
+                    Intent myIntent = new Intent(getBaseContext(),   LogInActivity.class);
+                    startActivity(myIntent);
+                }
+
+            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            dialog = builder.create();
+            dialog.show();
+
+        }
         if (id == R.id.deleteAccount){
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Are you sure you want to delete this Plant Profile ?");
+            builder.setMessage("Are you sure you want to delete your Account ?");
             builder.setCancelable(false);
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override

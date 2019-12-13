@@ -21,6 +21,7 @@ import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
+import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.CreatePlantProfileViewModel;
 
 public class createPlantProfile extends Fragment {
@@ -116,8 +117,8 @@ public class createPlantProfile extends Fragment {
         PlantProfile newPorfile = new PlantProfile();
 
         newPorfile.setName(profileName.getText().toString());
-        //TODO: Figure out how to get user email
-        newPorfile.setUserEmail("1");
+
+        newPorfile.setUserEmail(UserRepository.getInstance().getUserEmail());
 
         SensorBoundaries co2 = new SensorBoundaries(Double.parseDouble(coMin.getText().toString()), Double.parseDouble(coMax.getText().toString()));
         newPorfile.setCo2Boundaries(co2);

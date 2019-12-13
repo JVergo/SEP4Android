@@ -9,9 +9,16 @@
         android:id="@+id/changePassword"
         android:title="Change password"
         />
+
+
     <item
 
         android:id="@+id/deleteAccount"
         android:title="Delete account"/>
+
+    <item
+
+        android:id="@+id/logout"
+        android:title="Log out"/>
 
 </menu>

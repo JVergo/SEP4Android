@@ -3,6 +3,7 @@ package com.example.sep4android.RDS;
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
+import com.example.sep4android.Model.User;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -34,4 +35,11 @@ public interface UserApi {
 
     @DELETE("plants/{plantID}")
     Call<Plant> deletePlant(@Path("plantID") String plantID);
+
+    @POST("users")
+    Call<Boolean> createAccount(@Body User user);
+
+    @POST("login")
+    Call<Boolean> Login(@Body User user);
+
 }

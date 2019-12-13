@@ -21,6 +21,7 @@ import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.RDS.PlantReponsitory;
+import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.CreatePlantViewModel;
 import com.example.sep4android.ViewModel.PlantProfileViewModel;
 
@@ -57,7 +58,7 @@ public class CreatePlant extends Fragment {
         createPlantProfileViewModel = ViewModelProviders.of(this).get(CreatePlantViewModel.class);
 
         if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "1";
+            String email = UserRepository.getInstance().getUserEmail();
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         createPlantProfileViewModel.getPlantProfiles().observe(getActivity(), plantProfList -> {

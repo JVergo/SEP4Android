@@ -21,6 +21,7 @@ import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
+import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.ProfileDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -58,7 +59,7 @@ public class ProfileDetails extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(ProfileDetailsViewModel.class);
 
         if (PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "1";
+            String email = UserRepository.getInstance().getUserEmail();
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         mViewModel.getProfiles().observe(getActivity(), profileList -> {

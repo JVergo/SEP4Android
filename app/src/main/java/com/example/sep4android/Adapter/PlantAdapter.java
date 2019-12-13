@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sep4android.Model.Plant;
+import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         }
     }
 
-  public interface OnPlantListener{
+    public interface OnPlantListener{
         void onPlantClick(int position);
     }
 }
