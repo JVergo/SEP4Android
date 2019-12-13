@@ -116,6 +116,9 @@ public class createPlantProfile extends Fragment {
         PlantProfile newPorfile = new PlantProfile();
 
         newPorfile.setName(profileName.getText().toString());
+        //TODO: Figure out how to get user email
+        newPorfile.setUserEmail("1");
+
         SensorBoundaries co2 = new SensorBoundaries(Double.parseDouble(coMin.getText().toString()), Double.parseDouble(coMax.getText().toString()));
         newPorfile.setCo2Boundaries(co2);
 
@@ -126,7 +129,7 @@ public class createPlantProfile extends Fragment {
         newPorfile.setLightBoundaries(light);
 
         SensorBoundaries temp = new SensorBoundaries(Double.parseDouble(tempMin.getText().toString()), Double.parseDouble(tempMax.getText().toString()));
-        newPorfile.setCo2Boundaries(temp);
+        newPorfile.setTemperatureBoundaries(temp);
 
         PlantProfileReponsitory.getInstance().createProfile(newPorfile);
     }

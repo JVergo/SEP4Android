@@ -4,6 +4,7 @@ import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -22,8 +23,8 @@ public interface UserApi {
     @POST("plantprofiles")
     Call<PlantProfile> createPlantProfile(@Body PlantProfile plantProfile);
 
-    @DELETE("/plantprofiles/{plantProfileID}")
-    Call<PlantProfile> deletePlantProfile(@Path("plantProfileID") String plantProfileID);
+    @DELETE("plantprofiles/{plantProfileID}")
+    Call<RequestBody> deletePlantProfile(@Path("plantProfileID") String plantProfileID);
 
     @PUT("plants")
     Call<Plant> updatePlant(@Body Plant plant);
@@ -31,6 +32,6 @@ public interface UserApi {
     @POST("plants")
     Call<Plant> createPlant(@Body Plant plant);
 
-    @DELETE("/plants/{plantID}")
+    @DELETE("plants/{plantID}")
     Call<Plant> deletePlant(@Path("plantID") String plantID);
 }

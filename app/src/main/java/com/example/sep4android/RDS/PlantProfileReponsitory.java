@@ -9,6 +9,7 @@ import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.PlantProfileList;
 import com.example.sep4android.Model.SensorBoundaries;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -97,10 +98,10 @@ public class PlantProfileReponsitory {
 
     public void deleteProfile(int id) {
         UserApi userApi = ServiceGenerator.getUserApi();
-        Call<PlantProfile> call = userApi.deletePlantProfile("" + id);
-        call.enqueue(new Callback<PlantProfile>() {
+        Call<RequestBody> call = userApi.deletePlantProfile("" + id);
+        call.enqueue(new Callback<RequestBody>() {
             @Override
-            public void onResponse(Call<PlantProfile> call, Response<PlantProfile> response) {
+            public void onResponse(Call<RequestBody> call, Response<RequestBody> response) {
                 if (response.code() == 200) {
                     //plantProfiles.setValue( response.body().getUser().getProfiles());
                     Log.i("Vergo", "onResponse: " + response.message());
@@ -111,7 +112,7 @@ public class PlantProfileReponsitory {
             }
 
             @Override
-            public void onFailure(Call<PlantProfile> call, Throwable t) {
+            public void onFailure(Call<RequestBody> call, Throwable t) {
                 Log.i("Vergo", "Throwable: " + t.getMessage());
             }
         });

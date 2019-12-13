@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator {
 
     private static Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-            .baseUrl("http://192.168.87.163:8080/pmi/api/")
+            .baseUrl("http://10.152.210.88:8080/pmi/api/")
             .addConverterFactory(GsonConverterFactory.create());
 
     private static Retrofit retrofit = retrofitBuilder.build();

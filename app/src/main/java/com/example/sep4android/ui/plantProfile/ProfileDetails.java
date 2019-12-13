@@ -72,7 +72,7 @@ public class ProfileDetails extends Fragment {
         });
 
         Button deleteBTN = root.findViewById(R.id.imgBtnDelete);
-        deleteBTN.setOnClickListener(v -> { PlantProfileReponsitory.getInstance().deleteProfile(curProfile.getId()); });
+        deleteBTN.setOnClickListener(v -> PlantProfileReponsitory.getInstance().deleteProfile(curProfile.getId()));
 
         return root;
     }

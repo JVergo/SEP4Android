@@ -84,7 +84,7 @@ public class PlantDetails extends Fragment {
         });
 
         Button deleteBTN = root.findViewById(R.id.imgBtnDelete);
-        deleteBTN.setOnClickListener(v -> { PlantReponsitory.getInstance().deletePlant(curPlant.getId()); });
+        deleteBTN.setOnClickListener(v -> PlantReponsitory.getInstance().deletePlant(curPlant.getId()));
 
         FloatButtonOnClick();
         return root;
