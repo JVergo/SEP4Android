@@ -1,25 +1,19 @@
 package com.example.sep4android.ui.plant;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.core.app.NotificationCompat;
+
 
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.SensorBoundaries;
@@ -27,9 +21,6 @@ import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class PlantDetails extends Fragment {
     private static final String CHANNEL_ID = "124D" ;
@@ -87,7 +78,6 @@ public class PlantDetails extends Fragment {
         if (PlantReponsitory.getInstance().getPlants() == null) {
             //String email = "naya7777@gmail.com";
             String email = "1";
-
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
         mViewModel.getPlants().observe(getActivity(), plantList -> {
@@ -124,6 +114,7 @@ public class PlantDetails extends Fragment {
         notification.setAutoCancel(true);
         createNotificationChannel();
         colorChange();
+        onTabSelected();
         return root;
     }
 
@@ -141,11 +132,19 @@ public class PlantDetails extends Fragment {
     }
 
     public void FloatButtonOnClick() {
+    public void onTabSelected(){
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentManager.popBackStack(BACK_STACK_ROOT_TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+
+    }
+
+    public void FloatButtonOnClick(){
         editPlantBTN.setOnClickListener(v -> {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout, new EditPlant());
-            fragmentTransaction.commit();
+            fragmentTransaction.addToBackStack(BACK_STACK_ROOT_TAG).commit();
         });
     }
 
@@ -252,5 +251,3 @@ public class PlantDetails extends Fragment {
 
 
 }
-
-

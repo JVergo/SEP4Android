@@ -3,6 +3,7 @@ package com.example.sep4android.RDS;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.PlantProfileList;
 
 import retrofit2.Call;
@@ -12,7 +13,7 @@ import retrofit2.Response;
 public class PlantProfileReponsitory {
 
     private MutableLiveData<PlantProfileList> plantProfiles;
-   //private MutableLiveData<PlantProfile> profile;
+    private MutableLiveData<PlantProfile> profile;
     private static PlantProfileReponsitory reponsitory;
 
     private PlantProfileReponsitory(){
