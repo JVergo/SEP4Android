@@ -1,7 +1,6 @@
 package com.example.sep4android.ui.plantProfile;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -59,7 +58,9 @@ public class ProfileDetails extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(ProfileDetailsViewModel.class);
 
         if (PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "1";
+            String email = "naya7777@gmail.com";
+            //String email = "1";
+
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         mViewModel.getProfiles().observe(getActivity(), profileList -> {
