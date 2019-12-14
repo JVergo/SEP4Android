@@ -35,7 +35,6 @@ public interface UserApi {
 
     @DELETE("plants/{plantID}")
     Call<RequestBody> deletePlant(@Path("plantID") String plantID);
-    Call<Plant> deletePlant(@Path("plantID") String plantID);
 
     @POST("users")
     Call<Boolean> createAccount(@Body User user);

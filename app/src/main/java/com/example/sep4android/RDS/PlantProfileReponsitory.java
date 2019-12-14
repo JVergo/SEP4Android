@@ -20,7 +20,7 @@ public class PlantProfileReponsitory {
     private MutableLiveData<PlantProfile> profile;
     private static PlantProfileReponsitory reponsitory;
 
-    private PlantProfileReponsitory(){
+    private PlantProfileReponsitory() {
     }
 
     public static synchronized PlantProfileReponsitory getInstance() {
@@ -40,7 +40,7 @@ public class PlantProfileReponsitory {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.code() == 200) {
-                    plantProfiles.setValue( response.body().getUser().getProfiles());
+                    plantProfiles.setValue(response.body().getUser().getProfiles());
                 } else {
                 }
             }
@@ -58,8 +58,7 @@ public class PlantProfileReponsitory {
         call.enqueue(new Callback<PlantProfile>() {
             @Override
             public void onResponse(Call<PlantProfile> call, Response<PlantProfile> response) {
-                if(!response.isSuccessful())
-                {
+                if (!response.isSuccessful()) {
                     Log.i("Vergo", "onResponse: " + response.toString());
                     Log.i("Vergo", "Call: " + call.toString());
                     return;
@@ -89,31 +88,10 @@ public class PlantProfileReponsitory {
                 }
 
             }
-                Log.i("Vergo", "Throwable: " + t.getMessage());
-            }
-        });
-    }
-
-
-
-    public void createProfile(PlantProfile pp) {
-        UserApi userApi = ServiceGenerator.getUserApi();
-        Call<PlantProfile> call = userApi.createPlantProfile(pp);
-        call.enqueue(new Callback<PlantProfile>() {
-            @Override
-            public void onResponse(Call<PlantProfile> call, Response<PlantProfile> response) {
-                if (response.code() == 200) {
-                    //plantProfiles.setValue( response.body().getUser().getProfiles());
-                    Log.i("Vergo", "onResponse: " + response.message());
-                } else {
-                    Log.i("Vergo", "onResponse: " + response.toString());
-                }
-
-            }
 
             @Override
             public void onFailure(Call<PlantProfile> call, Throwable t) {
-                Log.i("Vergo", "Throwable: " + t.getMessage());
+                Log.i("Vergo","Throwable: "+ t.getMessage());
             }
         });
     }

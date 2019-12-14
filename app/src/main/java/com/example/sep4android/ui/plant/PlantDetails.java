@@ -1,12 +1,21 @@
 package com.example.sep4android.ui.plant;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +26,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.sep4android.MainActivity;
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
@@ -97,10 +107,10 @@ public class PlantDetails extends Fragment {
 
             profileName.setText(curPlant.getProfile().getName());
 
-            SetMinMax(tempMin, tempMax, curPlant.getProfile().getTemperature());
-            SetMinMax(coMin, coMax, curPlant.getProfile().getCo2());
-            SetMinMax(humidityMin, humidityMax, curPlant.getProfile().getHumidity());
-            SetMinMax(lightMin, lightMax, curPlant.getProfile().getLight());
+            SetMinMax(tempMin, tempMax, curPlant.getProfile().getTemperatureBoundaries());
+            SetMinMax(coMin, coMax, curPlant.getProfile().getCo2Boundaries());
+            SetMinMax(humidityMin, humidityMax, curPlant.getProfile().getHumidityBoundaries());
+            SetMinMax(lightMin, lightMax, curPlant.getProfile().getLightBoundaries());
         });
 
         Button deleteBTN = root.findViewById(R.id.imgBtnDelete);

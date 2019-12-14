@@ -43,10 +43,10 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         viewHolder.lightData.setText("" + mPlants.get(position).getLastLightMeasurement().getMeasurementValue());
         viewHolder.co2Data.setText("" + mPlants.get(position).getLastCO2Measurement().getMeasurementValue());
 
-        SetMinMax(tempMin, tempMax, mPlants.get(position).getProfile().getTemperature());
-        SetMinMax(coMin, coMax, mPlants.get(position).getProfile().getCo2());
-        SetMinMax(humidityMin, humidityMax, mPlants.get(position).getProfile().getHumidity());
-        SetMinMax(lightMin, lightMax, mPlants.get(position).getProfile().getLight());
+        SetMinMax(tempMin, tempMax, mPlants.get(position).getProfile().getTemperatureBoundaries());
+        SetMinMax(coMin, coMax, mPlants.get(position).getProfile().getCo2Boundaries());
+        SetMinMax(humidityMin, humidityMax, mPlants.get(position).getProfile().getHumidityBoundaries());
+        SetMinMax(lightMin, lightMax, mPlants.get(position).getProfile().getLightBoundaries());
 
         //Use mPlants.get(position).getProfile().getTemperature().isVaild() instad?
         if (
