@@ -29,13 +29,21 @@ import com.example.sep4android.ViewModel.EditPlantViewModel;
 import java.util.ArrayList;
 
 public class EditPlant extends Fragment {
-    EditText plantName;
-    EditText sensor;
-    EditPlantViewModel editPlantViewModel;
-    ArrayList<PlantProfile> profiles =  new ArrayList<>();
-    View root;
-    public static EditPlant newInstance() {
-        return new EditPlant();
+    private EditText plantName;
+    private EditText sensor;
+    private EditPlantViewModel editPlantViewModel;
+    private ArrayList<PlantProfile> profiles =  new ArrayList<>();
+    private View root;
+    Plant curPlant;
+    Spinner profile;
+
+    public static EditPlant newInstance(int plantPos, int profileID) {
+        EditPlant fragment = new EditPlant();
+        Bundle args = new Bundle();
+        args.putInt("plantPos", plantPos);
+        args.putInt("profileID", profileID);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -49,8 +57,18 @@ public class EditPlant extends Fragment {
 
         editPlantViewModel = ViewModelProviders.of(this).get(EditPlantViewModel.class);
 
+        if(PlantReponsitory.getInstance().getPlants() == null) {
+            String email = "naya7777@gmail.com";
+            PlantReponsitory.getInstance().getPlantFromApi(email);
+        }
+        editPlantViewModel.getPlants().observe(getActivity(), plantList -> {
+            curPlant = plantList.getPlant(getArguments().getInt("plantPos"));
+            plantName.setText(curPlant.getName());
+            sensor.setText(curPlant.getDeviceId());
+        });
+
         if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "1";
+            String email = "naya7777@gmail.com";
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         editPlantViewModel.getPlantProfiles().observe(getActivity(), plantProfList -> {
@@ -61,6 +79,10 @@ public class EditPlant extends Fragment {
             spinner();
 
         });
+
+        Button saveBTN = root.findViewById(R.id.btn_save);
+        saveBTN.setOnClickListener(v -> save());
+
         return root;
     }
 
@@ -73,28 +95,34 @@ public class EditPlant extends Fragment {
     private void save() {
         Plant temp = new Plant();
         temp.setName(plantName.getText().toString());
-        //temp.setProfile(profile.getSelectedItem());
+        PlantProfile pp = (PlantProfile) profile.getSelectedItem();
+        temp.setProfile(pp);
+        temp.setDeviceId(sensor.getText().toString());
+        temp.setId(curPlant.getId());
 
         PlantReponsitory.getInstance().savePlantToApi(temp);
     }
 
     public void spinner(){
-
-
-        String[] spinnerArray = new String[profiles.size()];
+        PlantProfile[] spinnerArray = new PlantProfile[profiles.size()];
+        int curProfileID = getArguments().getInt("profileID");
+        int placement = 0;
 
         for (int i = 0;i<profiles.size(); i++){
-            spinnerArray[i] = profiles.get(i).getName();
+            spinnerArray[i] = profiles.get(i);
+            if(profiles.get(i).getId() == curProfileID)
+            {
+                placement = i;
+            }
         }
 
-        Spinner profile = root.findViewById(R.id.spinnerprofile);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
+        profile = root.findViewById(R.id.spinnerprofile);
+        ArrayAdapter<PlantProfile> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         profile.setAdapter(adapter);
 
-
+        profile.setSelection(placement);
     }
 
     @Override

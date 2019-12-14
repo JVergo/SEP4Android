@@ -58,7 +58,7 @@ public class ProfileDetails extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(ProfileDetailsViewModel.class);
 
         if (PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "1";
+            String email = "naya7777@gmail.com";
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         mViewModel.getProfiles().observe(getActivity(), profileList -> {

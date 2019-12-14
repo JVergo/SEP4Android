@@ -9,6 +9,7 @@ import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantList;
 import com.example.sep4android.Model.PlantProfile;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,7 +49,8 @@ public class PlantReponsitory {
 
     public void savePlantToApi(Plant plant) {
         UserApi userApi = ServiceGenerator.getUserApi();
-        Call<Plant> call = userApi.updatePlant(plant);
+        PlantUpdater p = new PlantUpdater(plant);
+        Call<Plant> call = userApi.updatePlant(p);
         call.enqueue(new Callback<Plant>() {
             @Override
             public void onResponse(Call<Plant> call, Response<Plant> response) {
@@ -71,7 +73,7 @@ public class PlantReponsitory {
 
     public void createPlant(Plant plant) {
         UserApi userApi = ServiceGenerator.getUserApi();
-        Call<Plant> call = userApi.createPlant(plant);
+        Call<Plant> call = userApi.createPlant(new PlantUpdater(plant.getDeviceId(), plant.getPlantProfileId(), plant.getName()));
         call.enqueue(new Callback<Plant>() {
             @Override
             public void onResponse(Call<Plant> call, Response<Plant> response) {
@@ -93,10 +95,10 @@ public class PlantReponsitory {
 
     public void deletePlant(int id) {
         UserApi userApi = ServiceGenerator.getUserApi();
-        Call<Plant> call = userApi.deletePlant("" + id);
-        call.enqueue(new Callback<Plant>() {
+        Call<RequestBody> call = userApi.deletePlant("" + id);
+        call.enqueue(new Callback<RequestBody>() {
             @Override
-            public void onResponse(Call<Plant> call, Response<Plant> response) {
+            public void onResponse(Call<RequestBody> call, Response<RequestBody> response) {
                 if (response.code() == 200) {
                     //plantProfiles.setValue( response.body().getUser().getProfiles());
                     Log.i("Vergo", "onResponse: " + response.message());
@@ -107,7 +109,7 @@ public class PlantReponsitory {
             }
 
             @Override
-            public void onFailure(Call<Plant> call, Throwable t) {
+            public void onFailure(Call<RequestBody> call, Throwable t) {
                 Log.i("Vergo", "Throwable: " + t.getMessage());
             }
         });

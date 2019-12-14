@@ -2,15 +2,17 @@ package com.example.sep4android.Model;
 
 public class Plant {
     private int plantId;
+    private String deviceId;
+    private int plantProfileId;
     private String plantName;
     private PlantProfile plantProfile;
     private PlantData lastCO2Measurement, lastHumidityMeasurement, lastTemperatureMeasurement, lastLightMeasurement;
-    private int plantProfileId;
 
     public Plant(){}
 
-    public Plant(int id, String name, int profile, PlantData co2, PlantData temperature, PlantData humidity, PlantData light) {
+    public Plant(int id, String deviceId, String name, int profile, PlantData co2, PlantData temperature, PlantData humidity, PlantData light) {
         this.plantId = id;
+        this.deviceId = deviceId;
         this.plantName = name;
         this.lastCO2Measurement = co2;
         this.lastTemperatureMeasurement = temperature;
@@ -41,6 +43,7 @@ public class Plant {
 
     public void setProfile(PlantProfile profile) {
         this.plantProfile = profile;
+        plantProfileId = profile.getId();
     }
 
     public PlantData getLastCO2Measurement() {
@@ -73,5 +76,13 @@ public class Plant {
 
     public int getPlantProfileId() {
         return plantProfileId;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 }

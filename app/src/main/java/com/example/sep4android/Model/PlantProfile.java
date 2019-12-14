@@ -80,12 +80,6 @@ public class PlantProfile {
 
     @Override
     public String toString() {
-        return  id + "," +
-                name + "," +
-                userEmail + "," +
-                co2Boundaries.toString() + "," +
-                temperatureBoundaries.toString() + "," +
-                humidityBoundaries.toString() + "," +
-                lightBoundaries.toString() + ",";
+        return  name;
     }
 }

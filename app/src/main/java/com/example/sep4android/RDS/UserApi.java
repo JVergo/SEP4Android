@@ -27,11 +27,11 @@ public interface UserApi {
     Call<RequestBody> deletePlantProfile(@Path("plantProfileID") String plantProfileID);
 
     @PUT("plants")
-    Call<Plant> updatePlant(@Body Plant plant);
+    Call<Plant> updatePlant(@Body PlantUpdater plant);
 
     @POST("plants")
-    Call<Plant> createPlant(@Body Plant plant);
+    Call<Plant> createPlant(@Body PlantUpdater plant);
 
     @DELETE("plants/{plantID}")
-    Call<Plant> deletePlant(@Path("plantID") String plantID);
+    Call<RequestBody> deletePlant(@Path("plantID") String plantID);
 }

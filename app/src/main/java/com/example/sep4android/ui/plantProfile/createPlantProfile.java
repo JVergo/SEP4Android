@@ -117,7 +117,7 @@ public class createPlantProfile extends Fragment {
 
         newPorfile.setName(profileName.getText().toString());
         //TODO: Figure out how to get user email
-        newPorfile.setUserEmail("1");
+        newPorfile.setUserEmail("naya7777@gmail.com");
 
         SensorBoundaries co2 = new SensorBoundaries(Double.parseDouble(coMin.getText().toString()), Double.parseDouble(coMax.getText().toString()));
         newPorfile.setCo2Boundaries(co2);

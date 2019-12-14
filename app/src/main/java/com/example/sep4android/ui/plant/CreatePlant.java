@@ -36,10 +36,9 @@ public class CreatePlant extends Fragment {
     EditText sensor;
     CreatePlantViewModel createPlantProfileViewModel;
     ArrayList<PlantProfile> profiles =  new ArrayList<>();
-
-
-
+    Spinner profile;
     View root;
+
     public static CreatePlant newInstance() {
         return new CreatePlant();
     }
@@ -57,7 +56,7 @@ public class CreatePlant extends Fragment {
         createPlantProfileViewModel = ViewModelProviders.of(this).get(CreatePlantViewModel.class);
 
         if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "1";
+            String email = "naya7777@gmail.com";
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         createPlantProfileViewModel.getPlantProfiles().observe(getActivity(), plantProfList -> {
@@ -69,8 +68,8 @@ public class CreatePlant extends Fragment {
 
         });
 
-
-
+        Button saveBTN = root.findViewById(R.id.btn_save);
+        saveBTN.setOnClickListener(v -> save());
 
         return root;
     }
@@ -78,9 +77,10 @@ public class CreatePlant extends Fragment {
     private void save() {
         Plant temp = new Plant();
         temp.setName(plantName.getText().toString());
-        //temp.setProfile(profile.getSelectedItem());
+        temp.setProfile((PlantProfile) profile.getSelectedItem());
+        temp.setDeviceId(sensor.getText().toString());
 
-        PlantReponsitory.getInstance().savePlantToApi(temp);
+        PlantReponsitory.getInstance().createPlant(temp);
     }
 
 
@@ -90,17 +90,14 @@ public class CreatePlant extends Fragment {
     }
 
     public void spinner(){
-
-
-        String[] spinnerArray = new String[profiles.size()];
+        PlantProfile[] spinnerArray = new PlantProfile[profiles.size()];
 
         for (int i = 0;i<profiles.size(); i++){
-            spinnerArray[i] = profiles.get(i).getName();
+            spinnerArray[i] = profiles.get(i);
         }
 
-        Spinner profile = root.findViewById(R.id.spinnerprofile);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
+        profile = root.findViewById(R.id.spinnerprofile);
+        ArrayAdapter<PlantProfile> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         profile.setAdapter(adapter);

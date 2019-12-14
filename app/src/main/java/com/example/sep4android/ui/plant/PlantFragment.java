@@ -52,7 +52,7 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
 
 
         if (PlantReponsitory.getInstance().getPlants() == null) {
-            String email = "1";
+            String email = "naya7777@gmail.com";
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
         plantViewModel.getPlants().observe(getActivity(), plantList -> {

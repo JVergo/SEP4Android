@@ -3,8 +3,10 @@ package com.example.sep4android.ViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.sep4android.Model.PlantList;
 import com.example.sep4android.Model.PlantProfileList;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
+import com.example.sep4android.RDS.PlantReponsitory;
 
 public class EditPlantViewModel extends ViewModel {
 
@@ -17,5 +19,8 @@ public class EditPlantViewModel extends ViewModel {
     public LiveData<PlantProfileList> getPlantProfiles(){
         return PlantProfileReponsitory.getInstance().getProfiles();
     }
-    // TODO: Implement the ViewModel
+
+    public LiveData<PlantList> getPlants() {
+        return PlantReponsitory.getInstance().getPlants();
+    }
 }

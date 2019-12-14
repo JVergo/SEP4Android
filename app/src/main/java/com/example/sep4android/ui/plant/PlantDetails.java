@@ -30,10 +30,9 @@ public class PlantDetails extends Fragment {
     private FloatingActionButton editPlantBTN;
     private PlantDetailsViewModel mViewModel;
     private Plant curPlant;
-    private Button delete;
 
-    AlertDialog dialog;
-    AlertDialog.Builder builder;
+    private AlertDialog dialog;
+    private AlertDialog.Builder builder;
 
     public static PlantDetails newInstance(int pos) {
         PlantDetails fragment = new PlantDetails();
@@ -71,7 +70,7 @@ public class PlantDetails extends Fragment {
         PlantDetailsViewModel mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
 
         if(PlantReponsitory.getInstance().getPlants() == null) {
-            String email = "1";
+            String email = "naya7777@gmail.com";
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
         mViewModel.getPlants().observe(getActivity(), plantList -> {
@@ -96,35 +95,24 @@ public class PlantDetails extends Fragment {
         FloatButtonOnClick();
 
 
-        delete = root.findViewById(R.id.imgBtnDelete);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        Button delete = root.findViewById(R.id.imgBtnDelete);
+        delete.setOnClickListener(view -> {
 
-                builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Are you sure you want to delete this Plant ?");
-                builder.setCancelable(false);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //delete api
-                        FragmentManager fm = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                        fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());
-                        fragmentTransaction.commit();
+            builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Are you sure you want to delete this Plant ?");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                //delete api
+                PlantReponsitory.getInstance().deletePlant(curPlant.getId());
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());
+                fragmentTransaction.commit();
 
-                    }
+            }).setNegativeButton("No", (dialogInterface, i) -> dialogInterface.cancel());
+            dialog = builder.create();
+            dialog.show();
 
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-                dialog = builder.create();
-                dialog.show();
-
-            }
         });
         return root;
     }
@@ -144,7 +132,7 @@ public class PlantDetails extends Fragment {
         editPlantBTN.setOnClickListener(v -> {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayout, new EditPlant());
+            fragmentTransaction.replace(R.id.frameLayout, EditPlant.newInstance(getArguments().getInt("plantID"), curPlant.getPlantProfileId()));
             fragmentTransaction.commit();
         });
     }

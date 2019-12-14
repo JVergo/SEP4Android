@@ -46,7 +46,7 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
         PlantProfileViewModel plantProfileViewModel = ViewModelProviders.of(this).get(PlantProfileViewModel.class);
 
         if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "1";
+            String email = "naya7777@gmail.com";
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         plantProfileViewModel.getPlantProfiles().observe(getActivity(), plantProfileList -> {
