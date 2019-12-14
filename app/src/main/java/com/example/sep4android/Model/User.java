@@ -7,19 +7,21 @@ public class User{
 	private PlantProfileList profiles;
 	private PlantList plants;
 
-	public User() {
-	}
 	public User(String email, String password) {
-		profiles = new PlantProfileList();
-		plants = new PlantList();
+		//profiles = new PlantProfileList();
+		//plants = new PlantList();
 		this.email = email;
 		this.password = password;
 	}
-	public User(String email,PlantProfileList profileList, PlantList plantList) {
+
+	public User() {
+	}
+
+	public User(String email, PlantProfileList profileList, PlantList plantList) {
 		this.email = email;
 		this.profiles = profileList;
 		this.plants = plantList;
-		for (Plant p: plants.getPlants()) {
+		for (Plant p: plants.getPlants()){
 			p.setProfile(profiles.getProfileByID(p.getPlantProfileId()));
 		}
 	}
@@ -48,8 +50,8 @@ public class User{
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
-		 this.password = password;
-	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }

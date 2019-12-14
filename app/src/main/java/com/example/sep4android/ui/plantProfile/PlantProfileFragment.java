@@ -19,6 +19,7 @@ import com.example.sep4android.MainActivity;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
+import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.PlantProfileViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -46,9 +47,7 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
         PlantProfileViewModel plantProfileViewModel = ViewModelProviders.of(this).get(PlantProfileViewModel.class);
 
         if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "naya7777@gmail.com";
-            //String email = "1";
-
+            String email = UserRepository.getInstance().getUserEmail();
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         plantProfileViewModel.getPlantProfiles().observe(getActivity(), plantProfileList -> {

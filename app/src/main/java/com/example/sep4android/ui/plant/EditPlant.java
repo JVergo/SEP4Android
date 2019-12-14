@@ -23,6 +23,7 @@ import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
+import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.CreatePlantViewModel;
 import com.example.sep4android.ViewModel.EditPlantViewModel;
 
@@ -57,18 +58,8 @@ public class EditPlant extends Fragment {
 
         editPlantViewModel = ViewModelProviders.of(this).get(EditPlantViewModel.class);
 
-        if(PlantReponsitory.getInstance().getPlants() == null) {
-            String email = "naya7777@gmail.com";
-            PlantReponsitory.getInstance().getPlantFromApi(email);
-        }
-        editPlantViewModel.getPlants().observe(getActivity(), plantList -> {
-            curPlant = plantList.getPlant(getArguments().getInt("plantPos"));
-            plantName.setText(curPlant.getName());
-            sensor.setText(curPlant.getDeviceId());
-        });
-
         if(PlantProfileReponsitory.getInstance().getProfiles() == null) {
-            String email = "naya7777@gmail.com";
+            String email = UserRepository.getInstance().getUserEmail();
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         editPlantViewModel.getPlantProfiles().observe(getActivity(), plantProfList -> {

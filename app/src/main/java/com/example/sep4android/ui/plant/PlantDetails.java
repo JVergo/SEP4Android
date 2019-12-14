@@ -23,6 +23,7 @@ import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.RDS.PlantReponsitory;
+import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
 import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -83,7 +84,7 @@ public class PlantDetails extends Fragment {
         PlantDetailsViewModel mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
 
         if(PlantReponsitory.getInstance().getPlants() == null) {
-            String email = "naya7777@gmail.com";
+            String email = UserRepository.getInstance().getUserEmail();
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
         mViewModel.getPlants().observe(getActivity(), plantList -> {
@@ -160,8 +161,6 @@ public class PlantDetails extends Fragment {
         super.onActivityCreated(savedInstanceState);
         PlantDetailsViewModel mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
     }
-
-
 
     public void FloatButtonOnClick(){
         editPlantBTN.setOnClickListener(v -> {

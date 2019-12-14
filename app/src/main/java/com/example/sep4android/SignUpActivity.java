@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.sep4android.Model.User;
+import com.example.sep4android.RDS.UserRepository;
 
 public class SignUpActivity extends AppCompatActivity {
     Button login;
@@ -39,6 +43,15 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //send to api
+                User user = new User();
+                user.setEmail(email.getText().toString());
+                user.setPassword(pass.getText().toString());
+                if (!pass.getText().toString().equals(conf.getText().toString())){
+                    Log.i("Danielaa","not equal");
+                } else {
+                    UserRepository.getInstance().sendAccountRequest(user, getBaseContext());
+                }
+
             }
         });
     }

@@ -31,9 +31,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.activity_plantlist_item, parent, false);
-
         return new ViewHolder(view, mOnPlantListener);
-
     }
 
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
@@ -50,6 +48,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         SetMinMax(humidityMin, humidityMax, mPlants.get(position).getProfile().getHumidity());
         SetMinMax(lightMin, lightMax, mPlants.get(position).getProfile().getLight());
 
+        //Use mPlants.get(position).getProfile().getTemperature().isVaild() instad?
         if (
                 Double.parseDouble(viewHolder.temperatureData.getText().toString())< tempMin
                         || Double.parseDouble(viewHolder.temperatureData.getText().toString()) > tempMax
@@ -113,7 +112,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         }
     }
 
-  public interface OnPlantListener{
+    public interface OnPlantListener{
         void onPlantClick(int position);
     }
 

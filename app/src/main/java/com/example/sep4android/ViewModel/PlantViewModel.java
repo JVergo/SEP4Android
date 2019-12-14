@@ -24,5 +24,8 @@ public class PlantViewModel extends ViewModel {
         return PlantReponsitory.getInstance().getPlants();
     }
 
+    public LiveData<PlantProfileList> getProfiles(){
+        return PlantProfileReponsitory.getInstance().getProfiles();}
+
 
 }

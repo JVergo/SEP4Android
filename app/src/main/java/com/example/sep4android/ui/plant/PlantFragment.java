@@ -19,6 +19,7 @@ import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantReponsitory;
+import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.PlantViewModel;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -52,7 +53,7 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
 
 
         if (PlantReponsitory.getInstance().getPlants() == null) {
-            String email = "naya7777@gmail.com";
+            String email = UserRepository.getInstance().getUserEmail();
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
         plantViewModel.getPlants().observe(getActivity(), plantList -> {
@@ -83,6 +84,4 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
             fragmentTransaction.commit();
         });
     }
-
-
 }
