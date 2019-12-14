@@ -17,6 +17,7 @@ import retrofit2.Response;
 public class PlantProfileReponsitory {
 
     private MutableLiveData<PlantProfileList> plantProfiles;
+    private MutableLiveData<PlantProfile> profile;
     private static PlantProfileReponsitory reponsitory;
 
     private PlantProfileReponsitory(){
@@ -73,6 +74,27 @@ public class PlantProfileReponsitory {
             }
         });
     }
+
+    public void createProfile(PlantProfile pp) {
+        UserApi userApi = ServiceGenerator.getUserApi();
+        Call<PlantProfile> call = userApi.createPlantProfile(pp);
+        call.enqueue(new Callback<PlantProfile>() {
+            @Override
+            public void onResponse(Call<PlantProfile> call, Response<PlantProfile> response) {
+                if (response.code() == 200) {
+                    //plantProfiles.setValue( response.body().getUser().getProfiles());
+                    Log.i("Vergo", "onResponse: " + response.message());
+                } else {
+                    Log.i("Vergo", "onResponse: " + response.toString());
+                }
+
+            }
+                Log.i("Vergo", "Throwable: " + t.getMessage());
+            }
+        });
+    }
+
+
 
     public void createProfile(PlantProfile pp) {
         UserApi userApi = ServiceGenerator.getUserApi();

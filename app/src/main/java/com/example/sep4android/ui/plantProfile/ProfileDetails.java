@@ -55,10 +55,13 @@ public class ProfileDetails extends Fragment {
         TextView lightMax = root.findViewById(R.id.profileLightMax);
         TextView profileName = root.findViewById(R.id.profileName);
 
+
         mViewModel = ViewModelProviders.of(this).get(ProfileDetailsViewModel.class);
 
         if (PlantProfileReponsitory.getInstance().getProfiles() == null) {
             String email = "naya7777@gmail.com";
+            //String email = "1";
+
             PlantProfileReponsitory.getInstance().getProfileFromApi(email);
         }
         mViewModel.getProfiles().observe(getActivity(), profileList -> {
@@ -97,6 +100,7 @@ public class ProfileDetails extends Fragment {
             dialog = builder.create();
             dialog.show();
 
+            }
         });
 
         return root;

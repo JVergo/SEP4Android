@@ -13,15 +13,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.MainActivity;
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
+import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
+import com.example.sep4android.RDS.ServiceGenerator;
+import com.example.sep4android.RDS.UserApi;
+import com.example.sep4android.RDS.UserResponse;
+import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.ViewModel.CreatePlantProfileViewModel;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class createPlantProfile extends Fragment {
     private LinearLayout groupProfile, groupCo2, groupHumidity, groupTemp, groupLight;

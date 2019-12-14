@@ -59,7 +59,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:padding="5dp"
             android:text="delete"
-            android:textColor="#B34F4B"
+            android:textColor="@color/colorWarning"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -809,6 +809,25 @@
                     </TableRow>
                 </TableLayout>
 
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.jjoe64.graphview.GraphView
+                            android:id="@+id/graphview"
+                            android:layout_width="350dp"
+                            android:layout_height="300dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/colorWhite" />
+                    </TableRow>
+
+                </TableLayout>
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
@@ -831,4 +850,5 @@
             tools:ignore="MissingConstraints"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

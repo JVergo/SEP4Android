@@ -38,7 +38,6 @@ public class CreatePlant extends Fragment {
     ArrayList<PlantProfile> profiles =  new ArrayList<>();
     Spinner profile;
     View root;
-
     public static CreatePlant newInstance() {
         return new CreatePlant();
     }

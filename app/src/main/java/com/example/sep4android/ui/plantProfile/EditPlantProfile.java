@@ -28,6 +28,8 @@ public class EditPlantProfile extends Fragment {
 
     TextView tempMin, tempMax, humidityMin, humidityMax, coMin, coMax, lightMin, lightMax, profileName;
 
+    SensorBoundaries temp,co2,hum,light;
+
     public static EditPlantProfile newInstance(int pos) {
         EditPlantProfile fragment = new EditPlantProfile();
         Bundle args = new Bundle();
