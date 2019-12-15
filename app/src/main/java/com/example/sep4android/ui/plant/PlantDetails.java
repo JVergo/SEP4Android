@@ -87,7 +87,7 @@ public class PlantDetails extends Fragment {
          lightMax = root.findViewById(R.id.tv_lightMax);
          lightCur = root.findViewById(R.id.tv_lightCurrent);
 
-         water = root.findViewById(R.id.button_WaterPlant);
+
 
         TextView profileName = root.findViewById(R.id.tv_plantType);
 
@@ -117,12 +117,7 @@ public class PlantDetails extends Fragment {
         deleteBTN.setOnClickListener(v -> PlantReponsitory.getInstance().deletePlant(curPlant.getId()));
 
 
-        water.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //notificationCalled();
-            }
-        });
+
         GraphView graph = root.findViewById(R.id.graphview);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint());
         graph.addSeries(series);
@@ -139,6 +134,8 @@ public class PlantDetails extends Fragment {
             builder.setPositiveButton("Yes", (dialogInterface, i) -> {
                 //delete api
                 PlantReponsitory.getInstance().deletePlant(curPlant.getId());
+                PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());
+
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());

@@ -17,7 +17,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ui.ChangePassword;
+import com.example.sep4android.ui.LogInActivity;
+import com.example.sep4android.ui.SignUpActivity;
 import com.example.sep4android.ui.plant.PlantFragment;
 import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -115,10 +118,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
 
-                    //TODO:logout
-
                     Intent myIntent = new Intent(getBaseContext(),   LogInActivity.class);
                     startActivity(myIntent);
+                    finish();
                 }
 
             }).setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -133,12 +135,14 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == R.id.deleteAccount){
             builder = new AlertDialog.Builder(this);
-            builder.setMessage("Are you sure you want to delete your Account ?");
+            builder.setMessage("Are you sure you want to delete this account ?");
             builder.setCancelable(false);
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     //delete api
+
+                    UserRepository.getInstance().deleteUser(UserRepository.getInstance().getUserEmail());
 
                     Intent myIntent = new Intent(getBaseContext(),   SignUpActivity.class);
                     startActivity(myIntent);

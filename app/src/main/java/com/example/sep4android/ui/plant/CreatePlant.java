@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.Model.Plant;
@@ -24,6 +26,7 @@ import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.CreatePlantViewModel;
 import com.example.sep4android.ViewModel.PlantProfileViewModel;
+import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -81,6 +84,12 @@ public class CreatePlant extends Fragment {
         temp.setDeviceId(sensor.getText().toString());
 
         PlantReponsitory.getInstance().createPlant(temp);
+        PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());
+        fragmentTransaction.commit();
     }
 
 

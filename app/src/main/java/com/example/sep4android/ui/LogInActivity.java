@@ -1,4 +1,4 @@
-package com.example.sep4android;
+package com.example.sep4android.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.sep4android.Model.User;
+import com.example.sep4android.R;
 import com.example.sep4android.RDS.UserRepository;
 
 public class LogInActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class LogInActivity extends AppCompatActivity {
         pass = findViewById(R.id.editText_password);
 
         login.setOnClickListener(view -> {
+
             User logUser = new User(email.getText().toString(), pass.getText().toString());
             //verify API
             UserRepository.getInstance().loginReques(logUser, getBaseContext());
@@ -36,6 +39,7 @@ public class LogInActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent myIntent = new Intent(getBaseContext(),  SignUpActivity.class);
                 startActivity(myIntent);
             }

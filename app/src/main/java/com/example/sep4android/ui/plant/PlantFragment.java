@@ -60,6 +60,7 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
             for (int i = 0; i < plantList.size(); i++) {
                 plants.add(plantList.getPlant(i));
 
+
             }
             mPlantAdapter.notifyDataSetChanged();
         });

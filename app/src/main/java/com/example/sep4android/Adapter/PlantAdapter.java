@@ -1,5 +1,6 @@
 package com.example.sep4android.Adapter;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         viewHolder.humidityData.setText("" + mPlants.get(position).getLastHumidityMeasurement().getMeasurementValue());
         viewHolder.lightData.setText("" + mPlants.get(position).getLastLightMeasurement().getMeasurementValue());
         viewHolder.co2Data.setText("" + mPlants.get(position).getLastCO2Measurement().getMeasurementValue());
+
 
         SetMinMax(tempMin, tempMax, mPlants.get(position).getProfile().getTemperatureBoundaries());
         SetMinMax(coMin, coMax, mPlants.get(position).getProfile().getCo2Boundaries());
@@ -100,6 +102,25 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
             co2Data=itemView.findViewById(R.id.tv_co2data);
             humidityData = itemView.findViewById(R.id.tv_humiditydata);
             lightData = itemView.findViewById(R.id.tv_lightdata);
+
+
+            TextView tempCur = itemView.findViewById(R.id.tv_tempCurrent);
+            TextView humidityCur = itemView.findViewById(R.id.tv_humidityCurrent);
+            TextView lightCur = itemView.findViewById(R.id.tv_lightCurrent);
+            TextView coCur = itemView.findViewById(R.id.tv_co2Current);
+/*
+            if (tempCur.getTextColors() == ColorStateList.valueOf(Color.parseColor("#B34F4B"))){
+                temperatureData.setTextColor(Color.parseColor("#B34F4B"));
+            }
+            if (humidityCur.getTextColors() == ColorStateList.valueOf(Color.parseColor("#B34F4B"))){
+                temperatureData.setTextColor(Color.parseColor("#B34F4B"));
+            } if (lightCur.getTextColors() == ColorStateList.valueOf(Color.parseColor("#B34F4B"))){
+                temperatureData.setTextColor(Color.parseColor("#B34F4B"));
+            } if (coCur.getTextColors() == ColorStateList.valueOf(Color.parseColor("#B34F4B"))){
+                temperatureData.setTextColor(Color.parseColor("#B34F4B"));
+            }*/
+
+
 
             this.onPlantListener = onplantListener;
 

@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4android.MainActivity;
 import com.example.sep4android.Model.User;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,7 +46,7 @@ public class UserRepository {
                     Intent myIntent = new Intent(c,  MainActivity.class);
                     c.startActivity(myIntent);
                     return;
-                } else if(response.code() == 900) {
+                } else if(response.code() == 500) {
                     Toast.makeText(c, "User already exits", Toast.LENGTH_SHORT).show();
                     Log.i("Daniela", "User already exits");
                 }
@@ -53,6 +55,26 @@ public class UserRepository {
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
                 Log.i("Daniela", "Throwable: " + t.getMessage());
+            }
+        });
+    }
+    public void getUserFromApi(String email){
+        users = new MutableLiveData<>();
+
+        UserApi userApi = ServiceGenerator.getUserApi();
+        Call<UserResponse> call = userApi.userInfo(email);
+        call.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.code() == 200) {
+                    users.setValue( response.body().getUser());
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+
             }
         });
     }
@@ -72,8 +94,9 @@ public class UserRepository {
                     Intent myIntent = new Intent(c,  MainActivity.class);
                     c.startActivity(myIntent);
                     return;
-                } else {
-                    Log.i("Daniela", "onResponse: " + response.toString());
+                } else if(response.code() == 500) {
+                    Toast.makeText(c, "email or password are invalid", Toast.LENGTH_SHORT).show();
+                    Log.i("Daniela", "email or password are invalid");
                 }
             }
 
@@ -83,8 +106,60 @@ public class UserRepository {
             }
         });
     }
+    public void updateUser(User user){
+        UserApi userApi = ServiceGenerator.getUserApi();
+
+        Call<User> call = userApi.updateUser(UserRepository.getInstance().getUserEmail(),user);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (!response.isSuccessful()){
+
+                    Log.i("Daniela", "on response: " + response.toString());
+                    Log.i("Daniela", "call: " + call.toString());
+                    return;
+                }
+
+                Log.i("Daniela", "On Response: " + response.body());
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.i("Daniela","Throwable: " + t.getMessage());
+            }
+        });
+
+    }
+    public void deleteUser(String email){
+        UserApi userApi = ServiceGenerator.getUserApi();
+        Call<RequestBody> call = userApi.deleteAccount(""+email);
+
+        call.enqueue(new Callback<RequestBody>() {
+            @Override
+            public void onResponse(Call<RequestBody> call, Response<RequestBody> response) {
+                if (response.code() == 200) {
+                    //plantProfiles.setValue( response.body().getUser().getProfiles());
+                    Log.i("Vergo", "onResponse: " + response.message());
+                } else {
+                    Log.i("Vergo", "onResponse: " + response.toString());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<RequestBody> call, Throwable t) {
+                Log.i("Vergo", "Throwable: " + t.getMessage());
+            }
+        });
+
+    }
 
     public String getUserEmail() {
         return userEmail;
     }
+    public LiveData<User> getUser(){
+
+        return users;
+    }
+
 }

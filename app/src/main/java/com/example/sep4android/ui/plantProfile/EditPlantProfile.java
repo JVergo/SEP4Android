@@ -12,12 +12,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
+import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.EditPlantProfileViewModel;
 import com.example.sep4android.ViewModel.ProfileDetailsViewModel;
@@ -147,5 +150,12 @@ public class EditPlantProfile extends Fragment {
         curProfile.getTemperatureBoundaries().setMin(Double.parseDouble(tempMin.getText().toString()));
 
         PlantProfileReponsitory.getInstance().saveProfileToApi(curProfile);
+        PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());
+        PlantProfileReponsitory.getInstance().UpdateProfiles(UserRepository.getInstance().getUserEmail());
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());
+        fragmentTransaction.commit();
     }
 }

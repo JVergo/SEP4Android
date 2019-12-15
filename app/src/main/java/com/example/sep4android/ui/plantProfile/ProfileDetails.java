@@ -89,6 +89,8 @@ public class ProfileDetails extends Fragment {
             builder.setPositiveButton("Yes", (dialogInterface, i) -> {
                 //delete api
                 PlantProfileReponsitory.getInstance().deleteProfile(curProfile.getId());
+                PlantProfileReponsitory.getInstance().UpdateProfiles(UserRepository.getInstance().getUserEmail());
+
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());

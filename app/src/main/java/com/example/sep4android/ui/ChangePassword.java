@@ -1,23 +1,34 @@
 package com.example.sep4android.ui;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import com.example.sep4android.Model.User;
 import com.example.sep4android.R;
+import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.ChangePasswordViewModel;
 
 public class ChangePassword extends Fragment {
 
     private ChangePasswordViewModel mViewModel;
+
+    private Button saveBtn;
+    private EditText oldPass, newPass;
+    String email;
+    private User user;
+
+    private View root;
 
     public static ChangePassword newInstance() {
         return new ChangePassword();
@@ -26,14 +37,45 @@ public class ChangePassword extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_change_password, container, false);
+        root = inflater.inflate(R.layout.fragment_change_password, container, false);
+        saveBtn = root.findViewById(R.id.buttonSavePass);
+        newPass = root.findViewById(R.id.editText_password);
+        oldPass = root.findViewById(R.id.neweditText_password);
+
+
+        return root;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(View view, Bundle savedInstanceState){
+
         mViewModel = ViewModelProviders.of(this).get(ChangePasswordViewModel.class);
-        // TODO: Use the ViewModel
+        if(UserRepository.getInstance().getUser() == null) {
+            email = UserRepository.getInstance().getUserEmail();
+            UserRepository.getInstance().getUserFromApi(email);
+        }
+        mViewModel.getUser().observe(getActivity(), user1 -> {
+            user = user1;
+        });
+        saveBtn.setOnClickListener(v -> save());
+    }
+
+
+
+    public void save(){
+        // if (!(oldPass.getText().toString().equals( user.getPassword()))) {
+
+        // Toast.makeText(getContext(), "Your password is wrong", Toast.LENGTH_LONG).show();
+        //Log.i("Daniela","password wrong");
+        //}
+        // else{
+        //user.setEmail(email);
+        user.setPassword(newPass.getText().toString());
+        UserRepository.getInstance().updateUser(user);
+
+        Toast.makeText(getContext(),"Your password is changed now!",Toast.LENGTH_LONG).show();
+        Log.i("daniela","password change");
+        //}
+
     }
 
 }

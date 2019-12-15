@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -41,6 +43,7 @@ public class createPlantProfile extends Fragment {
     public static createPlantProfile newInstance() {
         return new createPlantProfile();
     }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -143,6 +146,11 @@ public class createPlantProfile extends Fragment {
         newPorfile.setTemperatureBoundaries(temp);
 
         PlantProfileReponsitory.getInstance().createProfile(newPorfile);
+        PlantProfileReponsitory.getInstance().UpdateProfiles(UserRepository.getInstance().getUserEmail());
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());
+        fragmentTransaction.commit();
     }
 
     @Override

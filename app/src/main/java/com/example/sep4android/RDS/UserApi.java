@@ -41,4 +41,15 @@ public interface UserApi {
 
     @POST("login")
     Call<Boolean> Login(@Body User user);
+
+    @PUT("users/{email}")
+    Call<User> updateUser( @Path("email") String email ,@Body User user);
+
+    @DELETE("users/{email}")
+    Call<RequestBody> deleteAccount(@Path("email") String email);
+
+    @GET("plants/{plantID)")
+    Call<Plant> getPlantByIdWithWeekAvg(@Path("plantID") int plantID);
+
+
 }

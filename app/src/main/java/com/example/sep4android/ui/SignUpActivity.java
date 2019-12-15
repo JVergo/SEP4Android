@@ -1,4 +1,4 @@
-package com.example.sep4android;
+package com.example.sep4android.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.sep4android.Model.User;
+import com.example.sep4android.R;
 import com.example.sep4android.RDS.UserRepository;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -46,9 +48,11 @@ public class SignUpActivity extends AppCompatActivity {
                 User user = new User();
                 user.setEmail(email.getText().toString());
                 user.setPassword(pass.getText().toString());
-                if (!pass.getText().toString().equals(conf.getText().toString())){
-                    Log.i("Danielaa","not equal");
-                } else {
+                if ((!pass.getText().toString().equals(conf.getText().toString()) )|| pass.getText().equals(null) || conf.getText().equals(null)){
+                    Toast.makeText(getBaseContext(), "password not equal or empty", Toast.LENGTH_LONG).show();
+                    Log.i("Danielaa","not equal or empty");
+                }
+                else {
                     UserRepository.getInstance().sendAccountRequest(user, getBaseContext());
                 }
 
