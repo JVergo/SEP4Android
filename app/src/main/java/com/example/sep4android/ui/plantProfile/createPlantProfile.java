@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -129,28 +130,43 @@ public class createPlantProfile extends Fragment {
     public void save(){
         PlantProfile newPorfile = new PlantProfile();
 
-        newPorfile.setName(profileName.getText().toString());
+        if(!profileName.getText().toString().equals("")) {
+            newPorfile.setName(profileName.getText().toString());
+        }
 
         newPorfile.setUserEmail(UserRepository.getInstance().getUserEmail());
 
-        SensorBoundaries co2 = new SensorBoundaries(Double.parseDouble(coMin.getText().toString()), Double.parseDouble(coMax.getText().toString()));
-        newPorfile.setCo2Boundaries(co2);
+        if(!coMin.getText().toString().equals("") && !coMax.getText().toString().equals("")) {
+            SensorBoundaries co2 = new SensorBoundaries(Double.parseDouble(coMin.getText().toString()), Double.parseDouble(coMax.getText().toString()));
+            newPorfile.setCo2Boundaries(co2);
+        }
 
-        SensorBoundaries humidity = new SensorBoundaries(Double.parseDouble(humidityMin.getText().toString()), Double.parseDouble(humidityMax.getText().toString()));
-        newPorfile.setHumidityBoundaries(humidity);
+        if(!humidityMin.getText().toString().equals("") && !humidityMax.getText().toString().equals("")) {
+            SensorBoundaries humidity = new SensorBoundaries(Double.parseDouble(humidityMin.getText().toString()), Double.parseDouble(humidityMax.getText().toString()));
+            newPorfile.setHumidityBoundaries(humidity);
+        }
 
-        SensorBoundaries light = new SensorBoundaries(Double.parseDouble(lightMin.getText().toString()), Double.parseDouble(lightMax.getText().toString()));
-        newPorfile.setLightBoundaries(light);
+        if(!lightMin.getText().toString().equals("") && !lightMax.getText().toString().equals("")) {
+            SensorBoundaries light = new SensorBoundaries(Double.parseDouble(lightMin.getText().toString()), Double.parseDouble(lightMax.getText().toString()));
+            newPorfile.setLightBoundaries(light);
+        }
 
-        SensorBoundaries temp = new SensorBoundaries(Double.parseDouble(tempMin.getText().toString()), Double.parseDouble(tempMax.getText().toString()));
-        newPorfile.setTemperatureBoundaries(temp);
+        if(!tempMin.getText().toString().equals("") && !tempMax.getText().toString().equals("")) {
+            SensorBoundaries temp = new SensorBoundaries(Double.parseDouble(tempMin.getText().toString()), Double.parseDouble(tempMax.getText().toString()));
+            newPorfile.setTemperatureBoundaries(temp);
+        }
 
-        PlantProfileReponsitory.getInstance().createProfile(newPorfile);
-        PlantProfileReponsitory.getInstance().UpdateProfiles(UserRepository.getInstance().getUserEmail());
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());
-        fragmentTransaction.commit();
+        if(newPorfile.Validate(profileName.getText().toString())) {
+            PlantProfileReponsitory.getInstance().createProfile(newPorfile);
+            PlantProfileReponsitory.getInstance().UpdateProfiles(UserRepository.getInstance().getUserEmail());
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());
+            fragmentTransaction.commit();
+        }
+        else {
+            Toast.makeText(getContext(), "Missing infomation", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

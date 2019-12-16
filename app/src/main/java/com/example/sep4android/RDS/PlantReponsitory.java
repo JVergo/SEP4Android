@@ -37,12 +37,13 @@ public class PlantReponsitory {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.code() == 200) {
                     plants.setValue(response.body().getUser().getPlants());
-                } else {
                 }
+                Log.i("Vergo", "onResponse: " + response.message());
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
+                Log.i("Vergo", "Throwable: " + t.getMessage());
             }
         });
     }

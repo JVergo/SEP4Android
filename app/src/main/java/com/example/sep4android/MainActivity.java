@@ -17,6 +17,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.example.sep4android.RDS.PlantProfileReponsitory;
+import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ui.ChangePassword;
 import com.example.sep4android.ui.LogInActivity;
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         palnt = findViewById(R.id.navigation_plant);
-        palnt = findViewById(R.id.navigation_plantProfile);
+        profile = findViewById(R.id.navigation_plantProfile);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.frameLayout, new PlantFragment());
@@ -78,12 +80,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void onFragmentChange() {
         findViewById(R.id.navigation_plant).setOnClickListener(v -> {
+            PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());
             fragmentTransaction.commit();
         });
         findViewById(R.id.navigation_plantProfile).setOnClickListener(v -> {
+            PlantProfileReponsitory.getInstance().UpdateProfiles(UserRepository.getInstance().getUserEmail());
             //addFragementOnTop( new PlantFragment());
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();

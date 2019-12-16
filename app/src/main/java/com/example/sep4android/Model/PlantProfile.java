@@ -82,4 +82,12 @@ public class PlantProfile {
     public String toString() {
         return  name;
     }
+
+    public boolean Validate(String tempName){
+        if(!tempName.equals("") && co2Boundaries != null && temperatureBoundaries != null && humidityBoundaries != null && lightBoundaries != null)
+        {
+            return true;
+        }
+        return false;
+    }
 }

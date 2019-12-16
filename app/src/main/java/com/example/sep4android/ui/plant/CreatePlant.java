@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -79,17 +80,34 @@ public class CreatePlant extends Fragment {
 
     private void save() {
         Plant temp = new Plant();
-        temp.setName(plantName.getText().toString());
+        boolean pass = true;
+
+        if(!plantName.getText().toString().equals("")) {
+            temp.setName(plantName.getText().toString());
+        }
+        else {
+            Toast.makeText(getContext(), "Plant needs a name", Toast.LENGTH_SHORT).show();
+            pass = false;
+        }
         temp.setProfile((PlantProfile) profile.getSelectedItem());
-        temp.setDeviceId(sensor.getText().toString());
 
-        PlantReponsitory.getInstance().createPlant(temp);
-        PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());
+        if(!sensor.getText().toString().equals("")) {
+            temp.setDeviceId(sensor.getText().toString());
+        }
+        else {
+            Toast.makeText(getContext(), "Plant needs a sensor id", Toast.LENGTH_SHORT).show();
+            pass = false;
+        }
 
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());
-        fragmentTransaction.commit();
+        if(pass) {
+            PlantReponsitory.getInstance().createPlant(temp);
+            PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());
+
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());
+            fragmentTransaction.commit();
+        }
     }
 
 

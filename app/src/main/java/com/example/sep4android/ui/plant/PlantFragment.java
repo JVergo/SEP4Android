@@ -1,6 +1,7 @@
 package com.example.sep4android.ui.plant;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,19 +49,14 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
         mPlantList.hasFixedSize();
         mPlantList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mPlantList.setAdapter(mPlantAdapter);
-        plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
 
-
-
-        if (PlantReponsitory.getInstance().getPlants() == null) {
+        if(PlantReponsitory.getInstance().getPlants() == null) {
             String email = UserRepository.getInstance().getUserEmail();
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
         plantViewModel.getPlants().observe(getActivity(), plantList -> {
             for (int i = 0; i < plantList.size(); i++) {
                 plants.add(plantList.getPlant(i));
-
-
             }
             mPlantAdapter.notifyDataSetChanged();
         });

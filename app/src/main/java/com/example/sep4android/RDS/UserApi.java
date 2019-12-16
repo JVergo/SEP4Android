@@ -43,7 +43,7 @@ public interface UserApi {
     Call<Boolean> Login(@Body User user);
 
     @PUT("users/{email}")
-    Call<User> updateUser( @Path("email") String email ,@Body User user);
+    Call<User> updateUser( @Path("email") String email ,@Body UserUpdate user);
 
     @DELETE("users/{email}")
     Call<RequestBody> deleteAccount(@Path("email") String email);

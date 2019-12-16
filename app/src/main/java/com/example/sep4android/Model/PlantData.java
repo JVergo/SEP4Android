@@ -3,10 +3,12 @@ package com.example.sep4android.Model;
 public class PlantData {
     private double measurementValue;
 
+    public PlantData() {
+    }
+
     public PlantData(double measurementValue) {
         this.measurementValue = measurementValue;
     }
-
     public double getMeasurementValue() {
         return measurementValue;
     }

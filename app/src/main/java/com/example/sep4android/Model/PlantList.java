@@ -7,7 +7,6 @@ import java.util.List;
 
 public class PlantList
 {
-    @SerializedName("clients")
     private List<Plant> plants;
 
     public PlantList() {

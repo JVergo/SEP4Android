@@ -1,5 +1,7 @@
 package com.example.sep4android.ui.plant;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
@@ -26,6 +29,7 @@ import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.CreatePlantViewModel;
 import com.example.sep4android.ViewModel.EditPlantViewModel;
+import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
 
 import java.util.ArrayList;
 
@@ -66,9 +70,17 @@ public class EditPlant extends Fragment {
             for (int i = 0; i < plantProfList.size(); i++) {
                 profiles.add(plantProfList.getProfile(i));
             }
-
             spinner();
+        });
 
+        if(PlantReponsitory.getInstance().getPlants() == null) {
+            String email = UserRepository.getInstance().getUserEmail();
+            PlantReponsitory.getInstance().getPlantFromApi(email);
+        }
+        editPlantViewModel.getPlants().observe(getActivity(), plantList -> {
+            curPlant = plantList.getPlant(getArguments().getInt("plantID"));
+            plantName.setText(curPlant.getName());
+            sensor.setText(curPlant.getDeviceId());
         });
 
         Button saveBTN = root.findViewById(R.id.btn_save);
@@ -84,14 +96,35 @@ public class EditPlant extends Fragment {
     }
 
     private void save() {
-        Plant temp = new Plant();
-        temp.setName(plantName.getText().toString());
-        PlantProfile pp = (PlantProfile) profile.getSelectedItem();
-        temp.setProfile(pp);
-        temp.setDeviceId(sensor.getText().toString());
-        temp.setId(curPlant.getId());
+        boolean pass = true;
 
-        PlantReponsitory.getInstance().savePlantToApi(temp);
+        if(!plantName.getText().toString().equals("")) {
+            curPlant.setName(plantName.getText().toString());
+        }
+        else {
+            Toast.makeText(getContext(), "Plant needs a name", Toast.LENGTH_SHORT).show();
+            pass = false;
+        }
+        PlantProfile pp = (PlantProfile) profile.getSelectedItem();
+        curPlant.setProfile(pp);
+
+        if(!sensor.getText().toString().equals("")) {
+            curPlant.setDeviceId(sensor.getText().toString());
+        }
+        else {
+            Toast.makeText(getContext(), "Plant needs a sensor id", Toast.LENGTH_SHORT).show();
+            pass = false;
+        }
+
+        if(pass) {
+            PlantReponsitory.getInstance().savePlantToApi(curPlant);
+            PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());
+
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, new PlantFragment());
+            fragmentTransaction.commit();
+        }
     }
 
     public void spinner(){

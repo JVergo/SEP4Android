@@ -6,7 +6,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -28,30 +27,27 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.MainActivity;
 import com.example.sep4android.Model.Plant;
-import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
-import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.RDS.UserRepository;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
-import com.example.sep4android.ui.plantProfile.PlantProfileFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class PlantDetails extends Fragment {
-    private static final String CHANNEL_ID = "124D" ;
+    private static final String CHANNEL_ID = "124D";
     private FloatingActionButton editPlantBTN;
     private PlantDetailsViewModel mViewModel;
     private Plant curPlant;
     private Button water;
     private View root;
 
-    NotificationCompat.Builder notification;
+    //NotificationCompat.Builder notification;
 
-    TextView tempMin, tempMax, tempCur, humidityMin, humidityMax, humidityCur, coMin, coMax, coCur,lightMin,lightMax,lightCur;
+    TextView tempMin, tempMax, tempCur, humidityMin, humidityMax, humidityCur, coMin, coMax, coCur, lightMin, lightMax, lightCur;
 
     private AlertDialog dialog;
     private AlertDialog.Builder builder;
@@ -83,17 +79,16 @@ public class PlantDetails extends Fragment {
         coMax = root.findViewById(R.id.tv_co2Max);
         coCur = root.findViewById(R.id.tv_co2Current);
 
-         lightMin = root.findViewById(R.id.tv_lightMin);
-         lightMax = root.findViewById(R.id.tv_lightMax);
-         lightCur = root.findViewById(R.id.tv_lightCurrent);
-
+        lightMin = root.findViewById(R.id.tv_lightMin);
+        lightMax = root.findViewById(R.id.tv_lightMax);
+        lightCur = root.findViewById(R.id.tv_lightCurrent);
 
 
         TextView profileName = root.findViewById(R.id.tv_plantType);
 
         PlantDetailsViewModel mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
 
-        if(PlantReponsitory.getInstance().getPlants() == null) {
+        if (PlantReponsitory.getInstance().getPlants() == null) {
             String email = UserRepository.getInstance().getUserEmail();
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
@@ -113,17 +108,11 @@ public class PlantDetails extends Fragment {
             SetMinMax(lightMin, lightMax, curPlant.getProfile().getLightBoundaries());
         });
 
-        Button deleteBTN = root.findViewById(R.id.imgBtnDelete);
-        deleteBTN.setOnClickListener(v -> PlantReponsitory.getInstance().deletePlant(curPlant.getId()));
-
-
-
         GraphView graph = root.findViewById(R.id.graphview);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint());
         graph.addSeries(series);
 
         FloatButtonOnClick();
-
 
         Button delete = root.findViewById(R.id.imgBtnDelete);
         delete.setOnClickListener(view -> {
@@ -147,12 +136,13 @@ public class PlantDetails extends Fragment {
 
         });
 
-
+/*
         notification = new NotificationCompat.Builder(getContext());
 
         NotificationCompat.Builder builder2 = new NotificationCompat.Builder(getContext());
         notification.setAutoCancel(true);
         createNotificationChannel();
+ */
         colorChange();
 
         return root;
@@ -169,67 +159,60 @@ public class PlantDetails extends Fragment {
         PlantDetailsViewModel mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
     }
 
-    public void FloatButtonOnClick(){
+    public void FloatButtonOnClick() {
         editPlantBTN.setOnClickListener(v -> {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout, EditPlant.newInstance(getArguments().getInt("plantID"), curPlant.getPlantProfileId()));
             fragmentTransaction.commit();
-            });
+        });
+    }
+
+    public DataPoint[] getDataPoint() {
+        DataPoint[] dp = new DataPoint[]{
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        };
+        return (dp);
+    }
+
+    public void colorChange() {
+        if (Double.parseDouble(tempCur.getText().toString()) < Double.parseDouble(tempMin.getText().toString())
+                || Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMax.getText().toString())) {
+            notificationCalled();
+            tempCur.setTextColor(getResources().getColor(R.color.colorWarning));
         }
-
-        public DataPoint[] getDataPoint () {
-            DataPoint[] dp = new DataPoint[]{
-                    new DataPoint(0, 1),
-                    new DataPoint(1, 5),
-                    new DataPoint(2, 3),
-                    new DataPoint(3, 2),
-                    new DataPoint(4, 6)
-            };
-            return (dp);
+        if ((Double.parseDouble(coCur.getText().toString()) < Double.parseDouble(coMin.getText().toString())
+                || Double.parseDouble(coCur.getText().toString()) > Double.parseDouble(coMax.getText().toString()))) {
+            notificationCalled();
+            coCur.setTextColor(getResources().getColor(R.color.colorWarning));
         }
+        if (
+                (Double.parseDouble(lightCur.getText().toString()) < Double.parseDouble(lightMin.getText().toString())
+                        || Double.parseDouble(lightCur.getText().toString()) > Double.parseDouble(lightMax.getText().toString())
 
-        public void colorChange () {
-            if (
-                    Double.parseDouble(tempCur.getText().toString()) < Double.parseDouble(tempMin.getText().toString())
-                            || Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMax.getText().toString())
+                )) {
 
-            ) {
-
-                notificationCalled();
-                tempCur.setTextColor(getResources().getColor(R.color.colorWarning));
-            }
-            if (
-                    (Double.parseDouble(coCur.getText().toString()) < Double.parseDouble(coMin.getText().toString())
-                            || Double.parseDouble(coCur.getText().toString()) > Double.parseDouble(coMax.getText().toString())
-
-                    )) {
-
-                notificationCalled();
-
-                coCur.setTextColor(getResources().getColor(R.color.colorWarning));
-            }
-            if (
-                    (Double.parseDouble(lightCur.getText().toString()) < Double.parseDouble(lightMin.getText().toString())
-                            || Double.parseDouble(lightCur.getText().toString()) > Double.parseDouble(lightMax.getText().toString())
-
-                    )) {
-
-                notificationCalled();
-                lightCur.setTextColor(getResources().getColor(R.color.colorWarning));
-            }
-            if (
-                    (Double.parseDouble(humidityCur.getText().toString()) < Double.parseDouble(humidityMin.getText().toString())
-                            || Double.parseDouble(humidityCur.getText().toString()) > Double.parseDouble(humidityMax.getText().toString())
-
-                    )) {
-
-                notificationCalled();
-                humidityCur.setTextColor(getResources().getColor(R.color.colorWarning));
-            }
+            notificationCalled();
+            lightCur.setTextColor(getResources().getColor(R.color.colorWarning));
         }
+        if (
+                (Double.parseDouble(humidityCur.getText().toString()) < Double.parseDouble(humidityMin.getText().toString())
+                        || Double.parseDouble(humidityCur.getText().toString()) > Double.parseDouble(humidityMax.getText().toString())
 
-        public void notificationCalled () {
+                )) {
+
+            notificationCalled();
+            humidityCur.setTextColor(getResources().getColor(R.color.colorWarning));
+        }
+    }
+
+
+
+    public void notificationCalled() {
         /*Notification builder = new NotificationCompat.Builder(getActivity())
                 .setContentTitle("P.M.I")
                 .setContentText("your plant is dying!")
@@ -240,7 +223,7 @@ public class PlantDetails extends Fragment {
 
 
         NotificationManager manager = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
-        manager.notify(TAG_SIMPLE_NOTIFICATION,builder);*/
+        manager.notify(TAG_SIMPLE_NOTIFICATION,builder);
             // Create an explicit intent for an Activity in your app
             notification.setSmallIcon(R.drawable.ic_launcher_foreground);
             notification.setTicker("New notification!");
@@ -258,11 +241,11 @@ public class PlantDetails extends Fragment {
             NotificationManager manager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
             manager.notify((int) (Math.random() * 1500), notify);
+*/
+    }
 
-        }
-
-        public void diyNotification (View v){
-            //
+    public void diyNotification(View v) {
+            /*
             RemoteViews views = new RemoteViews(getActivity().getPackageName(), R.layout.layout);
             Notification notification = new Notification.Builder(getContext())
                     .setSmallIcon(R.drawable.ic_launcher_foreground).setTicker("Notification ")
@@ -284,12 +267,13 @@ public class PlantDetails extends Fragment {
             //
             NotificationManager notify = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
             notify.notify(1, notification);
+*/
+    }
 
-        }
-
-        private void createNotificationChannel() {
+    private void createNotificationChannel() {
 // Create the NotificationChannel, but only on API 26+ because
 // the NotificationChannel class is new and not in the support library
+            /*
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 CharSequence name = getString(R.string.channel_name);
                 String description = getString(R.string.channel_description);
@@ -304,9 +288,6 @@ public class PlantDetails extends Fragment {
                 notificationManager.createNotificationChannel(channel);
             }
         }
-
-
+*/
     }
-
-
-
+}

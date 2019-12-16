@@ -6,7 +6,6 @@ import com.example.sep4android.Model.User;
 
 public class UserResponse {
     private String email;
-    private String password;
     private PlantProfileList profiles;
     private PlantList plants;
 
@@ -18,7 +17,6 @@ public class UserResponse {
 
     public UserResponse(String email, String password) {
         this.email = email;
-        this.password = password;
     }
 
     public User getUser(){

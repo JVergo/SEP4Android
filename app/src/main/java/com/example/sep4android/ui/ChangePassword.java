@@ -25,7 +25,6 @@ public class ChangePassword extends Fragment {
 
     private Button saveBtn;
     private EditText oldPass, newPass;
-    String email;
     private User user;
 
     private View root;
@@ -46,12 +45,10 @@ public class ChangePassword extends Fragment {
         return root;
     }
 
-    public void onViewCreated(View view, Bundle savedInstanceState){
-
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         mViewModel = ViewModelProviders.of(this).get(ChangePasswordViewModel.class);
         if(UserRepository.getInstance().getUser() == null) {
-            email = UserRepository.getInstance().getUserEmail();
-            UserRepository.getInstance().getUserFromApi(email);
+            UserRepository.getInstance().getUserFromApi(UserRepository.getInstance().getUserEmail());
         }
         mViewModel.getUser().observe(getActivity(), user1 -> {
             user = user1;
@@ -62,18 +59,24 @@ public class ChangePassword extends Fragment {
 
 
     public void save(){
-        // if (!(oldPass.getText().toString().equals( user.getPassword()))) {
+        /*if (!(oldPass.getText().toString().equals( user.getPassword()))) {
 
-        // Toast.makeText(getContext(), "Your password is wrong", Toast.LENGTH_LONG).show();
-        //Log.i("Daniela","password wrong");
-        //}
-        // else{
-        //user.setEmail(email);
-        user.setPassword(newPass.getText().toString());
-        UserRepository.getInstance().updateUser(user);
+        Toast.makeText(getContext(), "Your password is wrong", Toast.LENGTH_LONG).show();
+        Log.i("Daniela","password wrong");
+        }
+        else {
+         */
+            if(!(newPass.getText().toString().equals(""))) {
+                user.setPassword(newPass.getText().toString());
+                user.setEmail(UserRepository.getInstance().getUserEmail());
+                UserRepository.getInstance().updateUser(user);
 
-        Toast.makeText(getContext(),"Your password is changed now!",Toast.LENGTH_LONG).show();
-        Log.i("daniela","password change");
+                Toast.makeText(getContext(), "Your password is changed now!", Toast.LENGTH_LONG).show();
+                Log.i("daniela", "password change");
+            }
+            else {
+                Toast.makeText(getContext(), "Your password can not be empty", Toast.LENGTH_LONG).show();
+            }
         //}
 
     }

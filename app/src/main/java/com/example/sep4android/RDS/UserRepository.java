@@ -41,14 +41,11 @@ public class UserRepository {
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if(response.code() == 200){
                     //users.setValue(response.body().getUser());
-                    Log.i("Daniela", "onResponse: " + response.toString());
-                    Log.i("Daniela", "Call: " + call.toString());
                     Intent myIntent = new Intent(c,  MainActivity.class);
                     c.startActivity(myIntent);
                     return;
                 } else if(response.code() == 500) {
                     Toast.makeText(c, "User already exits", Toast.LENGTH_SHORT).show();
-                    Log.i("Daniela", "User already exits");
                 }
             }
 
@@ -106,10 +103,11 @@ public class UserRepository {
             }
         });
     }
+
     public void updateUser(User user){
         UserApi userApi = ServiceGenerator.getUserApi();
-
-        Call<User> call = userApi.updateUser(UserRepository.getInstance().getUserEmail(),user);
+        UserUpdate u = new UserUpdate(user);
+        Call<User> call = userApi.updateUser(UserRepository.getInstance().getUserEmail(), u);
 
         call.enqueue(new Callback<User>() {
             @Override

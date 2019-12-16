@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -137,25 +138,40 @@ public class EditPlantProfile extends Fragment {
         }
     }
 
-    public void save(){
-        curProfile.setName(profileName.getText().toString());
+    public void save() {
+        if(!profileName.getText().toString().equals("")) {
+            curProfile.setName(profileName.getText().toString());
+        }
+        if(!coMin.getText().toString().equals("") && !coMax.getText().toString().equals("")) {
+            curProfile.getCo2Boundaries().setMax(Double.parseDouble(coMax.getText().toString()));
+            curProfile.getCo2Boundaries().setMin(Double.parseDouble(coMin.getText().toString()));
+        }
+        if(!humidityMin.getText().toString().equals("") && !humidityMax.getText().toString().equals("")) {
+            curProfile.getHumidityBoundaries().setMax(Double.parseDouble(humidityMax.getText().toString()));
+            curProfile.getHumidityBoundaries().setMin(Double.parseDouble(humidityMin.getText().toString()));
+        }
+        if(!lightMin.getText().toString().equals("") && !lightMax.getText().toString().equals("")) {
+            curProfile.getLightBoundaries().setMax(Double.parseDouble(lightMax.getText().toString()));
+            curProfile.getLightBoundaries().setMin(Double.parseDouble(lightMin.getText().toString()));
+        }
+        if(!tempMin.getText().toString().equals("") && !tempMax.getText().toString().equals("")) {
+            curProfile.getTemperatureBoundaries().setMax(Double.parseDouble(tempMax.getText().toString()));
+            curProfile.getTemperatureBoundaries().setMin(Double.parseDouble(tempMin.getText().toString()));
+        }
 
-        curProfile.getCo2Boundaries().setMax(Double.parseDouble(coMax.getText().toString()));
-        curProfile.getCo2Boundaries().setMin(Double.parseDouble(coMin.getText().toString()));
-        curProfile.getHumidityBoundaries().setMax(Double.parseDouble(humidityMax.getText().toString()));
-        curProfile.getHumidityBoundaries().setMin(Double.parseDouble(humidityMin.getText().toString()));
-        curProfile.getLightBoundaries().setMax(Double.parseDouble(lightMax.getText().toString()));
-        curProfile.getLightBoundaries().setMin(Double.parseDouble(lightMin.getText().toString()));
-        curProfile.getTemperatureBoundaries().setMax(Double.parseDouble(tempMax.getText().toString()));
-        curProfile.getTemperatureBoundaries().setMin(Double.parseDouble(tempMin.getText().toString()));
 
-        PlantProfileReponsitory.getInstance().saveProfileToApi(curProfile);
-        PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());
-        PlantProfileReponsitory.getInstance().UpdateProfiles(UserRepository.getInstance().getUserEmail());
+        if (curProfile.Validate(profileName.getText().toString())) {
+            PlantProfileReponsitory.getInstance().saveProfileToApi(curProfile);
+            PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());
+            PlantProfileReponsitory.getInstance().UpdateProfiles(UserRepository.getInstance().getUserEmail());
 
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());
-        fragmentTransaction.commit();
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, new PlantProfileFragment());
+            fragmentTransaction.commit();
+        }
+        else {
+            Toast.makeText(getContext(), "Missing infomation", Toast.LENGTH_SHORT).show();
+        }
     }
 }

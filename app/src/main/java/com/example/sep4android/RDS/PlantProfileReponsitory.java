@@ -41,7 +41,6 @@ public class PlantProfileReponsitory {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.code() == 200) {
                     plantProfiles.setValue(response.body().getUser().getProfiles());
-                } else {
                 }
             }
 

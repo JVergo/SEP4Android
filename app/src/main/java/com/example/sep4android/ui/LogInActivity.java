@@ -30,19 +30,14 @@ public class LogInActivity extends AppCompatActivity {
         pass = findViewById(R.id.editText_password);
 
         login.setOnClickListener(view -> {
-
             User logUser = new User(email.getText().toString(), pass.getText().toString());
             //verify API
             UserRepository.getInstance().loginReques(logUser, getBaseContext());
         });
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent myIntent = new Intent(getBaseContext(),  SignUpActivity.class);
-                startActivity(myIntent);
-            }
+        signup.setOnClickListener(view -> {
+            Intent myIntent = new Intent(getBaseContext(),  SignUpActivity.class);
+            startActivity(myIntent);
         });
     }
 }

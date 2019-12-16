@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sep4android.Model.Plant;
+import com.example.sep4android.Model.PlantData;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 
@@ -50,39 +51,19 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         SetMinMax(humidityMin, humidityMax, mPlants.get(position).getProfile().getHumidityBoundaries());
         SetMinMax(lightMin, lightMax, mPlants.get(position).getProfile().getLightBoundaries());
 
-        //Use mPlants.get(position).getProfile().getTemperature().isVaild() instad?
-        if (
-                Double.parseDouble(viewHolder.temperatureData.getText().toString())< tempMin
-                        || Double.parseDouble(viewHolder.temperatureData.getText().toString()) > tempMax
-            //Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMin.getText().toString())
-        ) {
+        ValidatePlantData(mPlants.get(position).getLastTemperatureMeasurement(), mPlants.get(position).getProfile().getTemperatureBoundaries(), viewHolder.temperatureData);
+        ValidatePlantData(mPlants.get(position).getLastCO2Measurement(), mPlants.get(position).getProfile().getCo2Boundaries(), viewHolder.co2Data);
+        ValidatePlantData(mPlants.get(position).getLastHumidityMeasurement(), mPlants.get(position).getProfile().getHumidityBoundaries(), viewHolder.humidityData);
+        ValidatePlantData(mPlants.get(position).getLastLightMeasurement(), mPlants.get(position).getProfile().getLightBoundaries(), viewHolder.lightData);
 
-            viewHolder.temperatureData.setTextColor(Color.parseColor("#B34F4B"));
-        }
-        if (
-                Double.parseDouble(viewHolder.co2Data.getText().toString())< coMin
-                        || Double.parseDouble(viewHolder.co2Data.getText().toString()) > coMax
-            //Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMin.getText().toString())
-        ) {
+    }
 
-            viewHolder.co2Data.setTextColor(Color.parseColor("#B34F4B"));
+    private void ValidatePlantData(PlantData p, SensorBoundaries sb, TextView tv)
+    {
+        if(p.getMeasurementValue() < sb.getMin() || p.getMeasurementValue() > sb.getMax())
+        {
+            tv.setTextColor(Color.parseColor("#B34F4B"));
         }
-        if (
-                Double.parseDouble(viewHolder.lightData.getText().toString())< lightMin
-                        || Double.parseDouble(viewHolder.lightData.getText().toString()) > lightMax
-            //Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMin.getText().toString())
-        ) {
-
-            viewHolder.lightData.setTextColor(Color.parseColor("#B34F4B"));
-        }
-        if (
-                Double.parseDouble(viewHolder.humidityData.getText().toString())< humidityMin
-                        || Double.parseDouble(viewHolder.humidityData.getText().toString()) > humidityMax
-            //Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMin.getText().toString())
-        ) {
-            viewHolder.humidityData.setTextColor(Color.parseColor("#B34F4B"));
-        }
-
     }
 
     public int getItemCount() {

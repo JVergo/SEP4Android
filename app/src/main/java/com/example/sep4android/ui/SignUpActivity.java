@@ -32,31 +32,34 @@ public class SignUpActivity extends AppCompatActivity {
         conf = findViewById(R.id.editText_passwordconfirm);
 
         login = findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(getBaseContext(),  LogInActivity.class);
-                startActivity(myIntent);
-            }
+        login.setOnClickListener(view -> {
+            Intent myIntent = new Intent(getBaseContext(),  LogInActivity.class);
+            startActivity(myIntent);
         });
 
         signup = findViewById(R.id.signup);
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //send to api
-                User user = new User();
-                user.setEmail(email.getText().toString());
-                user.setPassword(pass.getText().toString());
-                if ((!pass.getText().toString().equals(conf.getText().toString()) )|| pass.getText().equals(null) || conf.getText().equals(null)){
-                    Toast.makeText(getBaseContext(), "password not equal or empty", Toast.LENGTH_LONG).show();
-                    Log.i("Danielaa","not equal or empty");
-                }
-                else {
-                    UserRepository.getInstance().sendAccountRequest(user, getBaseContext());
-                }
-
+        signup.setOnClickListener(view -> {
+            boolean guilty = false;
+            //send to api
+            User user = new User(email.getText().toString(), pass.getText().toString());
+            if ((!pass.getText().toString().equals(conf.getText().toString()))) {
+                guilty = true;
+                Toast.makeText(getBaseContext(), "password do not match", Toast.LENGTH_LONG).show();
             }
+            if(pass.getText().equals("") || conf.getText().equals(""))
+            {
+                guilty = true;
+                Toast.makeText(getBaseContext(), "password not set", Toast.LENGTH_LONG).show();
+            }
+            if(user.getEmail().equals("")) {
+                guilty = true;
+                Toast.makeText(getBaseContext(), "Email needed", Toast.LENGTH_LONG).show();
+            }
+
+            if(!guilty) {
+                UserRepository.getInstance().sendAccountRequest(user, getBaseContext());
+            }
+
         });
     }
 }

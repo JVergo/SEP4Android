@@ -21,6 +21,12 @@ public class Plant {
         this.plantProfileId = profile;
     }
 
+    public Plant(String deviceId, String plantName, int plantProfileId) {
+        this.deviceId = deviceId;
+        this.plantName = plantName;
+        this.plantProfileId = plantProfileId;
+    }
+
     public int getId() {
         return plantId;
     }
