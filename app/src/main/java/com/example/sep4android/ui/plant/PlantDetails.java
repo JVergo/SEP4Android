@@ -20,6 +20,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -38,14 +39,17 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class PlantDetails extends Fragment {
-    private static final String CHANNEL_ID = "124D";
+    private static final String CHANNEL_ID = "124" ;
+    NotificationManagerCompat notificationManager;
+    NotificationCompat.Builder notificationBuilder;
+
     private FloatingActionButton editPlantBTN;
     private PlantDetailsViewModel mViewModel;
     private Plant curPlant;
     private Button water;
     private View root;
 
-    //NotificationCompat.Builder notification;
+
 
     TextView tempMin, tempMax, tempCur, humidityMin, humidityMax, humidityCur, coMin, coMax, coCur, lightMin, lightMax, lightCur;
 
@@ -136,13 +140,16 @@ public class PlantDetails extends Fragment {
 
         });
 
-/*
-        notification = new NotificationCompat.Builder(getContext());
-
-        NotificationCompat.Builder builder2 = new NotificationCompat.Builder(getContext());
-        notification.setAutoCancel(true);
         createNotificationChannel();
- */
+        notificationManager = NotificationManagerCompat.from(getContext());
+
+        notificationBuilder =new NotificationCompat.Builder(getContext(), CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("My notification")
+                .setContentIntent(getPendingIntent())
+                .setContentText("Hello World!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        notificationManager.notify(1,notificationBuilder.build());
         colorChange();
 
         return root;
@@ -159,135 +166,98 @@ public class PlantDetails extends Fragment {
         PlantDetailsViewModel mViewModel = ViewModelProviders.of(this).get(PlantDetailsViewModel.class);
     }
 
-    public void FloatButtonOnClick() {
+    public void FloatButtonOnClick(){
         editPlantBTN.setOnClickListener(v -> {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout, EditPlant.newInstance(getArguments().getInt("plantID"), curPlant.getPlantProfileId()));
             fragmentTransaction.commit();
-        });
-    }
-
-    public DataPoint[] getDataPoint() {
-        DataPoint[] dp = new DataPoint[]{
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        };
-        return (dp);
-    }
-
-    public void colorChange() {
-        if (Double.parseDouble(tempCur.getText().toString()) < Double.parseDouble(tempMin.getText().toString())
-                || Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMax.getText().toString())) {
-            notificationCalled();
-            tempCur.setTextColor(getResources().getColor(R.color.colorWarning));
+            });
         }
-        if ((Double.parseDouble(coCur.getText().toString()) < Double.parseDouble(coMin.getText().toString())
-                || Double.parseDouble(coCur.getText().toString()) > Double.parseDouble(coMax.getText().toString()))) {
-            notificationCalled();
-            coCur.setTextColor(getResources().getColor(R.color.colorWarning));
+
+        public DataPoint[] getDataPoint () {
+            DataPoint[] dp = new DataPoint[]{
+                    new DataPoint(0, 1),
+                    new DataPoint(1, 5),
+                    new DataPoint(2, 3),
+                    new DataPoint(3, 2),
+                    new DataPoint(4, 6)
+            };
+            return (dp);
         }
-        if (
-                (Double.parseDouble(lightCur.getText().toString()) < Double.parseDouble(lightMin.getText().toString())
-                        || Double.parseDouble(lightCur.getText().toString()) > Double.parseDouble(lightMax.getText().toString())
 
-                )) {
+        public void colorChange () {
+            if (
+                    Double.parseDouble(tempCur.getText().toString()) < Double.parseDouble(tempMin.getText().toString())
+                            || Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMax.getText().toString())
 
-            notificationCalled();
-            lightCur.setTextColor(getResources().getColor(R.color.colorWarning));
-        }
-        if (
-                (Double.parseDouble(humidityCur.getText().toString()) < Double.parseDouble(humidityMin.getText().toString())
-                        || Double.parseDouble(humidityCur.getText().toString()) > Double.parseDouble(humidityMax.getText().toString())
+            ) {
 
-                )) {
+                notificationCalled();
+                tempCur.setTextColor(getResources().getColor(R.color.colorWarning));
+            }
+            if (
+                    (Double.parseDouble(coCur.getText().toString()) < Double.parseDouble(coMin.getText().toString())
+                            || Double.parseDouble(coCur.getText().toString()) > Double.parseDouble(coMax.getText().toString())
 
-            notificationCalled();
-            humidityCur.setTextColor(getResources().getColor(R.color.colorWarning));
-        }
-    }
+                    )) {
 
+                notificationCalled();
 
+                coCur.setTextColor(getResources().getColor(R.color.colorWarning));
+            }
+            if (
+                    (Double.parseDouble(lightCur.getText().toString()) < Double.parseDouble(lightMin.getText().toString())
+                            || Double.parseDouble(lightCur.getText().toString()) > Double.parseDouble(lightMax.getText().toString())
 
-    public void notificationCalled() {
-        /*Notification builder = new NotificationCompat.Builder(getActivity())
-                .setContentTitle("P.M.I")
-                .setContentText("your plant is dying!")
-                .setDefaults(NotificationCompat.DEFAULT_ALL).build();
+                    )) {
 
-        builder.flags |=
-                Notification.FLAG_AUTO_CANCEL;
+                notificationCalled();
+                lightCur.setTextColor(getResources().getColor(R.color.colorWarning));
+            }
+            if (
+                    (Double.parseDouble(humidityCur.getText().toString()) < Double.parseDouble(humidityMin.getText().toString())
+                            || Double.parseDouble(humidityCur.getText().toString()) > Double.parseDouble(humidityMax.getText().toString())
 
+                    )) {
 
-        NotificationManager manager = (NotificationManager) getActivity().getSystemService(getContext().NOTIFICATION_SERVICE);
-        manager.notify(TAG_SIMPLE_NOTIFICATION,builder);
-            // Create an explicit intent for an Activity in your app
-            notification.setSmallIcon(R.drawable.ic_launcher_foreground);
-            notification.setTicker("New notification!");
-            notification.setWhen(System.currentTimeMillis());
-            notification.setContentTitle("P.M.I");
-            notification.setContentText("Your plant is dying! Save it now!");
-            notification.setDefaults(Notification.DEFAULT_ALL);
-
-            Intent intent = new Intent(getActivity(), getActivity().getClass());
-            PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            notification.setContentIntent(pendingIntent);
-
-            Notification notify = notification.build();
-            notify.flags = Notification.FLAG_NO_CLEAR;
-            NotificationManager manager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-
-            manager.notify((int) (Math.random() * 1500), notify);
-*/
-    }
-
-    public void diyNotification(View v) {
-            /*
-            RemoteViews views = new RemoteViews(getActivity().getPackageName(), R.layout.layout);
-            Notification notification = new Notification.Builder(getContext())
-                    .setSmallIcon(R.drawable.ic_launcher_foreground).setTicker("Notification ")
-                    //
-                    .setContent(views).build();
-            //
-            views.setTextColor(R.id.tv, Color.RED);
-            Intent intent = new Intent(getContext(), Notification.class);
-            //
-            PendingIntent pi = PendingIntent.getActivity(getContext(), 2, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-            views.setOnClickPendingIntent(R.id.tv, pi);
-
-            Intent intent2 = new Intent(getActivity(), MainActivity.class);
-
-            PendingIntent pi2 = PendingIntent.getActivity(getContext(), 1, intent2,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-            views.setOnClickPendingIntent(R.id.iv, pi2);
-            //
-            NotificationManager notify = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-            notify.notify(1, notification);
-*/
-    }
-
-    private void createNotificationChannel() {
-// Create the NotificationChannel, but only on API 26+ because
-// the NotificationChannel class is new and not in the support library
-            /*
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                CharSequence name = getString(R.string.channel_name);
-                String description = getString(R.string.channel_description);
-                int importance = NotificationManager.IMPORTANCE_DEFAULT;
-                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name,
-                        importance);
-                channel.setDescription(description);
-                // Register the channel with the system; you can't change the importance
-                // or other notification behaviours after this
-                NotificationManager notificationManager =
-                        getActivity().getSystemService(NotificationManager.class);
-                notificationManager.createNotificationChannel(channel);
+                notificationCalled();
+                humidityCur.setTextColor(getResources().getColor(R.color.colorWarning));
             }
         }
-*/
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
+
+    private PendingIntent getPendingIntent() {
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        return PendingIntent.getActivity(getContext(), 0, intent, 0);
+    }
+
+    public  void notificationCalled(){
+        notificationManager = NotificationManagerCompat.from(getContext());
+        notificationBuilder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("P.M.I")
+                .setContentIntent(getPendingIntent())
+                .setContentText("Save your plant! It is dying!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        notifyIt();
+    }
+
+    public void notifyIt() {
+        notificationManager.notify(1, notificationBuilder.build());
+    }
+
+
 }
