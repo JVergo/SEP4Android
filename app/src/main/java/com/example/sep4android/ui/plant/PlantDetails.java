@@ -28,10 +28,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sep4android.MainActivity;
 import com.example.sep4android.Model.Plant;
+import com.example.sep4android.Model.PlantData;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.RDS.UserRepository;
+import com.example.sep4android.RDS.historicData;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jjoe64.graphview.GraphView;
@@ -114,7 +116,7 @@ public class PlantDetails extends Fragment {
             SetMinMax(lightMin, lightMax, curPlant.getProfile().getLightBoundaries());
 
 
-            PlantReponsitory.getInstance().GetHistoricDataFromAPI(1, this);
+            PlantReponsitory.getInstance().GetHistoricDataFromAPI(getArguments().getInt("plantID"), this);
         });
 
         FloatButtonOnClick();
@@ -142,15 +144,6 @@ public class PlantDetails extends Fragment {
         });
 
         createNotificationChannel();
-        notificationManager = NotificationManagerCompat.from(getContext());
-
-        notificationBuilder =new NotificationCompat.Builder(getContext(), CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("My notification")
-                .setContentIntent(getPendingIntent())
-                .setContentText("Hello World!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        notificationManager.notify(1,notificationBuilder.build());
         colorChange();
 
         return root;
@@ -277,7 +270,7 @@ public class PlantDetails extends Fragment {
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("P.M.I")
                 .setContentIntent(getPendingIntent())
-                .setContentText("Save your plant! It is dying!")
+                .setContentText(curPlant.getName() + "Is dying! D:")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         notifyIt();
     }
