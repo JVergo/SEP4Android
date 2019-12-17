@@ -39,6 +39,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class PlantDetails extends Fragment {
+
     private static final String CHANNEL_ID = "124" ;
     NotificationManagerCompat notificationManager;
     NotificationCompat.Builder notificationBuilder;
@@ -140,17 +141,9 @@ public class PlantDetails extends Fragment {
 
         });
 
-        createNotificationChannel();
-        notificationManager = NotificationManagerCompat.from(getContext());
 
-        notificationBuilder =new NotificationCompat.Builder(getContext(), CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("My notification")
-                .setContentIntent(getPendingIntent())
-                .setContentText("Hello World!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        notificationManager.notify(1,notificationBuilder.build());
         colorChange();
+        createNotificationChannel();
 
         return root;
     }
@@ -202,6 +195,7 @@ public class PlantDetails extends Fragment {
 
                     )) {
 
+
                 notificationCalled();
 
                 coCur.setTextColor(getResources().getColor(R.color.colorWarning));
@@ -212,6 +206,7 @@ public class PlantDetails extends Fragment {
 
                     )) {
 
+
                 notificationCalled();
                 lightCur.setTextColor(getResources().getColor(R.color.colorWarning));
             }
@@ -220,6 +215,7 @@ public class PlantDetails extends Fragment {
                             || Double.parseDouble(humidityCur.getText().toString()) > Double.parseDouble(humidityMax.getText().toString())
 
                     )) {
+
 
                 notificationCalled();
                 humidityCur.setTextColor(getResources().getColor(R.color.colorWarning));
