@@ -9,6 +9,7 @@ import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.PlantProfileList;
 import com.example.sep4android.RDS.PlantProfileReponsitory;
 import com.example.sep4android.RDS.PlantReponsitory;
+import com.example.sep4android.RDS.historicData;
 
 public class PlantDetailsViewModel extends ViewModel {
     private MutableLiveData<PlantList> mPlantList;
@@ -27,5 +28,9 @@ public class PlantDetailsViewModel extends ViewModel {
 
     public LiveData<PlantProfileList> getProfiles(){
         return PlantProfileReponsitory.getInstance().getProfiles();
+    }
+
+    public historicData getHistoricData() {
+        return PlantReponsitory.getInstance().getHistoricData();
     }
 }

@@ -1,36 +1,27 @@
 package com.example.sep4android.ui.plant;
 
 import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.sep4android.MainActivity;
 import com.example.sep4android.Model.Plant;
+import com.example.sep4android.Model.PlantData;
 import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.RDS.UserRepository;
+import com.example.sep4android.RDS.historicData;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jjoe64.graphview.GraphView;
@@ -42,12 +33,11 @@ public class PlantDetails extends Fragment {
     private FloatingActionButton editPlantBTN;
     private PlantDetailsViewModel mViewModel;
     private Plant curPlant;
-    private Button water;
     private View root;
 
     //NotificationCompat.Builder notification;
 
-    TextView tempMin, tempMax, tempCur, humidityMin, humidityMax, humidityCur, coMin, coMax, coCur, lightMin, lightMax, lightCur;
+    private TextView tempMin, tempMax, tempCur, humidityMin, humidityMax, humidityCur, coMin, coMax, coCur, lightMin, lightMax, lightCur;
 
     private AlertDialog dialog;
     private AlertDialog.Builder builder;
@@ -66,6 +56,7 @@ public class PlantDetails extends Fragment {
         editPlantBTN = root.findViewById(R.id.floatingActionButton);
 
         TextView plantName = root.findViewById(R.id.tv_plantName);
+        TextView sensorid = root.findViewById(R.id.tv_sensorId);
 
         tempMin = root.findViewById(R.id.tv_tempMin);
         tempMax = root.findViewById(R.id.tv_tempMax);
@@ -95,6 +86,8 @@ public class PlantDetails extends Fragment {
         mViewModel.getPlants().observe(getActivity(), plantList -> {
             curPlant = plantList.getPlant((getArguments().getInt("plantID")));
             plantName.setText(curPlant.getName());
+            sensorid.setText(curPlant.getDeviceId());
+
             tempCur.setText("" + curPlant.getLastTemperatureMeasurement().getMeasurementValue());
             humidityCur.setText("" + curPlant.getLastHumidityMeasurement().getMeasurementValue());
             coCur.setText("" + curPlant.getLastCO2Measurement().getMeasurementValue());
@@ -106,11 +99,9 @@ public class PlantDetails extends Fragment {
             SetMinMax(coMin, coMax, curPlant.getProfile().getCo2Boundaries());
             SetMinMax(humidityMin, humidityMax, curPlant.getProfile().getHumidityBoundaries());
             SetMinMax(lightMin, lightMax, curPlant.getProfile().getLightBoundaries());
-        });
 
-        GraphView graph = root.findViewById(R.id.graphview);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint());
-        graph.addSeries(series);
+            PlantReponsitory.getInstance().GetHistoricDataFromAPI(1, this);
+        });
 
         FloatButtonOnClick();
 
@@ -168,13 +159,40 @@ public class PlantDetails extends Fragment {
         });
     }
 
-    public DataPoint[] getDataPoint() {
-        DataPoint[] dp = new DataPoint[]{
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
+    public void CreateGraph(historicData hd)
+    {
+        GraphView graph = root.findViewById(R.id.tempGraphview);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint(hd.getTemperature()));
+        graph.addSeries(series);
+
+        graph = root.findViewById(R.id.humidityGraphview);
+        series = new LineGraphSeries<>(getDataPoint(hd.getHumidity()));
+        graph.addSeries(series);
+
+        graph = root.findViewById(R.id.co2Graphview);
+        series = new LineGraphSeries<>(getDataPoint(hd.getCo2()));
+        graph.addSeries(series);
+
+        graph = root.findViewById(R.id.lightGraphview);
+        series = new LineGraphSeries<>(getDataPoint(hd.getLight()));
+        graph.addSeries(series);
+    }
+
+    public DataPoint[] getDataPoint(PlantData[] hd) {
+        for (int i = 0; i < hd.length; i++) {
+            if(hd[i] == null) {
+                hd[i] = new PlantData(0.0);
+            }
+        }
+        DataPoint[] dp;
+        dp = new DataPoint[]{
+                new DataPoint(0, hd[0].getMeasurementValue()),
+                new DataPoint(1, hd[1].getMeasurementValue()),
+                new DataPoint(2, hd[2].getMeasurementValue()),
+                new DataPoint(3, hd[3].getMeasurementValue()),
+                new DataPoint(4, hd[4].getMeasurementValue()),
+                new DataPoint(5, hd[5].getMeasurementValue()),
+                new DataPoint(6, hd[6].getMeasurementValue())
         };
         return (dp);
     }
@@ -209,8 +227,6 @@ public class PlantDetails extends Fragment {
             humidityCur.setTextColor(getResources().getColor(R.color.colorWarning));
         }
     }
-
-
 
     public void notificationCalled() {
         /*Notification builder = new NotificationCompat.Builder(getActivity())

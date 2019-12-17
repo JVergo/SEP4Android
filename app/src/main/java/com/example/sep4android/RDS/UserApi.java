@@ -48,8 +48,8 @@ public interface UserApi {
     @DELETE("users/{email}")
     Call<RequestBody> deleteAccount(@Path("email") String email);
 
-    @GET("plants/{plantID)")
-    Call<Plant> getPlantByIdWithWeekAvg(@Path("plantID") int plantID);
+    @GET("plants/{plantID}")
+    Call<historicData> getPlantByIdWithWeekAvg(@Path("plantID") int plantID);
 
 
 }

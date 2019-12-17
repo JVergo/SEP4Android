@@ -15,7 +15,7 @@
             android:layout_width="155dp"
             android:layout_height="40dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="PlantName"
             android:textColor="@color/color2"
@@ -52,8 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
             android:background="@color/colorBackground"
             android:drawableLeft="@android:drawable/ic_menu_delete"
             android:fontFamily="@font/montserrat_bold"
@@ -64,20 +64,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <Button
-            android:id="@+id/button_WaterPlant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:background="@color/colorBackground"
-            android:drawableLeft="@drawable/ic_water_drop"
-            android:fontFamily="@font/montserrat_bold"
-            android:padding="5dp"
-            android:text="Water"
-            android:textColor="#94D5DC"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgBtnDelete" />
-
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="0dp"
@@ -86,7 +72,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_WaterPlant">
+            app:layout_constraintTop_toBottomOf="@+id/tv_sensorId">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -94,12 +80,13 @@
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
+
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginBottom="10dp"
                     android:background="#F2D3D0D0">
 
 
@@ -360,9 +347,29 @@
                     </TableRow>
                 </TableLayout>
 
+                <TextView
+                    android:id="@+id/tempOver7Days"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Temp over 7 days"
+                    android:textColor="@color/color2"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/tempGraphview"
+                    android:layout_width="350dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorWhite" />
 
                 <TextView
-                    android:id="@+id/statistics_from_the_last_7_days"
+                    android:id="@+id/humidityOver7Days"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
@@ -370,463 +377,62 @@
                     android:layout_marginRight="25dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Last 7 day statistics"
+                    android:text="Humidity over 7 days"
                     android:textColor="@color/color2"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TableLayout
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/humidityGraphview"
+                    android:layout_width="350dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/co2Over7Days"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="25dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="#F2D3D0D0">
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Co2 over 7 days"
+                    android:textColor="@color/color2"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/co2Graphview"
+                    android:layout_width="350dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorWhite" />
 
-                        <TextView
-                            android:id="@+id/textView29"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:background="@color/colorWhite" />
-
-                        <TextView
-                            android:id="@+id/tv3_temp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center"
-                            android:text="Temp"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv3_co2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center"
-                            android:text="Co2"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv3_humidity"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center"
-                            android:text="Humidity"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv3_light"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center"
-                            android:text="Light"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/tv_day1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="2"
-                            android:background="@color/colorWhite"
-                            android:text="Day 1"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_day1tempData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day1co2Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day1humidityData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day1lightData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/tv_day2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="2"
-                            android:background="@color/colorWhite"
-                            android:text="Day 2"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_day2tempData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day2co2Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day2humidityData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day2lightData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/tv_day3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="2"
-                            android:background="@color/colorWhite"
-                            android:text="Day 3"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_day3tempData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day3co2Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day3humidityData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day3lightData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/tv_day4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="2"
-                            android:background="@color/colorWhite"
-                            android:text="Day 4"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_day4tempData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day4co2Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day4humidityData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day4lightData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/tv_day5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="2"
-                            android:background="@color/colorWhite"
-                            android:text="Day 5"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_day5tempData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day5co2Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day5humidityData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day5lightData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/tv_day6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="2"
-                            android:background="@color/colorWhite"
-                            android:text="Day 6"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_day6tempData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day6co2Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day6humidityData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day6lightData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/tv_day7"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="2"
-                            android:background="@color/colorWhite"
-                            android:text="Day 7"
-                            android:textColor="@color/color2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_day7tempData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day7co2Data"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day7humidityData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-
-                        <TextView
-                            android:id="@+id/tv_day7lightData"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0.5dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorWhite"
-                            android:gravity="center" />
-                    </TableRow>
-                </TableLayout>
-
-                <TableLayout
+                <TextView
+                    android:id="@+id/lightOver7Days"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Light over 7 days"
+                    android:textColor="@color/color2"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <com.jjoe64.graphview.GraphView
-                            android:id="@+id/graphview"
-                            android:layout_width="350dp"
-                            android:layout_height="300dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@color/colorWhite" />
-                    </TableRow>
-
-                </TableLayout>
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/lightGraphview"
+                    android:layout_width="350dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorWhite" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

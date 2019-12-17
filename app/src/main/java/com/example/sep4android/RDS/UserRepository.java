@@ -45,7 +45,7 @@ public class UserRepository {
                     c.startActivity(myIntent);
                     return;
                 } else if(response.code() == 500) {
-                    Toast.makeText(c, "User already exits", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, "User already exits or fields are empty", Toast.LENGTH_SHORT).show();
                 }
             }
 
