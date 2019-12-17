@@ -31,7 +31,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class PlantDetails extends Fragment {
-    private static final String CHANNEL_ID = "124" ;
+    private static final String CHANNEL_ID = "124";
     NotificationManagerCompat notificationManager;
     NotificationCompat.Builder notificationBuilder;
 
@@ -39,7 +39,6 @@ public class PlantDetails extends Fragment {
     private PlantDetailsViewModel mViewModel;
     private Plant curPlant;
     private View root;
-
 
 
     private TextView tempMin, tempMax, tempCur, humidityMin, humidityMax, humidityCur, coMin, coMax, coCur, lightMin, lightMax, lightCur;
@@ -131,17 +130,6 @@ public class PlantDetails extends Fragment {
             dialog.show();
 
         });
-
-        createNotificationChannel();
-        notificationManager = NotificationManagerCompat.from(getContext());
-
-        notificationBuilder =new NotificationCompat.Builder(getContext(), CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("My notification")
-                .setContentIntent(getPendingIntent())
-                .setContentText("Hello World!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        notificationManager.notify(1,notificationBuilder.build());
         colorChange();
 
         return root;
@@ -164,11 +152,10 @@ public class PlantDetails extends Fragment {
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout, EditPlant.newInstance(getArguments().getInt("plantID"), curPlant.getPlantProfileId()));
             fragmentTransaction.commit();
-            });
-        }
+        });
+    }
 
-    public void CreateGraph(historicData hd)
-    {
+    public void CreateGraph(historicData hd) {
         GraphView graph = root.findViewById(R.id.tempGraphview);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint(hd.getTemperature()));
         graph.addSeries(series);
@@ -188,7 +175,7 @@ public class PlantDetails extends Fragment {
 
     public DataPoint[] getDataPoint(PlantData[] hd) {
         for (int i = 0; i < hd.length; i++) {
-            if(hd[i] == null) {
+            if (hd[i] == null) {
                 hd[i] = new PlantData(0.0);
             }
         }
@@ -205,60 +192,26 @@ public class PlantDetails extends Fragment {
         return (dp);
     }
 
-        public void colorChange () {
-            if (
-                    Double.parseDouble(tempCur.getText().toString()) < Double.parseDouble(tempMin.getText().toString())
-                            || Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMax.getText().toString())
-
-            ) {
-
-                notificationCalled();
-                tempCur.setTextColor(getResources().getColor(R.color.colorWarning));
-            }
-            if (
-                    (Double.parseDouble(coCur.getText().toString()) < Double.parseDouble(coMin.getText().toString())
-                            || Double.parseDouble(coCur.getText().toString()) > Double.parseDouble(coMax.getText().toString())
-
-                    )) {
-
-                notificationCalled();
-
-                coCur.setTextColor(getResources().getColor(R.color.colorWarning));
-            }
-            if (
-                    (Double.parseDouble(lightCur.getText().toString()) < Double.parseDouble(lightMin.getText().toString())
-                            || Double.parseDouble(lightCur.getText().toString()) > Double.parseDouble(lightMax.getText().toString())
-
-                    )) {
-
-                notificationCalled();
-                lightCur.setTextColor(getResources().getColor(R.color.colorWarning));
-            }
-            if (
-                    (Double.parseDouble(humidityCur.getText().toString()) < Double.parseDouble(humidityMin.getText().toString())
-                            || Double.parseDouble(humidityCur.getText().toString()) > Double.parseDouble(humidityMax.getText().toString())
-
-                    )) {
-
-                notificationCalled();
-                humidityCur.setTextColor(getResources().getColor(R.color.colorWarning));
-            }
+    public void colorChange() {
+        if (Double.parseDouble(tempCur.getText().toString()) < Double.parseDouble(tempMin.getText().toString())
+                || Double.parseDouble(tempCur.getText().toString()) > Double.parseDouble(tempMax.getText().toString())) {
+            //notificationCalled();
+            tempCur.setTextColor(getResources().getColor(R.color.colorWarning));
         }
-
-    public  void notificationCalled(){
-        notificationManager = NotificationManagerCompat.from(getContext());
-        notificationBuilder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("P.M.I")
-                .setContentIntent(getPendingIntent())
-                .setContentText("Save your plant! It is dying!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        notifyIt();
+        if (Double.parseDouble(coCur.getText().toString()) < Double.parseDouble(coMin.getText().toString())
+                || Double.parseDouble(coCur.getText().toString()) > Double.parseDouble(coMax.getText().toString())) {
+            //notificationCalled();
+            coCur.setTextColor(getResources().getColor(R.color.colorWarning));
+        }
+        if (Double.parseDouble(lightCur.getText().toString()) < Double.parseDouble(lightMin.getText().toString())
+                || Double.parseDouble(lightCur.getText().toString()) > Double.parseDouble(lightMax.getText().toString())) {
+            //notificationCalled();
+            lightCur.setTextColor(getResources().getColor(R.color.colorWarning));
+        }
+        if (Double.parseDouble(humidityCur.getText().toString()) < Double.parseDouble(humidityMin.getText().toString())
+                || Double.parseDouble(humidityCur.getText().toString()) > Double.parseDouble(humidityMax.getText().toString())) {
+            //notificationCalled();
+            humidityCur.setTextColor(getResources().getColor(R.color.colorWarning));
+        }
     }
-
-    public void notifyIt() {
-        notificationManager.notify(1, notificationBuilder.build());
-    }
-
-
 }
