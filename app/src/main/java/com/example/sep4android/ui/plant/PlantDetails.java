@@ -39,7 +39,6 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class PlantDetails extends Fragment {
-
     private static final String CHANNEL_ID = "124" ;
     NotificationManagerCompat notificationManager;
     NotificationCompat.Builder notificationBuilder;
@@ -47,7 +46,6 @@ public class PlantDetails extends Fragment {
     private FloatingActionButton editPlantBTN;
     private PlantDetailsViewModel mViewModel;
     private Plant curPlant;
-    private Button water;
     private View root;
 
 
@@ -71,6 +69,7 @@ public class PlantDetails extends Fragment {
         editPlantBTN = root.findViewById(R.id.floatingActionButton);
 
         TextView plantName = root.findViewById(R.id.tv_plantName);
+        TextView sensorid = root.findViewById(R.id.tv_sensorId);
 
         tempMin = root.findViewById(R.id.tv_tempMin);
         tempMax = root.findViewById(R.id.tv_tempMax);
@@ -100,6 +99,8 @@ public class PlantDetails extends Fragment {
         mViewModel.getPlants().observe(getActivity(), plantList -> {
             curPlant = plantList.getPlant((getArguments().getInt("plantID")));
             plantName.setText(curPlant.getName());
+            sensorid.setText(curPlant.getDeviceId());
+
             tempCur.setText("" + curPlant.getLastTemperatureMeasurement().getMeasurementValue());
             humidityCur.setText("" + curPlant.getLastHumidityMeasurement().getMeasurementValue());
             coCur.setText("" + curPlant.getLastCO2Measurement().getMeasurementValue());
@@ -111,11 +112,10 @@ public class PlantDetails extends Fragment {
             SetMinMax(coMin, coMax, curPlant.getProfile().getCo2Boundaries());
             SetMinMax(humidityMin, humidityMax, curPlant.getProfile().getHumidityBoundaries());
             SetMinMax(lightMin, lightMax, curPlant.getProfile().getLightBoundaries());
-        });
 
-        GraphView graph = root.findViewById(R.id.graphview);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint());
-        graph.addSeries(series);
+
+            PlantReponsitory.getInstance().GetHistoricDataFromAPI(1, this);
+        });
 
         FloatButtonOnClick();
 
@@ -141,9 +141,17 @@ public class PlantDetails extends Fragment {
 
         });
 
-
-        colorChange();
         createNotificationChannel();
+        notificationManager = NotificationManagerCompat.from(getContext());
+
+        notificationBuilder =new NotificationCompat.Builder(getContext(), CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("My notification")
+                .setContentIntent(getPendingIntent())
+                .setContentText("Hello World!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        notificationManager.notify(1,notificationBuilder.build());
+        colorChange();
 
         return root;
     }
@@ -168,16 +176,42 @@ public class PlantDetails extends Fragment {
             });
         }
 
-        public DataPoint[] getDataPoint () {
-            DataPoint[] dp = new DataPoint[]{
-                    new DataPoint(0, 1),
-                    new DataPoint(1, 5),
-                    new DataPoint(2, 3),
-                    new DataPoint(3, 2),
-                    new DataPoint(4, 6)
-            };
-            return (dp);
+    public void CreateGraph(historicData hd) {
+        GraphView graph = root.findViewById(R.id.tempGraphview);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint(hd.getTemperature()));
+        graph.addSeries(series);
+
+        graph = root.findViewById(R.id.humidityGraphview);
+        series = new LineGraphSeries<>(getDataPoint(hd.getHumidity()));
+        graph.addSeries(series);
+
+        graph = root.findViewById(R.id.co2Graphview);
+        series = new LineGraphSeries<>(getDataPoint(hd.getCo2()));
+        graph.addSeries(series);
+
+        graph = root.findViewById(R.id.lightGraphview);
+        series = new LineGraphSeries<>(getDataPoint(hd.getLight()));
+        graph.addSeries(series);
+    }
+
+    public DataPoint[] getDataPoint(PlantData[] hd) {
+        for (int i = 0; i < hd.length; i++) {
+            if (hd[i] == null) {
+                hd[i] = new PlantData(0.0);
+            }
         }
+        DataPoint[] dp;
+        dp = new DataPoint[]{
+                new DataPoint(0, hd[0].getMeasurementValue()),
+                new DataPoint(1, hd[1].getMeasurementValue()),
+                new DataPoint(2, hd[2].getMeasurementValue()),
+                new DataPoint(3, hd[3].getMeasurementValue()),
+                new DataPoint(4, hd[4].getMeasurementValue()),
+                new DataPoint(5, hd[5].getMeasurementValue()),
+                new DataPoint(6, hd[6].getMeasurementValue())
+        };
+        return (dp);
+    }
 
         public void colorChange () {
             if (
@@ -195,7 +229,6 @@ public class PlantDetails extends Fragment {
 
                     )) {
 
-
                 notificationCalled();
 
                 coCur.setTextColor(getResources().getColor(R.color.colorWarning));
@@ -206,7 +239,6 @@ public class PlantDetails extends Fragment {
 
                     )) {
 
-
                 notificationCalled();
                 lightCur.setTextColor(getResources().getColor(R.color.colorWarning));
             }
@@ -215,7 +247,6 @@ public class PlantDetails extends Fragment {
                             || Double.parseDouble(humidityCur.getText().toString()) > Double.parseDouble(humidityMax.getText().toString())
 
                     )) {
-
 
                 notificationCalled();
                 humidityCur.setTextColor(getResources().getColor(R.color.colorWarning));

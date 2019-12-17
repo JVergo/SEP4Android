@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantList;
 import com.example.sep4android.Model.PlantProfile;
+import com.example.sep4android.ui.plant.PlantDetails;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -17,6 +18,7 @@ import retrofit2.Response;
 public class PlantReponsitory {
     private MutableLiveData<PlantList> plants;
     private static PlantReponsitory reponsitory;
+    historicData HD;
 
     private PlantReponsitory() {
     }
@@ -122,5 +124,29 @@ public class PlantReponsitory {
 
     public void UpdatePalnts(String email) {
         getPlantFromApi(email);
+    }
+
+    public void GetHistoricDataFromAPI(int plantID, PlantDetails pd){
+        UserApi userApi = ServiceGenerator.getUserApi();
+        Call<historicData> call = userApi.getPlantByIdWithWeekAvg(plantID);
+        call.enqueue(new Callback<historicData>() {
+            @Override
+            public void onResponse(Call<historicData> call, Response<historicData> response) {
+                if (response.code() == 200) {
+                    HD = response.body();
+                    pd.CreateGraph(HD);
+                }
+                Log.i("Vergo", "onResponse: " + response.message());
+            }
+
+            @Override
+            public void onFailure(Call<historicData> call, Throwable t) {
+                Log.i("Vergo", "Throwable: " + t.getMessage());
+            }
+        });
+    }
+
+    public historicData getHistoricData() {
+        return HD;
     }
 }
