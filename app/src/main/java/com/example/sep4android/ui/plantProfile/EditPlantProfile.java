@@ -159,7 +159,7 @@ public class EditPlantProfile extends Fragment {
             curProfile.getTemperatureBoundaries().setMin(Double.parseDouble(tempMin.getText().toString()));
         }
 
-
+        //TODO: Make validate on the data input
         if (curProfile.Validate(profileName.getText().toString())) {
             PlantProfileReponsitory.getInstance().saveProfileToApi(curProfile);
             PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());

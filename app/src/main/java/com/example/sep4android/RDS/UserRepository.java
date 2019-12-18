@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4android.MainActivity;
 import com.example.sep4android.Model.User;
+import com.example.sep4android.Model.UserUpdate;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
