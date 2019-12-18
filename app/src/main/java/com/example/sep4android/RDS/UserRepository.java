@@ -22,6 +22,7 @@ public class UserRepository {
     private String userEmail;
     private static UserRepository repository;
 
+    //singleton
     private UserRepository() {
     }
 
@@ -32,7 +33,8 @@ public class UserRepository {
         return repository;
     }
 
-    public void sendAccountRequest(User user, Context c){
+//create a new user account
+public void sendAccountRequest(User user, Context c){
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<Boolean> call = userApi.createAccount(user);
 
@@ -42,9 +44,9 @@ public class UserRepository {
                 if(response.code() == 200){
                     //users.setValue(response.body().getUser());
                     Intent myIntent = new Intent(c,  MainActivity.class);
-                    c.startActivity(myIntent);
+                    c.startActivity(myIntent); //when account is created, app will turn to MainActivity which shows the plant list and plant profile list
                     return;
-                } else if(response.code() == 500) {
+                } else if(response.code() == 500) {// if email repeated
                     Toast.makeText(c, "User already exits or fields are empty", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -55,6 +57,8 @@ public class UserRepository {
             }
         });
     }
+
+    //get the user info from the API by the email logged in
     public void getUserFromApi(String email){
         users = new MutableLiveData<>();
 
@@ -64,7 +68,7 @@ public class UserRepository {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.code() == 200) {
-                    users.setValue( response.body().getUser());
+                    users.setValue( response.body().getUser());//set the value of the local user as what receive from APi
                 } else {
                 }
             }
@@ -76,6 +80,7 @@ public class UserRepository {
         });
     }
 
+    //send login request
     public void loginReques(User user, Context c){
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<Boolean> call = userApi.Login(user);
@@ -89,10 +94,10 @@ public class UserRepository {
                     Log.i("Daniela", "Call: " + call.toString());
                     userEmail = user.getEmail();
                     Intent myIntent = new Intent(c,  MainActivity.class);
-                    c.startActivity(myIntent);
+                    c.startActivity(myIntent);//while email and password are both valid, App will go to MainActivity class which will show plant list to user
                     return;
-                } else if(response.code() == 500) {
-                    Toast.makeText(c, "email or password are invalid", Toast.LENGTH_SHORT).show();
+                } else if(response.code() == 500) { // if email or password is invalid
+                    Toast.makeText(c, "email or password are invalid", Toast.LENGTH_SHORT).show(); //Toast to inform the user
                     Log.i("Daniela", "email or password are invalid");
                 }
             }
@@ -104,9 +109,10 @@ public class UserRepository {
         });
     }
 
+    //change the user password
     public void updateUser(User user){
         UserApi userApi = ServiceGenerator.getUserApi();
-        UserUpdate u = new UserUpdate(user);
+        UserUpdate u = new UserUpdate(user); //update the user model with the updated password
         Call<User> call = userApi.updateUser(UserRepository.getInstance().getUserEmail(), u);
 
         call.enqueue(new Callback<User>() {
@@ -128,6 +134,7 @@ public class UserRepository {
         });
 
     }
+    //delete user from API
     public void deleteUser(String email){
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<RequestBody> call = userApi.deleteAccount(""+email);
@@ -152,9 +159,11 @@ public class UserRepository {
 
     }
 
+    //get user email
     public String getUserEmail() {
         return userEmail;
     }
+    //get user's live data
     public LiveData<User> getUser(){
 
         return users;

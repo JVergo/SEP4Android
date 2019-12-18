@@ -20,6 +20,7 @@ public class PlantReponsitory {
     private static PlantReponsitory reponsitory;
     historicData HD;
 
+    //using singleton
     private PlantReponsitory() {
     }
 
@@ -30,14 +31,16 @@ public class PlantReponsitory {
         return reponsitory;
     }
 
+    //app can receive information of the list of plants by the user email that logged in
     public void getPlantFromApi(String email) {
-        plants = new MutableLiveData<>();
-        UserApi userApi = ServiceGenerator.getUserApi();
+        plants = new MutableLiveData<>(); //ensure the updated data without repeat
+        UserApi userApi = ServiceGenerator.getUserApi(); //get url
         Call<UserResponse> call = userApi.userInfo(email);
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.code() == 200) {
+                    //setting value of empty PlantList to what responded from API
                     plants.setValue(response.body().getUser().getPlants());
                 }
                 Log.i("Vergo", "onResponse: " + response.message());
@@ -45,14 +48,15 @@ public class PlantReponsitory {
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-                Log.i("Vergo", "Throwable: " + t.getMessage());
+                Log.i("Vergo", "Throwable: " + t.getMessage()); //if request handling failed, error message will show in Lgcat with tag of "Vergo"
             }
         });
     }
 
+    //send and save plant info to API
     public void savePlantToApi(Plant plant) {
         UserApi userApi = ServiceGenerator.getUserApi();
-        PlantUpdater p = new PlantUpdater(plant);
+        PlantUpdater p = new PlantUpdater(plant); //call PlantUpdater class to update plant info every time
         Call<Plant> call = userApi.updatePlant(p);
         call.enqueue(new Callback<Plant>() {
             @Override
@@ -74,6 +78,7 @@ public class PlantReponsitory {
         });
     }
 
+    //create a new plant model and save it in API
     public void createPlant(Plant plant) {
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<Plant> call = userApi.createPlant(new PlantUpdater(plant.getDeviceId(), plant.getPlantProfileId(), plant.getName()));
@@ -96,6 +101,7 @@ public class PlantReponsitory {
         });
     }
 
+    //delete a plant from api by the plant id
     public void deletePlant(int id) {
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<RequestBody> call = userApi.deletePlant("" + id);
@@ -118,14 +124,17 @@ public class PlantReponsitory {
         });
     }
 
+    //get the livw data of the list of plant
     public LiveData<PlantList> getPlants() {
         return plants;
     }
 
+    //get the updated plant list by the user email that logged in
     public void UpdatePalnts(String email) {
         getPlantFromApi(email);
     }
 
+    //get the last 7 days' plant data
     public void GetHistoricDataFromAPI(int plantID, PlantDetails pd){
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<historicData> call = userApi.getPlantByIdWithWeekAvg(plantID);
@@ -133,8 +142,8 @@ public class PlantReponsitory {
             @Override
             public void onResponse(Call<historicData> call, Response<historicData> response) {
                 if (response.code() == 200) {
-                    HD = response.body();
-                    pd.CreateGraph(HD);
+                    HD = response.body(); //get historic data from what API responded
+                    pd.CreateGraph(HD); // make the statistics shown as the form of graph
                 }
                 Log.i("Vergo", "onResponse: " + response.message());
             }
@@ -146,6 +155,7 @@ public class PlantReponsitory {
         });
     }
 
+    //get the historic data
     public historicData getHistoricData() {
         return HD;
     }

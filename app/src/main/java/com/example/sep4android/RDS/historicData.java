@@ -9,6 +9,7 @@ import java.util.List;
 public class historicData {
     PlantData[] co2, humidity, temperature, light;
 
+    //empty constructor so that data can be received from remote to android application
     public historicData(){}
 
     public historicData(PlantData[] co2, PlantData[] humidity, PlantData[] temperature, PlantData[] light) {
@@ -18,6 +19,7 @@ public class historicData {
         this.light = light;
     }
 
+    //getters and setters for 4 sensors, getters getting data from PlantData array
     public PlantData[] getCo2() {
         return co2;
     }

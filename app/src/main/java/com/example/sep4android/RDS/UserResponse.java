@@ -9,12 +9,14 @@ public class UserResponse {
     private PlantProfileList profiles;
     private PlantList plants;
 
+    //get all information related to one user
     public UserResponse(String email,PlantProfileList profiles,PlantList plants){
         this.email = email;
         this.profiles = profiles;
         this.plants = plants;
     }
 
+    //constructor with user email and password for log in
     public UserResponse(String email, String password) {
         this.email = email;
     }

@@ -5,6 +5,7 @@ import com.example.sep4android.Model.User;
 public class UserUpdate {
     String email, password;
 
+    //constructors
     public UserUpdate(User user){
         this.email = user.getEmail();
         this.password = user.getPassword();
@@ -18,6 +19,8 @@ public class UserUpdate {
         this.password = password;
     }
 
+
+    //getters and setters for email and password
     public String getEmail() {
         return email;
     }

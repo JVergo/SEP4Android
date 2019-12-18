@@ -17,9 +17,10 @@ import retrofit2.Response;
 public class PlantProfileReponsitory {
 
     private MutableLiveData<PlantProfileList> plantProfiles;
-    private MutableLiveData<PlantProfile> profile;
     private static PlantProfileReponsitory reponsitory;
 
+
+    //private constructor and lazy initialization for realizing singleton
     private PlantProfileReponsitory() {
     }
 
@@ -31,16 +32,19 @@ public class PlantProfileReponsitory {
     }
 
 
+    //get the list of plant profiles from API by searching the specific user email
     public void getProfileFromApi(String email) {
-        plantProfiles = new MutableLiveData<>();
+        plantProfiles = new MutableLiveData<>(); // every time the method is called, retrieve from remote
+                                                // so that there won't be repeated data in the list shown in the recyclerview
 
         UserApi userApi = ServiceGenerator.getUserApi();
-        Call<UserResponse> call = userApi.userInfo(email);
+        Call<UserResponse> call = userApi.userInfo(email); // get a call from API to get uesr info
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.code() == 200) {
-                    plantProfiles.setValue(response.body().getUser().getProfiles());
+                    plantProfiles.setValue(response.body().getUser().getProfiles()); //if is correct,app will get list of plant profiles from
+                    //the API response body
                 }
             }
 
@@ -51,6 +55,8 @@ public class PlantProfileReponsitory {
         });
     }
 
+    //save the plantProfile model to the server
+    //used while trying to edit plant profile
     public void saveProfileToApi(PlantProfile pp) {
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<PlantProfile> call = userApi.updatePlantProfile(pp);
@@ -73,6 +79,8 @@ public class PlantProfileReponsitory {
         });
     }
 
+    //save the new plant profile to web API
+    //used while creating a new plant profile
     public void createProfile(PlantProfile pp) {
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<PlantProfile> call = userApi.createPlantProfile(pp);
@@ -95,6 +103,7 @@ public class PlantProfileReponsitory {
         });
     }
 
+    //delete the plant profile info from API by its profile id
     public void deleteProfile(int id) {
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<RequestBody> call = userApi.deletePlantProfile("" + id);
@@ -117,9 +126,12 @@ public class PlantProfileReponsitory {
         });
     }
 
+    //get the live data about the list of plant profile from API
     public LiveData<PlantProfileList> getProfiles() {
         return plantProfiles;
     }
+
+    //update plant profile info for user by user email from API
 
     public void UpdateProfiles(String email) {
         getProfileFromApi(email);

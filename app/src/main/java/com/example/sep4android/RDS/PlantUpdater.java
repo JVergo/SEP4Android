@@ -8,6 +8,7 @@ public class PlantUpdater {
     private int plantProfileId;
     private String plantName;
 
+    //constructors
     public PlantUpdater(String deviceId, int plantProfileId, String plantName) {
         this.deviceId = deviceId;
         this.plantProfileId = plantProfileId;
@@ -21,6 +22,8 @@ public class PlantUpdater {
         this.plantName = p.getName();
     }
 
+    //getters and setters for plant name, plant is, plant profile id, and device id.
+    //plant can get info about plant profiles by searching their ids
     public int getPlantId() {
         return plantId;
     }
