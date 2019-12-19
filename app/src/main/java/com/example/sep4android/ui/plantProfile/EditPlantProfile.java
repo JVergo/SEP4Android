@@ -89,6 +89,12 @@ public class EditPlantProfile extends Fragment {
         return root;
     }
 
+    /**
+     * Used to set the values of the min and max text fealds with the SensorBoundaries values
+     * @param min The min textView to be set
+     * @param max The max textView to be set
+     * @param v The SensorBoundaries that is use to set the values of the text feald
+     */
     public void SetMinMax(TextView min, TextView max, SensorBoundaries v) {
         min.setText(v.getMin().toString());
         max.setText(v.getMax().toString());
@@ -159,7 +165,7 @@ public class EditPlantProfile extends Fragment {
             curProfile.getTemperatureBoundaries().setMin(Double.parseDouble(tempMin.getText().toString()));
         }
 
-
+        //TODO: Make validate on the data input
         if (curProfile.Validate(profileName.getText().toString())) {
             PlantProfileReponsitory.getInstance().saveProfileToApi(curProfile);
             PlantReponsitory.getInstance().UpdatePalnts(UserRepository.getInstance().getUserEmail());

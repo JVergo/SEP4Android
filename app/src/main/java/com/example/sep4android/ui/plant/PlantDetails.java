@@ -1,20 +1,16 @@
 package com.example.sep4android.ui.plant;
 
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,12 +29,14 @@ import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.R;
 import com.example.sep4android.RDS.PlantReponsitory;
 import com.example.sep4android.RDS.UserRepository;
-import com.example.sep4android.RDS.historicData;
+import com.example.sep4android.Model.historicData;
 import com.example.sep4android.ViewModel.PlantDetailsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.util.Objects;
 
 public class PlantDetails extends Fragment {
     private static final String CHANNEL_ID = "124" ;
@@ -98,25 +96,28 @@ public class PlantDetails extends Fragment {
             String email = UserRepository.getInstance().getUserEmail();
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
-        mViewModel.getPlants().observe(getActivity(), plantList -> {
-            curPlant = plantList.getPlant((getArguments().getInt("plantID")));
-            plantName.setText(curPlant.getName());
-            sensorid.setText(curPlant.getDeviceId());
+        mViewModel.getPlants().observe(Objects.requireNonNull(getActivity()), plantList -> {
+            if(getArguments() != null)
+            {
+                curPlant = plantList.getPlant((getArguments().getInt("plantID")));
+                plantName.setText(curPlant.getName());
+                sensorid.setText(curPlant.getDeviceId());
 
-            tempCur.setText("" + curPlant.getLastTemperatureMeasurement().getMeasurementValue());
-            humidityCur.setText("" + curPlant.getLastHumidityMeasurement().getMeasurementValue());
-            coCur.setText("" + curPlant.getLastCO2Measurement().getMeasurementValue());
-            lightCur.setText("" + curPlant.getLastLightMeasurement().getMeasurementValue());
+                tempCur.setText(String.format("%s", curPlant.getLastTemperatureMeasurement().getMeasurementValue()));
+                humidityCur.setText(String.format("%s", curPlant.getLastHumidityMeasurement().getMeasurementValue()));
+                coCur.setText(String.format("%s", curPlant.getLastCO2Measurement().getMeasurementValue()));
+                lightCur.setText(String.format("%s", curPlant.getLastLightMeasurement().getMeasurementValue()));
 
-            profileName.setText(curPlant.getProfile().getName());
+                profileName.setText(curPlant.getProfile().getName());
 
-            SetMinMax(tempMin, tempMax, curPlant.getProfile().getTemperatureBoundaries());
-            SetMinMax(coMin, coMax, curPlant.getProfile().getCo2Boundaries());
-            SetMinMax(humidityMin, humidityMax, curPlant.getProfile().getHumidityBoundaries());
-            SetMinMax(lightMin, lightMax, curPlant.getProfile().getLightBoundaries());
+                SetMinMax(tempMin, tempMax, curPlant.getProfile().getTemperatureBoundaries());
+                SetMinMax(coMin, coMax, curPlant.getProfile().getCo2Boundaries());
+                SetMinMax(humidityMin, humidityMax, curPlant.getProfile().getHumidityBoundaries());
+                SetMinMax(lightMin, lightMax, curPlant.getProfile().getLightBoundaries());
 
 
-            PlantReponsitory.getInstance().GetHistoricDataFromAPI(getArguments().getInt("plantID"), this);
+                PlantReponsitory.getInstance().GetHistoricDataFromAPI(getArguments().getInt("plantID"), this);
+            }
         });
 
         FloatButtonOnClick();
@@ -149,6 +150,12 @@ public class PlantDetails extends Fragment {
         return root;
     }
 
+    /**
+     * Used to set the values of the min and max text fealds with the SensorBoundaries values
+     * @param min The min textView to be set
+     * @param max The max textView to be set
+     * @param v The SensorBoundaries that is use to set the values of the text feald
+     */
     public void SetMinMax(TextView min, TextView max, SensorBoundaries v) {
         min.setText(v.getMin().toString());
         max.setText(v.getMax().toString());

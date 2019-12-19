@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ui.LogInActivity" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.SignUpActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.actions"
@@ -22,8 +24,9 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".ui.SignUpActivity"
-            android:label="@string/app_name">
+            android:name=".ui.LogInActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

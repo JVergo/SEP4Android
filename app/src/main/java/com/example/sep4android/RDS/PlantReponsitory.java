@@ -17,7 +17,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantList;
-import com.example.sep4android.Model.PlantProfile;
+import com.example.sep4android.Model.PlantUpdater;
+import com.example.sep4android.Model.historicData;
 import com.example.sep4android.ui.plant.PlantDetails;
 
 import okhttp3.RequestBody;
