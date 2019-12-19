@@ -1,5 +1,15 @@
 package com.example.sep4android.RDS;
 
+/**
+ *
+ * This is a Repository class for plant.
+ * It uses Singlrton design pattern same as the other repository classes in this project, which guaranteed the only instance.
+ * This class contains all the methods a plant used to communicate with web API,
+ * which includes get, create, edit and delete functions.
+ * By using the MutableLiveData and LiveData, plants' info can be easily received from the WebAPI.
+ *
+ *
+ * */
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;

@@ -1,5 +1,16 @@
 package com.example.sep4android.RDS;
 
+/**
+ *
+ * This is a UserRespository class which is used as the bridge of the communication between WebAPI and the Android application.
+ * The class uses Singleton design pattern so that only one instance can be ensured by lazy initialization.
+ * The constructor of the class should be private.
+ * This class contains all the methods necessary while creating, editing, deleting user account, and changing password which is update user account.
+ *
+ *
+ *
+ *
+ * */
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -22,7 +33,6 @@ public class UserRepository {
     private String userEmail;
     private static UserRepository repository;
 
-    //singleton
     private UserRepository() {
     }
 
@@ -33,7 +43,8 @@ public class UserRepository {
         return repository;
     }
 
-//create a new user account
+/*create a new user account by calling the @POST request in userApi class=
+ * and it will only give the response as a boolean type*/
 public void sendAccountRequest(User user, Context c){
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<Boolean> call = userApi.createAccount(user);
@@ -44,8 +55,9 @@ public void sendAccountRequest(User user, Context c){
                 if(response.code() == 200){
                     //users.setValue(response.body().getUser());
                     Intent myIntent = new Intent(c,  MainActivity.class);
-                    c.startActivity(myIntent); //when account is created, app will turn to MainActivity which shows the plant list and plant profile list
+                    c.startActivity(myIntent);
                     return;
+                    /**when account is created, app will turn to MainActivity which shows the plant list and plant profile list*/
                 } else if(response.code() == 500) {// if email repeated
                     Toast.makeText(c, "User already exits or fields are empty", Toast.LENGTH_SHORT).show();
                 }
@@ -58,7 +70,8 @@ public void sendAccountRequest(User user, Context c){
         });
     }
 
-    //get the user info from the API by the email logged in
+    /*get the user info from the API by the email logged in.
+     * A UserResponse class is created to handle this request which is single responsibility*/
     public void getUserFromApi(String email){
         users = new MutableLiveData<>();
 
@@ -80,7 +93,7 @@ public void sendAccountRequest(User user, Context c){
         });
     }
 
-    //send login request
+    /*send login request*/
     public void loginReques(User user, Context c){
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<Boolean> call = userApi.Login(user);
@@ -109,7 +122,7 @@ public void sendAccountRequest(User user, Context c){
         });
     }
 
-    //change the user password
+    /*change the user password*/
     public void updateUser(User user){
         UserApi userApi = ServiceGenerator.getUserApi();
         UserUpdate u = new UserUpdate(user); //update the user model with the updated password
@@ -134,7 +147,7 @@ public void sendAccountRequest(User user, Context c){
         });
 
     }
-    //delete user from API
+    /*delete user from API */
     public void deleteUser(String email){
         UserApi userApi = ServiceGenerator.getUserApi();
         Call<RequestBody> call = userApi.deleteAccount(""+email);

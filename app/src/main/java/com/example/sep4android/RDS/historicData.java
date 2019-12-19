@@ -1,5 +1,12 @@
 package com.example.sep4android.RDS;
 
+/**
+ * This is a class called hidtoricData, which is implemented to store the last 7 days' plant data.
+ * It contains constructors and getters and setters for sensor data.
+ * It uses Array of plantData, so it is easy to get seven days' data by only call the method once.
+ * This class will be called in plantDetail while trying to show the user the history data in the form of the graph view.
+ *
+ * */
 import androidx.lifecycle.LiveData;
 
 import com.example.sep4android.Model.PlantData;

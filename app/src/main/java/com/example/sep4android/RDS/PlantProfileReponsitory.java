@@ -1,5 +1,13 @@
 package com.example.sep4android.RDS;
 
+/**
+ * This is a repository class for plant profile that is responsible for all the communication between Android application and WebAPI about the plant profile.
+ * This class also uses Singleton design pattern as same as the other repository classes that are responsible for users and plants.
+ * By using the MutableLiveData and LiveData of the plant profile list, it makes the data receiving from remote server possible to the app.
+ * This class contains methods of get, create, edit, delete and update plant profile.
+ * It uses okhttp3 and Retrofit2.
+ *
+ * */
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;

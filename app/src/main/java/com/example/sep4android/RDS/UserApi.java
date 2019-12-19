@@ -1,5 +1,11 @@
 package com.example.sep4android.RDS;
 
+/**
+ * This is an interface class called UserApi, which is implemented in order to do the {@PUT},{@POST},(@DELETE) and (@GET) requests.
+ * This class contains the request related to user account, plant, and plant profile.
+ *
+ *
+ * */
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.SensorBoundaries;

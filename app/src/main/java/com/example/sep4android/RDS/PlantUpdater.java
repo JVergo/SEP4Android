@@ -1,5 +1,18 @@
 package com.example.sep4android.RDS;
 
+/**
+ * This is a PlantUpdater class which is used for the update of the plant information only.
+ * This class contains the fields of plantId, deviceId, plantProfileId, and plantName.
+ * Also, it has multiple constructors.
+ * The getters and setters are implemented for the fields.
+ *
+ * While user wants to edit the plant details, this class is responsible to save updated plant info.
+ * This class makes plant model having relationships with profile
+ * and can be signed to the specific device by storing the unique ids of plant, plant profile and device.
+ *
+ *
+ *
+ * */
 import com.example.sep4android.Model.Plant;
 
 public class PlantUpdater {
