@@ -1,5 +1,10 @@
 package com.example.sep4android.ui.plant;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sep4android.Adapter.PlantAdapter;
+import com.example.sep4android.MainActivity;
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.R;
@@ -33,6 +41,8 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
     private RecyclerView.Adapter mPlantAdapter;
     private ArrayList<Plant> plants = new ArrayList<>();
     private ArrayList<PlantProfile> profiles = new ArrayList<>();
+
+
 
     FloatingActionButton createPlantBTN;
 
@@ -62,6 +72,9 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
         });
 
         FloatButtonOnClick();
+
+
+
         return root;
     }
 
@@ -81,4 +94,5 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
             fragmentTransaction.commit();
         });
     }
+
 }

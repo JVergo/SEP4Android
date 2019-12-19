@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sep4android.Model.Plant;
@@ -20,6 +22,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
 
     private ArrayList<Plant> mPlants;
     private OnPlantListener mOnPlantListener;
+
 
     double tempMax,tempMin,coMin,coMax,lightMin,lightMax,humidityMin,humidityMax;
 

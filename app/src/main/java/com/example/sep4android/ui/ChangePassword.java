@@ -47,7 +47,7 @@ public class ChangePassword extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         mViewModel = ViewModelProviders.of(this).get(ChangePasswordViewModel.class);
-        if (UserRepository.getInstance().getUser() == null) {
+        if(UserRepository.getInstance().getUser() == null) {
             UserRepository.getInstance().getUserFromApi(UserRepository.getInstance().getUserEmail());
         }
         mViewModel.getUser().observe(getActivity(), user1 -> {
@@ -57,7 +57,8 @@ public class ChangePassword extends Fragment {
     }
 
 
-    public void save() {
+
+    public void save(){
         /*if (!(oldPass.getText().toString().equals( user.getPassword()))) {
 
         Toast.makeText(getContext(), "Your password is wrong", Toast.LENGTH_LONG).show();
@@ -65,20 +66,17 @@ public class ChangePassword extends Fragment {
         }
         else {
          */
-        if ((!newPass.getText().toString().equals(oldPass.getText().toString()))) {
-            Toast.makeText(getContext(), "password do not match", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (!(newPass.getText().toString().equals(""))) {
-            user.setPassword(newPass.getText().toString());
-            user.setEmail(UserRepository.getInstance().getUserEmail());
-            UserRepository.getInstance().updateUser(user);
+            if(!(newPass.getText().toString().equals(""))) {
+                user.setPassword(newPass.getText().toString());
+                user.setEmail(UserRepository.getInstance().getUserEmail());
+                UserRepository.getInstance().updateUser(user);
 
-            Toast.makeText(getContext(), "Your password is changed now!", Toast.LENGTH_LONG).show();
-            Log.i("daniela", "password change");
-        } else {
-            Toast.makeText(getContext(), "Your password can not be empty", Toast.LENGTH_LONG).show();
-        }
+                Toast.makeText(getContext(), "Your password is changed now!", Toast.LENGTH_LONG).show();
+                Log.i("daniela", "password change");
+            }
+            else {
+                Toast.makeText(getContext(), "Your password can not be empty", Toast.LENGTH_LONG).show();
+            }
         //}
 
     }

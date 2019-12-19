@@ -1,4 +1,4 @@
-package com.example.sep4android.RDS;
+package com.example.sep4android.Model;
 /**
  *This is a UserUpdate class.
  *This is calling while user tries to do the {@function ChangePassword},

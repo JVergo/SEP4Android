@@ -1,4 +1,4 @@
-package com.example.sep4android.RDS;
+package com.example.sep4android.Model;
 
 /**
  * This is a class called hidtoricData, which is implemented to store the last 7 days' plant data.

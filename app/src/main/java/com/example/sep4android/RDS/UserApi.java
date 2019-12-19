@@ -9,6 +9,7 @@ package com.example.sep4android.RDS;
 import com.example.sep4android.Model.Plant;
 import com.example.sep4android.Model.PlantProfile;
 import com.example.sep4android.Model.PlantUpdater;
+import com.example.sep4android.Model.SensorBoundaries;
 import com.example.sep4android.Model.User;
 import com.example.sep4android.Model.UserUpdate;
 import com.example.sep4android.Model.historicData;
