@@ -84,7 +84,8 @@ public class ProfileDetails extends Fragment {
         delete.setOnClickListener(view -> {
 
             builder = new AlertDialog.Builder(getContext());
-            builder.setMessage("Are you sure you want to delete this Plant Profile ?");
+            builder.setMessage("Are you sure you want to delete this Plant Profile ? " +
+                                "All the plants attached tho this profile will be deleted too");
             builder.setCancelable(false);
             builder.setPositiveButton("Yes", (dialogInterface, i) -> {
                 //delete api
