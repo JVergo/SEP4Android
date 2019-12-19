@@ -19,6 +19,10 @@ public class LogInActivity extends AppCompatActivity {
     EditText email;
     EditText pass;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

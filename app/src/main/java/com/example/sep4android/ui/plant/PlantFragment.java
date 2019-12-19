@@ -36,6 +36,13 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
 
     FloatingActionButton createPlantBTN;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         PlantViewModel plantViewModel = ViewModelProviders.of(this).get(PlantViewModel.class);
         View root = inflater.inflate(R.layout.fragment_plant, container, false);
@@ -65,6 +72,10 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
         return root;
     }
 
+    /**
+     *
+     * @param position
+     */
     @Override
     public void onPlantClick(int position) {
         FragmentManager fm = getFragmentManager();
@@ -73,6 +84,9 @@ public class PlantFragment extends Fragment implements PlantAdapter.OnPlantListe
         fragmentTransaction.commit();
     }
 
+    /**
+     * replace current fragmen with CreatePlant Fragment
+     */
     public void FloatButtonOnClick() {
         createPlantBTN.setOnClickListener(v -> {
             FragmentManager fm = getFragmentManager();

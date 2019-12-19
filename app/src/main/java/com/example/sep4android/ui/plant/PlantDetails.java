@@ -116,7 +116,7 @@ public class PlantDetails extends Fragment {
                 SetMinMax(lightMin, lightMax, curPlant.getProfile().getLightBoundaries());
 
 
-                PlantReponsitory.getInstance().GetHistoricDataFromAPI(getArguments().getInt("plantID"), this);
+                PlantReponsitory.getInstance().GetHistoricDataFromAPI(curPlant.getId(), this);
             }
         });
 
@@ -277,7 +277,7 @@ public class PlantDetails extends Fragment {
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("P.M.I")
                 .setContentIntent(getPendingIntent())
-                .setContentText(curPlant.getName() + "Is dying! D:")
+                .setContentText(curPlant.getName() + " is dying! D:")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         notifyIt();
     }

@@ -78,7 +78,7 @@ public class EditPlant extends Fragment {
             PlantReponsitory.getInstance().getPlantFromApi(email);
         }
         editPlantViewModel.getPlants().observe(getActivity(), plantList -> {
-            curPlant = plantList.getPlant(getArguments().getInt("plantID"));
+            curPlant = plantList.getPlant(getArguments().getInt("plantPos"));
             plantName.setText(curPlant.getName());
             sensor.setText(curPlant.getDeviceId());
         });

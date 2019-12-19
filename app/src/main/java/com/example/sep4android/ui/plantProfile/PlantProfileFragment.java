@@ -31,6 +31,13 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
     private ArrayList<PlantProfile> profiles = new ArrayList<>();;
     private FloatingActionButton createProfileBTN;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_plant_profile, container, false);
 
@@ -61,6 +68,9 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
         return root;
     }
 
+    /**
+     * replace current fragment with CreatePlantProfile Fragment
+     */
     public void FloatButtonOnClick(){
         createProfileBTN.setOnClickListener(v -> {
             FragmentManager fm = getFragmentManager();
@@ -71,7 +81,10 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
         });
     }
 
-
+    /**
+     * replace current fragment with ProfileDetails Fragment, with the information of the selected item
+     * @param position
+     */
     @Override
     public void onProfileClick(int position) {
         profiles.get(position);
@@ -80,6 +93,7 @@ public class PlantProfileFragment extends Fragment implements ProfileAdapter.OnP
         fragmentTransaction.replace(R.id.frameLayout, ProfileDetails.newInstance(position));
         fragmentTransaction.commit();
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

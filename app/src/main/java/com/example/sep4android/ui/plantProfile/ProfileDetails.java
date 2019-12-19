@@ -33,7 +33,11 @@ public class ProfileDetails extends Fragment {
     AlertDialog dialog;
     AlertDialog.Builder builder;
 
-
+    /**
+     *
+     * @param profilePos
+     * @return
+     */
     public static ProfileDetails newInstance(int profilePos) {
         ProfileDetails fragment = new ProfileDetails();
         Bundle args = new Bundle();
@@ -42,6 +46,13 @@ public class ProfileDetails extends Fragment {
         return fragment;
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile_details, container, false);
@@ -80,6 +91,7 @@ public class ProfileDetails extends Fragment {
             fragmentTransaction.commit();
         });
 
+
         delete = root.findViewById(R.id.imgBtnDelete);
         delete.setOnClickListener(view -> {
 
@@ -105,6 +117,12 @@ public class ProfileDetails extends Fragment {
         return root;
     }
 
+    /**
+     * set minimum and maximum values of this profile
+     * @param min
+     * @param max
+     * @param v
+     */
     public void SetMinMax(TextView min, TextView max, SensorBoundaries v) {
         min.setText(v.getMin().toString());
         max.setText(v.getMax().toString());
