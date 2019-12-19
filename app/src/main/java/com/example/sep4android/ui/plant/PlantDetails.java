@@ -150,6 +150,12 @@ public class PlantDetails extends Fragment {
         return root;
     }
 
+    /**
+     * Used to set the values of the min and max text fealds
+     * <param name="min">The min textView to be set</param>
+     * <param name="max">The max textView to be set</param>
+     * <param name="v">The SensorBoundaries that is use to set the values of the text feald</param>
+     */
     public void SetMinMax(TextView min, TextView max, SensorBoundaries v) {
         min.setText(v.getMin().toString());
         max.setText(v.getMax().toString());
